@@ -1,0 +1,82 @@
+.heroContainer {
+  position: relative;
+  height: 60vh;
+  min-height: 400px;
+  max-height: 600px;
+  transition: background-color 0.3s ease;
+  margin: 0; /* Ensure no margin */
+  padding: 0; /* Ensure no padding */
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+  transition: background-color 0.3s ease;
+}
+
+.heroContainer.light .overlay {
+  background-color: rgba(110, 193, 228, 0.8);
+}
+
+.heroContainer.dark .overlay {
+  background-color: rgba(41, 98, 128, 0.8);
+}
+
+.contentWrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  text-align: center;
+  padding: 0 20px;
+}
+
+.waveWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.waveSvg {
+  width: 100%;
+  height: auto;
+}
+
+.wavePath {
+  transition: fill 0.3s ease;
+}
+
+.heroContainer.light .wavePath {
+  fill: var(--bg-primary);
+}
+
+.heroContainer.dark .wavePath {
+  fill: var(--bg-primary);
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.75rem;
+  }
+}

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #ffffff; /* Light mode primary background */
+  --bg-secondary: #f0f0f0; /* Light mode secondary background */
+  --text-primary: #333333; /* Light mode primary text color */
+  --text-secondary: #666666; /* Light mode secondary text color */
+}
+
+.dark {
+  --bg-primary: #1a1a1a; /* Dark mode primary background */
+  --bg-secondary: #2a2a2a; /* Dark mode secondary background */
+  --text-primary: #ffffff; /* Dark mode primary text color */
+  --text-secondary: #cccccc; /* Dark mode secondary text color */
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary);
+}
+
+p {
+  color: var(--text-secondary);
+}
