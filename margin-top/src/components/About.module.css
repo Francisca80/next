@@ -1,0 +1,32 @@
+/* src/components/TextImageSection.module.css */
+.boxedLayout {
+  max-width: 1200px; /* Set a maximum width for the box */
+  margin: 0 auto; /* Center the box horizontally */
+  padding: 60px 20px 60px 20px; /* Add padding inside the box */
+
+  background-color: #fff; /* Light background color for the box */
+ 
+}
+
+.container {
+  display: flex; /* Use flexbox to align items side by side */
+  align-items: center; 
+  /* Center items vertically */
+}
+
+.textContainer {
+  flex: 1; /* Allow the text container to take available space */
+  padding: 20px; /* Add space between text and image */
+}
+
+.image {
+  max-width: 480px; /* Set a maximum width for the image */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 8px; 
+  padding: 20px;/* Optional: Add rounded corners to the image */
+}
+
+/* New style for h2 */
+.textContainer h2 {
+  color: #340066; /* Set the text color for h2 */
+}

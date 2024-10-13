@@ -18,8 +18,6 @@ const logos: Logo[] = [
   { light: '/react-light.svg', dark: '/typescript-dark.svg'},
   { light: '/tailwind-light.svg', dark: '/typescript-dark.svg'},
   { light: '/typescript-light.svg', dark: '/typescript-dark.svg' },
-
-    
 ];
 
 const LogoSlider: React.FC = () => {
@@ -33,10 +31,10 @@ const LogoSlider: React.FC = () => {
             <Image 
               src={theme === 'light' ? logo.light : logo.dark} 
               alt={`Logo ${index + 1}`} 
-              layout="responsive" 
               width={100} 
               height={80} 
-              objectFit="contain"
+              style={{ objectFit: 'contain' }} // This is now acceptable
+              priority // Optional: Use this if you want to load the image with high priority
             />
           </div>
         ))}

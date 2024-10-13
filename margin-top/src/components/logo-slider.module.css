@@ -1,6 +1,6 @@
 .logoSlider {
   background: var(--bg-secondary); /* Default background for dark mode */
-  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
+
   height: 100px;
   margin: 0 auto; /* Ensure no margin */
   overflow: hidden;

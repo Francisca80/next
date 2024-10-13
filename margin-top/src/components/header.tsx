@@ -6,8 +6,12 @@ import Link from 'next/link';
 import { useTheme } from '../app/theme-context';
 import styles from './Header.module.css';
 
+
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+
+
+
 
   return (
     <header className={`${styles.header} ${styles[theme]}`}>
@@ -16,8 +20,8 @@ const Header: React.FC = () => {
           <Image
             src="/logo.png"
             alt="Company Logo Margin-Top"
-            width={80}
-            height={24}
+            width={50}
+            height={18}
             className={styles.logo}
           />
         </Link>
@@ -25,8 +29,8 @@ const Header: React.FC = () => {
           <Link href="/about" className={styles.navButton}>About</Link>
           <Link href="/services" className={styles.navButton}>Services</Link>
           <Link href="/cases" className={styles.navButton}>Cases</Link>
-    
         </div>
+     
         <button onClick={toggleTheme} className={styles.themeSwitch}>
           <span className={`${styles.switchIcon} ${styles.sunIcon}`}>☀️</span>
           <span className={`${styles.switchIcon} ${styles.moonIcon}`}>🌙</span>

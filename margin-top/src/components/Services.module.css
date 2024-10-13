@@ -1,0 +1,42 @@
+/* services.module.css */
+.servicesContainer {
+  padding: 40px 20px;
+  background-color: #f9f9f9; /* Light background for contrast */
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Space between cards */
+}
+
+.serviceCard {
+    border-radius: 12px; /* Rounded corners */
+    border: 2px solid #000; /* Thicker black border */
+    padding: 8px; /* Padding for spacing */
+    text-align: center; /* Center the title */
+    background-color: transparent; /* Black background */
+    color: #fff; /* White text color for contrast */
+  }
+
+.serviceCard:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  margin: 0 0 10px;
+  color: #000; /* Accent color for titles */
+}
+
+.serviceDescription {
+  font-size: 1rem;
+  color: #666; /* Subtle text color */
+}
+

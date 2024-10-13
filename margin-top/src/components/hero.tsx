@@ -8,9 +8,10 @@ interface HeroProps {
   imgData: string;
   imgAlt: string;
   title: string;
+  tagline: string;
 }
 
-export default function Hero({ imgData, imgAlt, title }: HeroProps) {
+export default function Hero({ imgData, imgAlt, title, tagline }: HeroProps) {
   const { theme } = useTheme();
 
   return (
@@ -27,6 +28,7 @@ export default function Hero({ imgData, imgAlt, title }: HeroProps) {
       
       <div className={styles.contentWrapper}>
         <h1 className={styles.title}>{title}</h1>
+        <p className={styles.tagline}>{tagline}</p> {/* Tagline displayed under title */}
       </div>
       
       {/* Wave SVG */}

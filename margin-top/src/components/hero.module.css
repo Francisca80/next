@@ -1,11 +1,12 @@
 .heroContainer {
   position: relative;
-  height: 60vh;
-  min-height: 400px;
-  max-height: 600px;
-  transition: background-color 0.3s ease;
-  margin: 0; /* Ensure no margin */
-  padding: 0; /* Ensure no padding */
+  height: 400px; /* Adjust height as needed */
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .imageWrapper {
@@ -38,17 +39,24 @@
   position: absolute;
   inset: 0;
   display: flex;
+  flex-direction: column; /* Stack children vertically */
   align-items: center;
   justify-content: center;
   z-index: 10;
 }
 
 .title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: var(--text-primary);
-  text-align: center;
-  padding: 0 20px;
+  font-size: 2.5rem; /* Adjust title size */
+  margin: 0; /* Remove default margin */
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow */
+}
+
+.tagline {
+  font-size: 1.5rem; /* Increased tagline size */
+  margin-top: 10px; /* Space between title and tagline */
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Added text shadow */
 }
 
 .waveWrapper {
@@ -79,4 +87,8 @@
   .title {
     font-size: 3.75rem;
   }
+}
+
+.title:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }

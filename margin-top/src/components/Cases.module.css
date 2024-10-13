@@ -1,0 +1,103 @@
+/* src/components/Cases.module.css */
+.boxedLayout {
+  max-width: 1200px; /* Set a maximum width for the box */
+  margin: 0 auto; /* Center the box horizontally */
+  padding: 20px; /* Add padding inside the box */
+  background-color: #f9f9f9; /* Light background color for the box */
+}
+
+.casesSection {
+  padding: 20px; /* Adjust padding for the section */
+  text-align: left; /* Align text to the left */
+}
+
+.casesContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.caseItem {
+  background: rgba(255, 255, 255, 0.8); /* Light mode background with transparency */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column; /* Stack image and text vertically */
+  justify-content: flex-start; /* Align items at the start */
+  height: 250px; /* Set a fixed height for the case items */
+  padding: 10px; /* Add padding for the card */
+}
+
+.caseImage {
+  width: 100%; /* Make the image take the full width of the card */
+  height: 150px; /* Set a fixed height for the image */
+  object-fit: cover; /* Cover the area while maintaining aspect ratio */
+  border-radius: 8px; /* Optional: Add rounded corners to the image */
+  display: block; /* Ensure the image is treated as a block element */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+.textContainer {
+  margin-top: auto; /* Push the text container to the bottom */
+}
+
+.caseItem h3 {
+  font-size: 1.5rem;
+  margin: 0; /* Remove margin for better alignment */
+}
+
+.caseItem p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0; /* Remove margin for better alignment */
+}
+
+.carouselPrev,
+.carouselNext {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.carouselPrev {
+  left: 10px;
+}
+
+.carouselNext {
+  right: 10px;
+}
+
+.viewAllButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.viewAllButton:hover {
+  background-color: #005bb5;
+}
+
+/* Dark mode styles */
+.dark .caseItem {
+  background: #333; /* Dark mode background */
+  border: 1px solid #444; /* Darker border for dark mode */
+}
+
+.dark .caseItem h3,
+.dark .caseItem p {
+  color: #fff; /* White text for dark mode */
+}
+
+.dark .viewAllButton {
+  background-color: #005bb5; /* Dark mode button color */
+}
