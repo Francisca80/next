@@ -10,9 +10,6 @@ import styles from './Header.module.css';
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-
-
-
   return (
     <header className={`${styles.header} ${styles[theme]}`}>
       <nav className={styles.nav}>

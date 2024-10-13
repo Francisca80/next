@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useTheme } from '../app/theme-context';
+import { useTheme } from '@/app/theme-context';
 import styles from './theme-switch.module.css';
 
 const ThemeSwitch: React.FC = () => {
