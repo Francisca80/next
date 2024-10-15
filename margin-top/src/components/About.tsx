@@ -1,6 +1,5 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import styles from './About.module.css';
 
 const AboutSection: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -18,11 +17,11 @@ const AboutSection: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.boxedLayout}>
-      <div className={styles.container}>
-        <div className={styles.textContainer}>
-          <h2>Webdesign & Development</h2>
-          <p>
+    <div className="flex flex-col items-center justify-center py-24 bg-white text-black">
+      <div className="flex flex-col md:flex-row max-w-6xl w-full items-center">
+        <div className="md:w-1/2 text-center md:text-left md:pr-8">
+          <h2 className="text-4xl font-bold mb-4">Webdesign & Development</h2>
+          <p className="mb-6">
             Bij Margin-Top geven we jouw visie de ruimte die het verdient. 
             Hierbij gaat het niet alleen om het bouwen van websites, maar om het creëren van digitale omgevingen 
             die de aandacht trekken en bezoekers blijven boeien. Wij geloven dat gedurfde ontwerpen het 
@@ -31,17 +30,17 @@ const AboutSection: React.FC = () => {
             <br />
             Of het nu gaat om een volledige website, een unieke webshop, een app of een interactieve gebruikerservaring, 
             wij bieden de ruimte om jouw creatieve visie tot leven te brengen. Onze experts in design en development 
-            zorgen voor een naadloze combinatie van vorm en functionaliteit, Onze creativiteit kent geen grenzen – 
+            zorgen voor een naadloze combinatie van vorm en functionaliteit. Onze creativiteit kent geen grenzen – 
             samen realiseren we jouw unieke online aanwezigheid.
           </p>
         </div>
         <div
-          className={styles.imageContainer}
+          className="md:w-1/2 transform transition-transform duration-300 md:ml-8"
           style={{
-            transform: `translate(${position.x * 0.05}px, ${position.y * 0.05}px)`, // Adjust the multiplier for sensitivity
+            transform: `translate(${position.x * 0.1}px, ${position.y * 0.1}px)`, // Increased multiplier for more movement
           }}
         >
-          <img src="/section-about.png" alt="About Us" className={styles.image} />
+          <img src="/section-about.png" alt="About Us" className="w-3/4 h-auto" />
         </div>
       </div>
     </div>

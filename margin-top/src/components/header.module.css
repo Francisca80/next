@@ -1,123 +1,25 @@
+/* margin-top/src/components/Header.module.css */
 .header {
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
-}
-
-.header.light {
-  background-color: #ffffff; /* Light mode background */
-}
-
-.header.dark {
-  background-color: #1a1a1a; /* Dark mode background */
-}
-
-.nav {
   display: flex;
-  justify-content: space-between; /* Space between logo and theme switch */
+  justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto; /* Center the nav */
-  width: 100%; /* Full width */
-}
-
-.logoLink {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-
-.logo {
-  height: auto;
+  padding: 20px;
+  background-color: #fff; /* Change to your desired background color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
 
 .navbar {
   display: flex;
-  justify-content: center; /* Center the nav items */
-  flex-grow: 1; /* Allow navbar to grow and take available space */
+  gap: 20px; /* Adjust spacing between links */
 }
 
 .navButton {
-  background-color: transparent; /* Flat button style */
-  color: var(--text-primary); /* Text color based on theme */
-  border: 2px solid transparent; /* Border for button */
-  border-radius: 5px;
-  padding: 10px 15px;
-  margin: 0 10px; /* Space between buttons */
   text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-  cursor: pointer;
+  color: #333; /* Change to your desired text color */
+  transition: color 0.3s;
 }
 
 .navButton:hover {
-  background-color: var(--bg-secondary); /* Background on hover */
-  color: #000; /* Dark text color on hover */
+  color: #0070f3; /* Change to your desired hover color */
 }
 
-/* Dark mode styles for nav buttons */
-:global(.dark) .navButton {
-  color: #ffffff; /* White text color in dark mode */
-  border: 2px solid #ffffff; /* White border in dark mode */
-}
-
-:global(.dark) .navButton:hover {
-  background-color: #333; /* Dark background on hover in dark mode */
-  color: #ffffff; /* White text color on hover in dark mode */
-}
-
-.themeSwitch {
-  position: relative;
-  width: 64px;
-  height: 32px;
-  background-color: var(--bg-secondary);
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 4px;
-}
-
-.switchIcon {
-  font-size: 18px;
-  z-index: 1;
-}
-
-.sunIcon {
-  opacity: 1;
-  transition: opacity 0.3s ease;
-}
-
-.moonIcon {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.switchKnob {
-  position: absolute;
-  left: 2px;
-  width: 28px;
-  height: 28px;
-  background-color: var(--bg-primary);
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-}
-
-:global(.dark) .themeSwitch {
-  background-color: var(--bg-secondary);
-}
-
-:global(.dark) .switchKnob {
-  transform: translateX(32px);
-}
-
-:global(.dark) .sunIcon {
-  opacity: 0;
-}
-
-:global(.dark) .moonIcon {
-  opacity: 1;
-}

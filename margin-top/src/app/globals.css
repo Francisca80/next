@@ -50,3 +50,32 @@ button {
 button:hover {
   background: linear-gradient(180deg, #4F8BD2, #6EC1E4); /* Reverse gradient on hover */
 }
+
+.navButton {
+  color: #4B5563; /* text-gray-700 */
+  background-color: transparent; /* default background */
+  border-radius: 9999px; /* rounded-full */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem; /* py-2 */
+  transition: background-color 0.3s, color 0.3s; /* transition duration-300 */
+}
+
+.navButton:hover {
+  background-color: #3B82F6; /* hover:bg-blue-500 */
+  color: white; /* hover:text-white */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); /* Adjust based on the number of logos */
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite; /* Adjust duration for speed */
+}
