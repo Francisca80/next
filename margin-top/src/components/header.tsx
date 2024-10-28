@@ -14,12 +14,14 @@ const Header: React.FC = () => {
             alt="Company Logo Margin-Top"
             width={50}
             height={18}
-            className="mr-2"
+            className="mr-2 object-contain"
+            priority={true}
+            style={{ width: 'auto', height: 'auto' }}
           />
           <span className="font-bold text-lg">Margin-Top</span>
         </Link>
         <div className="flex space-x-6">
-          <Link href="#about" className="navButton">Over ons</Link>
+          <Link href="about" className="navButton">Over ons</Link>
           <Link href="#services" className="navButton">Diensten</Link>
           <Link href="#cases" className="navButton">Cases</Link>
           <Link href="#contact" className="navButton">Contact</Link>

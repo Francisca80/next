@@ -4,13 +4,12 @@ import React from 'react';
 import Image from 'next/image';
 
 const logos = [
-
-  '/angular-light.svg',
-  '/figma-light.svg',
-  '/nextjs-light.svg',
-  '/react-light.svg',
-  '/tailwind-light.svg',
-
+  '/tools/angular-light.svg',
+  '/tools/figma-light.svg',
+  '/tools/nextjs-light.svg',
+  '/tools/react-light.svg',
+  '/tools/tailwind-light.svg',
+  '/tools/shopify-white.svg',
 ];
 
 const LogoSlider: React.FC = () => {
