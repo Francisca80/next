@@ -50,7 +50,7 @@ const servicesData = [
   },
 ];
 
-const Services: React.FC = () => {
+const ServicesSection: React.FC = () => {
   return (
     <div className="relative py-24 bg-white overflow-hidden">
       {/* Pastel floating circles */}
@@ -90,4 +90,4 @@ const Services: React.FC = () => {
   );
 };
 
-export default Services;
+export default ServicesSection;

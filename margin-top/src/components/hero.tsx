@@ -5,12 +5,12 @@ import LogoSlider from './LogoSlider';
 
 interface HeroProps {
   imgData: string; // URL for the background image
-  imgAlt: string;  // Alt text for the background image
+
   title: string;   // Title text
   tagline: string; // Tagline text
 }
 
-const Hero: React.FC<HeroProps> = ({ imgData, imgAlt, title, tagline }) => {
+const Hero: React.FC<HeroProps> = ({ imgData, title, tagline }) => {
   return (
     <div className="relative w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url(${imgData})` }}>
       <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center">

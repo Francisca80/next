@@ -4,4 +4,9 @@ export interface ICaseData {
     description: string;
     image: string;
     url: string;
+    about: string;
+    services: string;
+    when: string;
+    caseScreens: string;
+    backgroundImage: string;
 }

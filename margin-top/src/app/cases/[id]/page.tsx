@@ -2,14 +2,13 @@
 
 import { notFound } from 'next/navigation';
 import { caseData } from '../../../lib/case-data';
-import { ICaseData } from '../../../lib/types';
 import Image from 'next/image'; // Import Image from Next.js
 
 // Define the props type for CaseDetail
 interface CaseDetailProps {
-  params: {
+  params: Promise<{
     id: string; // The id is a string as it comes from the URL parameters
-  };
+  }>;
 }
 
 // Generate static paths for the dynamic routes
@@ -30,29 +29,70 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
   }
 
   return (
-    <div className="relative w-full h-screen bg-cover bg-center">
-      <h1 className="text-4xl font-bold mb-4">{caseItem.title}</h1>
-      <Image 
-        src={caseItem.image} 
-        alt={caseItem.title} 
-        width={500} // Set appropriate width
-        height={300} // Set appropriate height
-        className="w-full rounded-lg mb-6 object-contain" // Ensure aspect ratio is maintained
-        priority // Optional: Use this if you want to load the image with high priority
-      />
-      <p className="text-lg mb-4">{caseItem.description}</p>
-      <a
-        href={caseItem.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
-      >
-        Visit Website
-      </a>
-      <br />
-      <a href="/cases" className="inline-block mt-4 text-blue-600 hover:underline">
-        Back to Cases
-      </a>
+    <div className="max-w-full"> {/* Full width for the hero section */}
+      {/* Hero Section */}
+      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url(${caseItem.backgroundImage})` }}>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+
+        {/* Content */}
+        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-white ">
+            {caseItem.title}
+          </h1>
+          <p className="text-lg md:text-xl mb-8 max-w-2xl text-white">
+            {caseItem.description}
+          </p>
+        </div>
+      </section>
+  
+      {/* Additional Content Section */}
+      <div className="max-w-6xl mx-auto mt-10 flex flex-col md:flex-row">
+        <div className="md:w-1/2">
+          <h2 className="text-2xl font-bold mb-4">Over</h2>
+          <p className="text-lg mb-4">{caseItem.about}</p>
+        </div>
+        <div className="md:w-1/2 flex flex-col">
+          <h2 className="text-2xl font-bold mb-4">Services</h2>
+          <div className="flex flex-wrap mb-4">
+            {caseItem.services.split(',').map((service, index) => (
+              <span key={index} className="inline-block bg-blue-600 text-white rounded-full px-4 py-2 mr-2 mb-2 hover:bg-blue-700 transition">
+                {service.trim()}
+              </span>
+            ))}
+          </div>
+          <h2 className="text-2xl font-bold mb-4">Wanneer</h2>
+          <p className="text-lg mb-4">{caseItem.when}</p>
+        </div>
+      </div>
+
+      {/* Boxed Image Section */}
+      <div className="max-w-6xl mx-auto my-10 p-4 bg-white rounded-lg shadow-md">
+        <h2 className="text-2xl font-bold mb-4">Featured Image</h2>
+        <div className="relative w-full h-64 border-4 border-blue-400 rounded-lg overflow-hidden"> {/* Boxed image */}
+          <Image src={caseItem.caseScreens} alt="Description" layout="fill" objectFit="cover" />
+        </div>
+        <p className="mt-4 text-gray-700">This is a description of the boxed image section.</p>
+      </div>
+
+     
+      <div className="mt-8">
+        <button className="bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">     
+          <a
+            href={caseItem.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Website
+          </a>
+        </button>
+        <br />
+        <button className="bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl">
+          <a href="/cases">
+            Back to Cases
+          </a>
+        </button>
+      </div>
     </div>
   );
 };

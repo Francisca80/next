@@ -3,21 +3,21 @@ import heroImage from "public/home.jpg";
 
 import Cases from "@/components/Cases";
 import AboutSection from "@/components/About";
-import Services from "@/components/services";
+import ServicesSection from "@/components/Services";
 import Footer  from "@/components/footer";
-import CTA from "@/components/cta";
+import Contact from "./contact/page";
 
 
 export default function Home() {
   return (
   <div>
 
-    <Hero imgData={heroImage.src} imgAlt="hero" title="Creating space for BOLD designs" tagline="Design, developement" />
+    <Hero imgData={heroImage.src}  title="Creating space for BOLD designs" tagline="Design, developement" />
 
     <AboutSection />
-    <Services />
+    <ServicesSection />
     <Cases />
-    <CTA/>
+    <Contact />
     <Footer />
    
   
