@@ -2,7 +2,7 @@ import Hero from "@/components/hero";
 import heroImage from "public/home.jpg";
 
 import Cases from "@/components/Cases";
-import AboutSection from "@/components/About";
+
 import ServicesSection from "@/components/Services";
 import Footer  from "@/components/footer";
 

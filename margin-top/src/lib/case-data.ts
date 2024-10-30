@@ -5,7 +5,7 @@ export const caseData: ICaseData[] = [
         id: 1, // Numeric ID
         title: 'JodaroGym',
         description: 'JodaroGym is een kickboksschool biedt een omgeving waarin zowel beginners als gevorderden zich kunnen ontwikkelen en hun doelen kunnen bereiken.',
-        image: '/cases/jodaroLogo.png',
+        image: '/cases/jodaroLogo.svg',
         url: 'https://www.jodarogym.nl',
         about: 'Bij Jodaro Gym geloven we dat vechtsporten meer zijn dan alleen een fysieke uitdaging; het is een levensstijl die discipline, zelfvertrouwen en een sterk gemeenschapsgevoel bevordert. Onze boks- en kickboksschool biedt een omgeving waarin zowel beginners als gevorderden zich kunnen ontwikkelen en hun doelen kunnen bereiken.',
         services: 'UX Design, UI Design, Wordpress , Hosting , Onderhoud',

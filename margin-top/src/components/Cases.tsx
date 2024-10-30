@@ -20,7 +20,7 @@ const CasesSection: React.FC = () => {
                   alt={caseItem.title} 
                   width={500} // Set appropriate width
                   height={300} // Set appropriate height
-                  className="w-full h-48 object-contain" // Changed to object-cover for better image fitting
+                  className="w-full h-48 object-contain mt-2" // Changed to object-cover for better image fitting
                 />
                 <div className="p-6" style={{ height: '200px' }}  >
                   <h3 className="text-xl font-semibold mb-2" style={{ color: '#340066' }}>{caseItem.title}</h3>
