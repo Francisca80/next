@@ -10,6 +10,8 @@ export const caseData: ICaseData[] = [
         about: 'Bij Jodaro Gym geloven we dat vechtsporten meer zijn dan alleen een fysieke uitdaging; het is een levensstijl die discipline, zelfvertrouwen en een sterk gemeenschapsgevoel bevordert. Onze boks- en kickboksschool biedt een omgeving waarin zowel beginners als gevorderden zich kunnen ontwikkelen en hun doelen kunnen bereiken.',
         services: 'UX Design, UI Design, Wordpress , Hosting , Onderhoud',
         when: 'Okt 2024',
+        headingProject: 'Een nieuwe website voor JodaroGym',
+        descriptionProject: 'De vraag vanuit JodaroGym voor de website ging over vindbaarheid en een nieuwe visie op de website./n Er werd door klanten veel gebeld omdat de website geen duidelijkheid gaf. Met een geheel nieuw ontwerp waar je alle informatie eenvoudig kan vinden, is de conversie op de website gestegen. Daarnaast is er nu ook direct de mogelijkheid voor bestaande leden om via de website hun in te schrijven voor de lessen.',
         caseScreens: '/cases/jodaroscreens.png',            
         backgroundImage: '/cases/jodaroscreens.png' 
     },      
@@ -23,7 +25,9 @@ export const caseData: ICaseData[] = [
         services: 'UX Design, UI Design, Webdevelopment , Hosting , Onderhoud',
         when: 'Okt 2024',
         caseScreens: '/cases/megaparsecscreens.png',
-        backgroundImage: '/cases/megaparsecscreens.png'
+        backgroundImage: '/cases/megaparsecscreens.png',
+        headingProject: 'Een nieuwe website voor Megaparsec',
+        descriptionProject: 'Megaparsec is een platform voor onderzoekers en ontwikkelaars om te delen en te co-creëren.',
     },
     {
         id: 3, // Numeric ID
@@ -35,7 +39,9 @@ export const caseData: ICaseData[] = [
         services: 'UX Design, Shopify',
         when: 'Okt 2024',
         caseScreens: '/cases/rftemplescreens.png',
-        backgroundImage: '/cases/rftemplescreens.png'
+        backgroundImage: '/cases/rftemplescreens.png',
+        headingProject: 'Een nieuwe website voor RedFlowerTemple',
+        descriptionProject: 'RedFlowerTemple is een platform voor onderzoekers en ontwikkelaars om te delen en te co-creëren.',
     },
     {
         id: 4, // Numeric ID    
@@ -47,7 +53,9 @@ export const caseData: ICaseData[] = [
         services: 'UX Design, UI Design, Webdevelopment, Design System',
             when: 'Okt 2022 - Dec 2024',
             caseScreens: '/cases/nfiscreens.png',
-        backgroundImage: '/cases/nfiscreens.png'
+        backgroundImage: '/cases/nfiscreens.png',
+        headingProject: 'Een nieuwe website voor NFI',
+        descriptionProject: 'NFI is een platform voor onderzoekers en ontwikkelaars om te delen en te co-creëren.',
     },
     {
         id: 5, // Numeric ID
@@ -59,7 +67,9 @@ export const caseData: ICaseData[] = [
         services: 'UX Design, UI Design, Webdevelopment',
         when: 'Mar 2023 - Okt 2024',
             caseScreens: '/cases/totherootscreens.png',
-        backgroundImage: '/cases/totherootscreens.png'
+        backgroundImage: '/cases/totherootscreens.png',
+        headingProject: 'Een nieuwe website voor TheRoot',
+        descriptionProject: 'TotheRoot is een platform voor onderzoekers en ontwikkelaars om te delen en te co-creëren.',
         },
     {
         id: 6, // Numeric ID
@@ -71,7 +81,9 @@ export const caseData: ICaseData[] = [
         services: 'Webdevelopment, Design System',
         when: 'Feb 2020 - Feb 2024',
             caseScreens: '/cases/volksbankscreens.png',
-        backgroundImage: '/cases/volksbankscreens.png'
+        backgroundImage: '/cases/volksbankscreens.png',
+        headingProject: 'Een nieuwe website voor De Volksbank',
+        descriptionProject: 'De Volksbank is een platform voor onderzoekers en ontwikkelaars om te delen en te co-creëren.',
     },
     {
         id: 7, // Numeric ID
@@ -83,6 +95,8 @@ export const caseData: ICaseData[] = [
         services: 'UX Design, UI Design, Webdevelopment',
         when: 'Mei 2018 - Jan 2020',
         caseScreens: '/cases/redorascreens.png',
-        backgroundImage: '/cases/redorascreens.png'
+        backgroundImage: '/cases/redorascreens.png',
+        headingProject: 'Een nieuwe website voor Redora',
+        descriptionProject: 'Redora is een platform voor onderzoekers en ontwikkelaars om te delen en te co-creëren.',
     },
 ];

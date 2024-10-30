@@ -8,5 +8,7 @@ export interface ICaseData {
     services: string;
     when: string;
     caseScreens: string;
-    backgroundImage: string;
+    backgroundImage: string;    
+    headingProject: string;
+    descriptionProject: string;
 }
