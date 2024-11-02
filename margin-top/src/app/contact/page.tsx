@@ -1,5 +1,6 @@
 "use client"; // This directive indicates that this component is a client component
 
+import FAQ from '@/components/FAQ';
 import React, { useState } from 'react';
 
 const Contact: React.FC = () => {
@@ -88,7 +89,9 @@ const Contact: React.FC = () => {
         </div>
       </form>
     </div>
+
   );
+  <FAQ />
 };
 
 export default Contact;

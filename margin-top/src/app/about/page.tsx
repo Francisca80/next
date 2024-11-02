@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-
+import Image from 'next/image';
 const About: React.FC = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -17,7 +17,7 @@ const About: React.FC = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center py-24 bg-white text-black">
+    <div className="flex flex-col items-center justify-center py-36 bg-white text-black">
       <div className="flex flex-col md:flex-row max-w-6xl w-full items-center">
         <div className="md:w-1/2 text-center md:text-left md:pr-8">
           <h2 className="text-4xl font-bold mb-4">Webdesign & Development</h2>
@@ -40,7 +40,10 @@ const About: React.FC = () => {
             transform: `translate(${position.x * 0.1}px, ${position.y * 0.1}px)`, // Increased multiplier for more movement
           }}
         >
-          <img src="/section-about.png" alt="About Us" className="w-3/4 h-auto" />
+          <Image           src="/section-about.png" alt="About Us" className="w-3/4 h-auto" 
+            width={1920}
+            height={1080}
+          />
         </div>
       </div>
     </div>

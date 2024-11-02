@@ -25,7 +25,7 @@ const Header: React.FC = () => {
           <Link href="/services" className="navButton text-sm">Diensten</Link>
           <Link href="/cases" className="navButton text-sm">Cases</Link>
    
-          <Link href="/book-call">
+          <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
             <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl text-sm">
               Plan een afspraak
             </button>

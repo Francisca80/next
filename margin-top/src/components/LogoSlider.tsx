@@ -23,8 +23,8 @@ const LogoSlider: React.FC = () => {
               alt={`Logo ${index + 1}`} 
               width={100} 
               height={80} 
-              className="object-contain filter brightness-0 invert" // Make logos white
-              priority // Optional: Use this if you want to load the image with high priority
+              className="object-contain filter brightness-0 invert" 
+              loading="lazy"
             />
           </div>
         ))}

@@ -6,9 +6,12 @@ export interface ICaseData {
     url: string;
     about: string;
     services: string;
-    when: string;
     caseScreens: string;
     backgroundImage: string;    
     headingProject: string;
     descriptionProject: string;
+    resultImage: string;
+    resultImage2: string;
+    usedTechniques: string;
 }
+

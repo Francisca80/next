@@ -40,25 +40,27 @@ const FAQ: React.FC = () => {
     };
 
     return (
-        <div className="max-w-4xl mx-auto p-6">
-            <h2 className="text-3xl font-bold text-center mb-6">Frequently Asked Questions</h2>
-            <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                    <div key={index} className="border rounded-lg shadow-md">
-                        <div 
-                            className="flex justify-between items-center p-4 cursor-pointer bg-gray-100 hover:bg-gray-200"
-                            onClick={() => toggleFAQ(index)}
-                        >
-                            <h3 className="text-lg font-semibold">{faq.question}</h3>
-                            <span className="text-xl">{faq.isOpen ? '-' : '+'}</span>
-                        </div>
-                        {faq.isOpen && (
-                            <div className="p-4 bg-white">
-                                <p>{faq.answer}</p>
+        <div className="bg-black py-24">
+            <div className="max-w-4xl mx-auto p-6">
+                <h2 className="text-3xl font-bold text-center text-white mb-6">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                    {faqs.map((faq, index) => (
+                        <div key={index} className="border border-gray-700 rounded-lg shadow-md">
+                            <div 
+                                className="flex justify-between items-center p-4 cursor-pointer bg-gray-800 hover:bg-gray-700"
+                                onClick={() => toggleFAQ(index)}
+                            >
+                                <h3 className="text-lg font-semibold text-white">{faq.question}</h3>
+                                <span className="text-xl">{faq.isOpen ? '-' : '+'}</span>
                             </div>
-                        )}
-                    </div>
-                ))}
+                            {faq.isOpen && (
+                                <div className="p-4 bg-gray-800">
+                                    <p>{faq.answer}</p>
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );

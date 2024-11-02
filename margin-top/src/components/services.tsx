@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React from 'react';
+import { motion } from 'framer-motion'; // Import motion from Framer Motion
 
 const servicesData = [
   {
@@ -53,17 +54,6 @@ const servicesData = [
 const ServicesSection: React.FC = () => {
   return (
     <div className="relative py-24 bg-white overflow-hidden">
-      {/* Pastel floating circles */}
-      <div className="absolute top-10 left-20 w-16 h-16 bg-pink-200 rounded-md opacity-70 transform rotate-45"></div>
-      <div className="absolute top-32 right-32 w-24 h-24 bg-blue-200 rounded-md opacity-50"></div>
-      <div className="absolute bottom-10 left-10 w-12 h-12 bg-violet-200 rounded-lg opacity-70"></div>
-      <div className="absolute bottom-20 right-40 w-20 h-20 bg-cyan-200 rounded-full opacity-70"></div>
-      <div className="absolute top-48 left-48 w-32 h-16 bg-purple-200 rounded opacity-70"></div>
-      <div className="absolute top-56 left-10 w-28 h-28 bg-sky-200 opacity-70 transform skew-y-12"></div>
-      <div className="absolute bottom-32 left-40 w-20 h-20 bg-indigo-200 rounded-lg opacity-70"></div>
-      <div className="absolute top-72 right-10 w-16 h-16 bg-fuchsia-200 rounded opacity-70"></div>
-
-
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
         <div className="md:w-1/2 mb-12 md:mb-0 text-left">
           <h2 className="text-4xl font-bold mb-4" style={{ color: '#340066' }}>Services</h2>
@@ -72,7 +62,13 @@ const ServicesSection: React.FC = () => {
         </div>
         <div className="md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
           {servicesData.map((service, index) => (
-            <div key={index} className="flex flex-col">
+            <motion.div 
+              key={index} 
+              className="flex flex-col" 
+              initial={{ x: -100, opacity: 0 }} // Start position
+              animate={{ x: 0, opacity: 1 }} // End position
+              transition={{ duration: 0.5, delay: index * 0.5 }} // Increased delay for slower animation
+            >
               <div className="flex flex-col">
                 <Link href={service.link}>
                   <h3 className="text-xl font-semibold mb-1" style={{ color: '#340066' }}>
@@ -82,7 +78,7 @@ const ServicesSection: React.FC = () => {
                 <hr className="border-gray-300 mb-1 w-full" />
               </div>
               <p className="text-gray-700">{service.description}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
