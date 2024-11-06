@@ -1,7 +1,6 @@
 'use client';
 import './globals.css';
 
-
 import Header from '../components/header';
 import Footer from '../components/footer';
 import ContactSectionDark from '@/components/ContactSectionDark';
@@ -15,7 +14,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
           <Header />
-          <main>{children}</main>
+          <main className="flex-grow">
+            {children}
+          </main>
           <ContactSectionDark />    
           <Footer />              
       </body>

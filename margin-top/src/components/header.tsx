@@ -21,8 +21,8 @@ const Header: React.FC = () => {
           <span className="font-bold text-lg">Margin-Top</span>
         </Link>
         <div className="flex space-x-4">
-          <Link href="/about" className="navButton text-sm">Over ons</Link>
-          <Link href="/services" className="navButton text-sm">Diensten</Link>
+          <Link href="/" className="navButton text-sm">Over ons</Link>
+          <Link href="/" className="navButton text-sm">Diensten</Link>
           <Link href="/cases" className="navButton text-sm">Cases</Link>
    
           <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">

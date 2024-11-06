@@ -7,17 +7,17 @@ const servicesData = [
   {
     title: 'Web Design',
     description: 'Het creëren van visueel aantrekkelijke en gebruiksvriendelijke websites die zijn afgestemd op jouw merk.',
-    link: '/services/web-design',
+    link: '/',
   },
   {
     title: 'Web Development',
     description: 'Snelle, schaalbare en veilige websites bouwen met de nieuwste technologieën.',
-    link: '/services/web-development',
+    link: '/',
   },
   {
     title: 'Web App Development',
     description: 'Het ontwikkelen van robuuste webapplicaties om aan de behoeften van jouw bedrijf te voldoen.',
-    link: '/services/web-app-development',
+    link: '/',
   },
   {
     title: 'Mobile App Development',
@@ -27,27 +27,27 @@ const servicesData = [
   {
     title: 'UI/UX Design',
     description: 'Het leveren van intuïtieve en boeiende gebruikerservaringen door middel van doordacht ontwerp.',
-    link: '/services/ui-ux-design',
+    link: '/',
   },
   {
     title: 'Wordpress Websites',
     description: 'Het creëren van op maat gemaakte WordPress-sites geoptimaliseerd voor prestaties en SEO.',
-    link: '/services/wordpress-websites',
+    link: '/',
   },
   {
     title: 'Hosting',
     description: 'Betrouwbare hostingoplossingen met hoge prestaties en uptime.',
-    link: '/services/hosting',
+    link: '/',
   },
   {
     title: 'Onderhoud',
     description: 'Voortdurende websiteondersteuning en onderhoud om je site soepel te laten draaien.',
-    link: '/services/onderhoud',
+    link: '/',
   },
   {
     title: 'React/Next/Angular Development',
     description: 'Moderne, dynamische webapplicaties bouwen met React, Next.js en Angular.',
-    link: '/services/react-next-angular-development',
+    link: '/',
   },
 ];
 

@@ -3,6 +3,7 @@
 import { notFound } from 'next/navigation';
 import { caseData } from '../../../lib/case-data';
 import Image from 'next/image'; // Import Image from Next.js
+import Link from 'next/link';
 
 // Define the props type for CaseDetail
 interface CaseDetailProps {
@@ -47,11 +48,14 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
   
       {/* Additional Content Section */}
       <div className="max-w-6xl mx-auto my-16 flex flex-col md:flex-row">
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 mb-8 md:mb-0">
           <h2 className="text-2xl font-bold mb-4">Over</h2>
           <p className="text-lg mb-4">{caseItem.about}</p>
+          <button className="bg-black text-white px-4 py-2 rounded-md">
+            <Link href={caseItem.url} target="_blank" rel="noopener noreferrer">Bekijk de website</Link>
+          </button>
         </div>
-        <div className="md:w-1/2 flex flex-col pl-8">
+        <div className="md:w-1/2 flex flex-col pl-0 md:pl-8">
           <h2 className="text-2xl font-bold mb-4">Services</h2>
           <div className="flex flex-wrap mb-4">
             {caseItem.services.split(',').map((service, index) => (
@@ -63,94 +67,88 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto my-10 flex flex-col md:flex-row">
-        <div className="md:w-1/2 ">
-          <h2 className="text-xl  font-bold text-gray-800">{caseItem.headingProject}</h2>
+      <div className="w-full bg-blue-50 py-10"> {/* Full width for the section */}
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row"> {/* Centered boxed content */}
+          <div className="md:w-1/2">
+            <h2 className="text-xl font-bold text-gray-800">{caseItem.headingProject}</h2>
+          </div>
+          <p className="text-gray-600 max-w-md pl-0 md:pl-8 mt-4">
+            {caseItem.descriptionProject}
+          </p>
         </div>
-        <p className="text-gray-600 max-w-md pl-8">
-          {caseItem.descriptionProject}
-        </p>
       </div>
 
       {/* Boxed Image Section */}
-      <div className="max-w-full mx-auto mt-10 bg-white ">
+      <div className="max-w-full mx-auto bg-white ">
         <div className="relative w-full h-80  overflow-hidden"> {/* Boxed image */}
           <Image src={caseItem.caseScreens} alt="Description" layout="fill" objectFit="cover" />
         </div>
-
       </div>
 
       {/* New Process Description Section */}
       <div className="py-16 bg-black"> {/* Full width background */}
         <div className="max-w-6xl mx-auto"> {/* Boxed content */}
           <h2 className="text-2xl font-bold mb-4 text-white">Proces Beschrijving</h2>
-          <p className="text-lg mb-4 text-white">
-            Our project development process involves several key stages to ensure quality and efficiency. We start with research and planning, followed by design, development, testing, and finally deployment.
-          </p>
+       
           
           {/* Used Techniques Section with Image */}
-          <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2">
-              <h3 className="text-xl font-semibold mb-2 text-white">Used Techniques:</h3>
-              <p className="text-white"> {caseItem.usedTechniques}</p>
+          <div className="flex flex-col md:flex-row items-start py-10">
+            <div className="md:w-1/2 pr-8">
+              <p className="text-lg text-left text-white">
+                {caseItem.procesDescription}
+              </p>
             </div>
-            <div className="md:w-1/2 flex justify-center mt-4 md:mt-0">
+            <div className="md:w-1/2 flex bg-white justify-center py-16 mt-4 md:mt-0 rounded-lg">
               <Image 
-                src="/cases/jodaro_old.png" // Replace with the actual path to your image
+                src={caseItem.procesImage}
                 alt="Techniques Image"
-                width={300} // Set the desired width
-                height={200} // Set the desired height
+                width={300}
+                height={200}
                 className="rounded-lg shadow-md"
               />
             </div>
           </div>
+          <p className="text-right text-white mt-2">{caseItem.procesImageCaption}</p>
+          
         </div>
       </div>
 
       {/* Resultaat Section */}
-      <div className="py-16 bg-white"> {/* Full width background */}
+      <div className="w-full py-16 bg-gray-100"> {/* Full width background */}
         <div className="max-w-6xl mx-auto"> {/* Boxed content */}
-          <h2 className="text-2xl font-bold mb-4 text-black">Resultaat</h2>
-          <p className="text-lg pr-4 pb-4 mb-4">
-            Our project development process involves several key stages to ensure quality and efficiency. We start with research and planning, followed by design, development, testing, and finally deployment.
+          <h2 className="text-2xl font-bold mb-4 ">Resultaat</h2>
+          <p className="text-lg  text-black pr-4 pb-4 mb-4">
+            {caseItem.resultText}
           </p>
           
-          {/* Used Techniques Section with Image */}
-          <div className="flex flex-col md:flex-row items-center">
+          <div className="flex flex-col md:flex-row items-start py-10">
             <div className="md:w-1/2">
-              <h3 className="text-xl font-semibold mb-2">Used Techniques:</h3>
-              <ul className="list-disc list-inside text-gray-600 mb-4">
+              <h3 className="text-xl font-semibold mb-2">Gebruikte Technieken / Stack:</h3>
+              <ul className="list-disc list-inside text-gray-600">
                 {caseItem.usedTechniques.split(',').map((technique, index) => (
-                  <li key={index}>{technique.trim()}</li> // Trim whitespace and create list items
+                  <li key={index}>{technique.trim()}</li> 
                 ))}
               </ul>
-              {/* Change button to text link with padding */}
-              <a
-                href={caseItem.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-black hover:underline font-bold mt-2"
-              >
-               Bekijk de website
-              </a>
             </div>
-            <div className="md:w-1/2 flex justify-center mt-4 md:mt-0">
+            <div className="md:w-1/2 flex flex-col items-center mt-4 md:mt-0">
               <Image 
-                src={caseItem.resultImage} // Replace with the actual path to your image
-                alt="Techniques Image"
-                width={300} // Set the desired width
-                height={200} // Set the desired height
+                src={caseItem.resultImage}
+                alt="Result Image 1"
+                width={300}
+                height={200}
                 className="rounded-lg shadow-md"
               />
+              <p className="text-black mt-2 text-center">{caseItem.resultImageCaption}</p>
             </div>
-            <div className="md:w-1/2 flex justify-center mt-4 md:mt-0">
+            <div className="md:w-1/2 flex flex-col items-center mt-4 md:mt-0">
               <Image 
-                src={caseItem.resultImage2} // Replace with the actual path to your image
-                alt="Techniques Image"
-                width={300} // Set the desired width
-                height={200} // Set the desired height
+                src={caseItem.resultImage2}
+                alt="Result Image 2"
+                width={300}
+                height={200}
                 className="rounded-lg shadow-md"
               />
+              <p className="text-black mt-2 text-center">{caseItem.resultImageCaption2}</p>
             </div>
           </div>
         </div>

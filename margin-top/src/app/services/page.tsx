@@ -66,7 +66,7 @@ const Services: React.FC = () => {
 
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
         <div className="md:w-1/2 mb-12 md:mb-0 text-left">
-          <h2 className="text-4xl font-bold mb-4" style={{ color: '#340066' }}>Services</h2>
+          <h2 className="text-4xl font-bold mb-4" style={{ color: '#340066' }}>Diensten</h2>
           <hr className="border-gray-300 mb-4 w-1/2" />
           <p className="text-lg">Uw complete online oplossing: van server tot scherm.</p>
         </div>

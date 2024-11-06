@@ -3,7 +3,7 @@ import heroImage from "public/home.jpg";
 
 import CaseSection from "@/components/CaseSection";
 import ServicesSection from "@/components/Services";
-import CTA from "@/components/CTA";
+
 import SectionBanner from "@/components/SectionBanner";
 import ClientLogoBanner from "@/components/ClientLogoBanner";
 
@@ -12,13 +12,11 @@ export default function Home() {
   return (
   <div>
 
-    <Hero imgData={heroImage.src}  title="Creating space for BOLD designs" tagline="Design, developement" />
+    <Hero imgData={heroImage.src}  title="Creating space for BOLD designs" tagline="Margin-Top design & development" />
     <CaseSection />
-    <CTA />
     <SectionBanner />
     <ServicesSection />
     <ClientLogoBanner />  
-
   </div>
   );
 }

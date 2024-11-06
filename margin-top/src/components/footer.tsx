@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
           <div className="flex space-x-4">
             <Link href="/cases" className="underline text-white">Cases</Link>
             <Link href="/services" className="underline text-white">Services</Link>
-            <Link href="/contact" className="underline text-white">Contact</Link>
+          
           </div>
         </div>
         <div className="mb-4 md:mb-0">
