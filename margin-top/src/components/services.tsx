@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+
 import React from 'react';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 
@@ -22,7 +22,7 @@ const servicesData = [
   {
     title: 'Mobile App Development',
     description: 'Het ontwerpen en ontwikkelen van mobiele apps voor iOS- en Android-platforms.',
-    link: '/services/mobile-app-development',
+    link: '/',
   },
   {
     title: 'UI/UX Design',
@@ -70,11 +70,11 @@ const ServicesSection: React.FC = () => {
               transition={{ duration: 0.5, delay: index * 0.5 }} // Increased delay for slower animation
             >
               <div className="flex flex-col">
-                <Link href={service.link}>
+               
                   <h3 className="text-xl font-semibold mb-1" style={{ color: '#340066' }}>
                     <span className="hover:underline cursor-pointer">{service.title}</span>
                   </h3>
-                </Link>
+                
                 <hr className="border-gray-300 mb-1 w-full" />
               </div>
               <p className="text-gray-700">{service.description}</p>

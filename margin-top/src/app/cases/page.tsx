@@ -13,14 +13,14 @@ const backgroundColors = [
   'bg-pink-500',
   'bg-indigo-500',
   'bg-teal-500',
-]; // Add more colors as needed
+]; 
 
 const Cases: React.FC = () => {
     return (
       <div className="py-24 bg-blue-50">
         <section className="max-w-6xl mx-auto text-left text-white mt-12 mb-12">
         <h2 className="text-4xl font-bold mb-8 text-left">Cases</h2>
-        <p className="text-xl text-left text-gray-700 mb-8">Met trots werken we aan projecten die onze klanten helpen hun merken te laten groeien door slimme, digitale oplossingen</p>
+        <p className="text-xl text-left text-gray-700 mb-8">Met trots werken we aan projecten van onze klanten! We helpen graag merken te laten groeien door slimme, digitale oplossingen</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {caseData.map((caseItem, index) => ( // Show all cases
@@ -48,7 +48,7 @@ const Cases: React.FC = () => {
                 </Link>
               </div>
             </div>
-          ))} // Ensure the map function is correctly closed
+          ))} 
         </div>
       </section>
     </div>

@@ -11,7 +11,6 @@ import ClientLogoBanner from "@/components/ClientLogoBanner";
 export default function Home() {
   return (
   <div>
-
     <Hero imgData={heroImage.src}  title="Creating space for BOLD designs" tagline="Margin-Top design & development" />
     <CaseSection />
     <SectionBanner />
