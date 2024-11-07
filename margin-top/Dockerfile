@@ -2,16 +2,16 @@
 FROM node:18 AS builder
 
 # Set the working directory inside the container
-WORKDIR /margin-top/app
+WORKDIR /app
 
 # Copy the package.json and package-lock.json (if available)
-COPY package*.json ./
+COPY margin-top/package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy the rest of the application code
-COPY . .
+COPY margin-top/. .
 
 # Build the Next.js app
 RUN npm run build
@@ -20,13 +20,13 @@ RUN npm run build
 FROM node:18-alpine
 
 # Set the working directory inside the container
-WORKDIR /margin-top/app
+WORKDIR /app
 
 # Copy only the necessary files from the builder stage
-COPY --from=builder /margin-top/app/package*.json ./
-COPY --from=builder /margin-top/app/.next ./.next
-COPY --from=builder /margin-top/app/public ./public
-COPY --from=builder /margin-top/app/next.config.mjs ./
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/next.config.mjs ./
 
 # Install production dependencies only
 RUN npm install --production
