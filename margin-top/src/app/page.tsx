@@ -2,7 +2,7 @@ import Hero from "@/components/hero";
 import heroImage from "public/home.jpg";
 
 import CaseSection from "@/components/CaseSection";
-import ServicesSection from "@/components/Services";
+import ServicesSection from "@/components/ServicesSection";
 
 import SectionBanner from "@/components/SectionBanner";
 import ClientLogoBanner from "@/components/ClientLogoBanner";
