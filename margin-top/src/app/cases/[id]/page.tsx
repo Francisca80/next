@@ -81,7 +81,7 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
       {/* Boxed Image Section */}
       <div className="max-w-full mx-auto bg-white ">
         <div className="relative w-full h-80  overflow-hidden"> {/* Boxed image */}
-          <Image src={caseItem.caseScreens} alt="Description" layout="fill" objectFit="cover" />
+          <Image src={caseItem.caseScreens} alt="Descriptions" layout="fill" objectFit="cover" />
         </div>
       </div>
 
