@@ -25,9 +25,9 @@ jobs:
       # Build the Docker image
       - name: Margin-Top Docker image
         run: |
-          docker build -t ghcr.io/${{ github.repository }}/margin-top:latest .
+          docker build -t ghcr.io/${{ github.repository }}/next:latest .
 
       # Push the Docker image to GitHub Container Registry
       - name: Push Docker image to GitHub Container Registry
         run: |
-          docker push ghcr.io/${{ github.repository }}/margin-top:latest
+          docker push ghcr.io/${{ github.repository }}/next:latest
