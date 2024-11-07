@@ -47,7 +47,7 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
       </section>
   
       {/* Additional Content Section */}
-      <div className="max-w-6xl mx-auto my-16 flex flex-col md:flex-row">
+      <div className="max-w-6xl mx-auto my-16 flex flex-col md:flex-row p-4"> {/* Added padding for mobile responsiveness */}
         <div className="md:w-1/2 mb-8 md:mb-0">
           <h2 className="text-2xl font-bold mb-4">Over</h2>
           <p className="text-lg mb-4">{caseItem.about}</p>
@@ -68,7 +68,7 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
       </div>
 
       <div className="w-full bg-blue-50 py-10"> {/* Full width for the section */}
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row"> {/* Centered boxed content */}
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row p-4"> {/* Added padding for mobile responsiveness */}
           <div className="md:w-1/2">
             <h2 className="text-xl font-bold text-gray-800">{caseItem.headingProject}</h2>
           </div>
@@ -78,19 +78,20 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
         </div>
       </div>
 
-      {/* Boxed Image Section */}
-      <div className="max-w-full mx-auto bg-white ">
-        <div className="relative w-full h-80  overflow-hidden"> {/* Boxed image */}
-          <Image src={caseItem.caseScreens} alt="Descriptions" layout="fill" objectFit="cover" />
-        </div>
+      <div className="p-8"> {/* Added padding for mobile responsiveness */}
+        {/* Boxed Image Section */}
+        <Link href={`/cases/${caseItem.id}`} className="relative w-full h-64"> {/* Made the tile clickable */}
+          <div className="relative w-full h-80 overflow-hidden"> {/* Boxed image */}
+            <Image src={caseItem.caseScreens} alt="Description" width={1920} height={1080} className="object-cover" />
+          </div>
+        </Link>
       </div>
 
       {/* New Process Description Section */}
       <div className="py-16 bg-black"> {/* Full width background */}
-        <div className="max-w-6xl mx-auto"> {/* Boxed content */}
+        <div className="max-w-6xl mx-auto p-4"> {/* Added padding for mobile responsiveness */}
           <h2 className="text-2xl font-bold mb-4 text-white">Proces Beschrijving</h2>
        
-          
           {/* Used Techniques Section with Image */}
           <div className="flex flex-col md:flex-row items-start py-10">
             <div className="md:w-1/2 pr-8">
@@ -109,15 +110,14 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
             </div>
           </div>
           <p className="text-right text-white mt-2">{caseItem.procesImageCaption}</p>
-          
         </div>
       </div>
 
       {/* Resultaat Section */}
       <div className="w-full py-16 bg-gray-100"> {/* Full width background */}
-        <div className="max-w-6xl mx-auto"> {/* Boxed content */}
+        <div className="max-w-6xl mx-auto p-4"> {/* Added padding for mobile responsiveness */}
           <h2 className="text-2xl font-bold mb-4 ">Resultaat</h2>
-          <p className="text-lg  text-black pr-4 pb-4 mb-4">
+          <p className="text-lg text-black pr-4 pb-4 mb-4">
             {caseItem.resultText}
           </p>
           
