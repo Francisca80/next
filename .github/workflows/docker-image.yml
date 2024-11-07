@@ -25,7 +25,7 @@ jobs:
       # Build the Docker image
       - name: Margin-Top Docker image
         run: |
-          docker build -t ghcr.io/francisca80/next/next:latest .
+          docker build -f margin-top/Dockerfile -t ghcr.io/francisca80/next/next:latest .
 
       # Push the Docker image to GitHub Container Registry
       - name: Push Docker image to GitHub Container Registry
