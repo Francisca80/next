@@ -10,7 +10,7 @@ const logos = [
     '/cases/rft/rftemple.png',
     '/cases/MPS.jpg',
     '/cases/redora_logo.jpeg',
-    '/cases/broeders/broeders.png',
+    '/cases/broeders/broederslogo.png',
 ];
 
 const ClientLogoBanner: React.FC = () => {

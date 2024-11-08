@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
           <p className="text-sm text-white">
             Email: <a href="mailto:info@margin-top.com" className="underline">info@margin-top.com</a>
           </p>
-          <p className="text-sm text-white">KVK: 85544481</p>
+          <p className="text-sm text-white">KVK: 95142754</p>
         </div>
         <div className="mb-4 md:mb-0">
           <h3 className="text-lg font-bold text-white">Links</h3>

@@ -44,20 +44,15 @@ const servicesData = [
     description: 'Voortdurende websiteondersteuning en onderhoud om je site soepel te laten draaien.',
     link: '/',
   },
-  {
-    title: 'React/Next/Angular Development',
-    description: 'Moderne, dynamische webapplicaties bouwen met React, Next.js en Angular.',
-    link: '/',
-  },
 ];
 
 const ServicesSection: React.FC = () => {
   return (
     <div className="relative py-24 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto text-center mb-12 p-8">
+      <div className="max-w-6xl mx-auto text-left mb-12 p-8">
         <h2 className="text-4xl font-bold mb-4" style={{ color: '#340066' }}>Services</h2>
         <hr className="border-gray-300 mb-1 w-full" />
-        <p className="text-lg mb-4">Uw complete online oplossing: van server tot scherm.</p>
+        <p className="text-lg mb-8">Uw complete online oplossing: van server tot scherm.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {servicesData.map((service, index) => (
             <motion.div 

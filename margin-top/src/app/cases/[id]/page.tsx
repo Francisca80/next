@@ -78,11 +78,17 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
         </div>
       </div>
 
-      <div className="p-8"> {/* Added padding for mobile responsiveness */}
+      <div > {/* Added padding for mobile responsiveness */}
         {/* Boxed Image Section */}
         <Link href={`/cases/${caseItem.id}`} className="relative w-full h-64"> {/* Made the tile clickable */}
           <div className="relative w-full h-80 overflow-hidden"> {/* Boxed image */}
-            <Image src={caseItem.caseScreens} alt="Description" width={1920} height={1080} className="object-cover" />
+            <Image 
+              src={caseItem.caseScreens} 
+              alt="Description" 
+              width={1920} 
+              height={1080} 
+              className="object-cover w-full h-full" // Added w-full and h-full to make it full width
+            />
           </div>
         </Link>
       </div>
@@ -90,16 +96,16 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
       {/* New Process Description Section */}
       <div className="py-16 bg-black"> {/* Full width background */}
         <div className="max-w-6xl mx-auto p-4"> {/* Added padding for mobile responsiveness */}
-          <h2 className="text-2xl font-bold mb-4 text-white">Proces Beschrijving</h2>
+          <h2 className="text-2xl font-bold mb-4 text-center md:text-left text-white">Proces Beschrijving</h2> {/* Centered title on mobile, left-aligned on larger screens */}
        
           {/* Used Techniques Section with Image */}
-          <div className="flex flex-col md:flex-row items-start py-10">
-            <div className="md:w-1/2 pr-8">
-              <p className="text-lg text-left text-white">
+          <div className="flex flex-col md:flex-row items-center py-10"> {/* Center items on mobile */}
+            <div className="md:w-1/2 pr-8 text-center md:text-left"> {/* Center text on mobile, left-aligned on larger screens */}
+              <p className="text-lg text-white">
                 {caseItem.procesDescription}
               </p>
             </div>
-            <div className="md:w-1/2 flex bg-white justify-center py-16 mt-4 md:mt-0 rounded-lg">
+            <div className="md:w-1/2 flex flex-col items-center justify-center bg-white py-16 mt-4 md:mt-0 rounded-lg"> {/* Center image and caption */}
               <Image 
                 src={caseItem.procesImage}
                 alt="Techniques Image"
@@ -107,29 +113,21 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
                 height={200}
                 className="rounded-lg shadow-md"
               />
+              <p className="text-center text-black mt-2">{caseItem.procesImageCaption}</p> {/* Centered caption underneath the image */}
             </div>
           </div>
-          <p className="text-right text-white mt-2">{caseItem.procesImageCaption}</p>
         </div>
       </div>
 
       {/* Resultaat Section */}
       <div className="w-full py-16 bg-gray-100"> {/* Full width background */}
         <div className="max-w-6xl mx-auto p-4"> {/* Added padding for mobile responsiveness */}
-          <h2 className="text-2xl font-bold mb-4 ">Resultaat</h2>
-          <p className="text-lg text-black pr-4 pb-4 mb-4">
+          <h2 className="text-2xl font-bold mb-4 text-center md:text-left">Resultaat</h2> {/* Centered title on mobile, left-aligned on larger screens */}
+          <p className="text-lg text-black pr-4 pb-4 mb-4 text-center md:text-left"> {/* Centered text on mobile, left-aligned on larger screens */}
             {caseItem.resultText}
           </p>
           
-          <div className="flex flex-col md:flex-row items-start py-10">
-            <div className="md:w-1/2">
-              <h3 className="text-xl font-semibold mb-2">Gebruikte Technieken / Stack:</h3>
-              <ul className="list-disc list-inside text-gray-600">
-                {caseItem.usedTechniques.split(',').map((technique, index) => (
-                  <li key={index}>{technique.trim()}</li> 
-                ))}
-              </ul>
-            </div>
+          <div className="flex flex-col md:flex-row items-center py-10"> {/* Center items on mobile */}
             <div className="md:w-1/2 flex flex-col items-center mt-4 md:mt-0">
               <Image 
                 src={caseItem.resultImage}
@@ -138,7 +136,7 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
                 height={200}
                 className="rounded-lg shadow-md"
               />
-              <p className="text-black mt-2 text-center">{caseItem.resultImageCaption}</p>
+              <p className="text-black mt-2 text-center md:text-left">{caseItem.resultImageCaption}</p> {/* Centered on mobile, left-aligned on larger screens */}
             </div>
             <div className="md:w-1/2 flex flex-col items-center mt-4 md:mt-0">
               <Image 
