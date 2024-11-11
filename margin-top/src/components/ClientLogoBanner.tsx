@@ -6,7 +6,7 @@ import Image from 'next/image';
 const logos = [
     '/cases/rijksoverheid.svg', // Replace with your actual logo paths
     '/cases/volksbank.svg',
-    '/cases/jodaro/jodarologo.png',
+    '/cases/jodaro/jodarogymlogo.png',
     '/cases/redflowertemple/rftlogo.png',
     '/cases/MPS.jpg',
     '/cases/redora_logo.jpeg',
