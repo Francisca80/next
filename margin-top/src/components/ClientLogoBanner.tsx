@@ -7,7 +7,7 @@ const logos = [
     '/cases/rijksoverheid.svg', // Replace with your actual logo paths
     '/cases/volksbank.svg',
     '/cases/jodaro/jodarologo.png',
-    '/cases/rft/rftemple.png',
+    '/cases/redflowertemple/rftlogo.png',
     '/cases/MPS.jpg',
     '/cases/redora_logo.jpeg',
     '/cases/broeders/broederslogo.png',

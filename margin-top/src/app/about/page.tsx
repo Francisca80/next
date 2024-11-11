@@ -19,8 +19,8 @@ const About: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center py-36 bg-white text-black">
       <div className="flex flex-col md:flex-row max-w-6xl w-full items-center">
-        <div className="md:w-1/2 text-center md:text-left md:pr-8">
-          <h2 className="text-4xl font-bold mb-4">Webdesign & Development</h2>
+        <div className="md:w-1/2 text-center md:text-left md:pr-8 mx-4">
+          <h2 className="text-4xl font-bold mb-4 md:mb-6">Webdesign & Development</h2>
           <p className="mb-6">
             Bij Margin-Top geven we jouw visie de ruimte die het verdient. 
             Hierbij gaat het niet alleen om het bouwen van websites, maar om het creëren van digitale omgevingen 
@@ -35,12 +35,13 @@ const About: React.FC = () => {
           </p>
         </div>
         <div
-          className="md:w-1/2 transform transition-transform duration-300 md:ml-8"
+          className="md:w-1/2 flex justify-center transform transition-transform duration-300 mx-4"
           style={{
-            transform: `translate(${position.x * 0.1}px, ${position.y * 0.1}px)`, // Increased multiplier for more movement
+            transform: `translate(${position.x * 0.1}px, ${position.y * 0.1}px)`,
           }}
         >
-          <Image           src="/section-about.png" alt="About Us" className="w-3/4 h-auto" 
+          <Image
+            src="/section-about.png" alt="About Us" className="w-3/4 h-auto" 
             width={1920}
             height={1080}
           />

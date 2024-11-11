@@ -32,7 +32,7 @@ const Header: React.FC = () => {
           </button>
         </div>
         <div className="hidden md:flex space-x-4 md:space-x-6">
-          <Link href="/" className="navButton text-sm">Over ons</Link>
+          <Link href="/about" className="navButton text-sm">Over ons</Link>
           <Link href="/" className="navButton text-sm">Diensten</Link>
           <Link href="/cases" className="navButton text-sm">Cases</Link>
           <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
       {isMenuOpen && (
         <div className="fixed left-0 right-0 top-[85px] bg-white shadow-lg md:hidden">
           <div className="flex flex-col space-y-4 p-6">
-            <Link href="/" className="navButton text-sm">Over ons</Link>
+            <Link href="/about" className="navButton text-sm">Over ons</Link>
             <Link href="/" className="navButton text-sm">Diensten</Link>
             <Link href="/cases" className="navButton text-sm">Cases</Link>
             <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
