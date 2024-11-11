@@ -24,30 +24,29 @@ const Cases: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {caseData.map((caseItem, index) => ( // Show all cases
-            <div 
-              key={caseItem.id} 
-              className={` border border-gray-200 rounded-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer ${backgroundColors[index % backgroundColors.length]}`} // Assign background color
-            >
-              <div className="bg-white"> {/* White background for the image part */}
-                <Image 
-                  src={caseItem.image} 
-                  alt={`Image for ${caseItem.title}`} 
-                  width={500} // Set appropriate width
-                  height={300} // Set appropriate height
-                  className="w-full h-48 object-cover" // Changed to object-cover for better image fitting
-                  loading="lazy"
-                />
-              </div>
-              <div className="p-6 flex flex-col justify-between" style={{ height: '250px' }}> {/* Flexbox for alignment */}
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-white">{caseItem.title}</h3>
-                  <p className="text-white line-clamp-5">{caseItem.description}</p> {/* Description in gray for contrast */}
+            <Link href={`/cases/${caseItem.id}`} key={caseItem.id} className="block"> // Wrapped the tile in Link
+              <div 
+                className={`border border-gray-200 rounded-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer ${backgroundColors[index % backgroundColors.length]}`} // Removed cursor-pointer
+              >
+                <div className="bg-white"> {/* White background for the image part */}
+                  <Image 
+                    src={caseItem.image} 
+                    alt={`Image for ${caseItem.title}`} 
+                    width={500} // Set appropriate width
+                    height={300} // Set appropriate height
+                    className="w-full h-48 object-cover" // Changed to object-cover for better image fitting
+                    loading="lazy"
+                  />
                 </div>
-                <Link href={`/cases/${caseItem.id}`} className="text-white text-xl hover:underline mt-4 inline-block self-end">
-                  Lees meer <FaArrowRight className="inline" /> 
-                </Link>
+                <div className="p-6 flex flex-col justify-between" style={{ height: '250px' }}> {/* Flexbox for alignment */}
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2 text-white">{caseItem.title}</h3>
+                    <p className="text-white line-clamp-5">{caseItem.description}</p> {/* Description in gray for contrast */}
+                  </div>
+                  <span className="text-white text-xl hover:underline mt-4 inline-block self-end">Lees meer <FaArrowRight className="inline" /></span> {/* Moved the link text here */}
+                </div>
               </div>
-            </div>
+            </Link>
           ))} 
         </div>
       </section>

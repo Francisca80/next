@@ -48,7 +48,7 @@ export const caseData: ICaseData[] = [
 
     {
         id: 3, // Numeric ID
-        title: 'RedFlowerTemple',
+        title: 'Red Flower Temple',
         description: 'Red Flower Temple, your ultimate destination for premium Japanese art supplies.',         
         image: '/cases/redflowertemple/rftsmallweb.png',
         url: 'https://www.redflowertemple.com',
