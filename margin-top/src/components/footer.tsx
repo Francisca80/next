@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link'; 
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa";
+
 
 const Footer: React.FC = () => {
   return (
@@ -20,6 +20,7 @@ const Footer: React.FC = () => {
           <div className="flex space-x-4">
             <Link href="/cases" className="underline text-white">Cases</Link>
             <Link href="/services" className="underline text-white">Services</Link>
+            <Link href="/about" className="underline text-white">Over ons</Link>
           
           </div>
         </div>
@@ -45,16 +46,6 @@ const Footer: React.FC = () => {
             >
               <FaFacebook size={24} color="white" />
               <span className="ml-2">Facebook</span>
-            </Link>
-            <Link 
-              href="https://www.linkedin.com/company/margin-top/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
-              aria-label="Visit our LinkedIn page"
-            >
-              <FaLinkedin size={24} color="white" />
-              <span className="ml-2">LinkedIn</span>
             </Link>
           </div>
         </div>

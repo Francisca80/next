@@ -21,8 +21,8 @@ const LogoSlider: React.FC = () => {
             <Image 
               src={logo} 
               alt={`Logo ${index + 1}`} 
-              width={100} 
-              height={80} 
+              width={100}
+              height={80}
               className="object-contain filter brightness-0 invert" 
               loading="lazy"
             />

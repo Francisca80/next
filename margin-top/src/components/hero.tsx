@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ imgData, title, tagline }) => {
         <p className="text-lg md:text-xl text-white mb-8">{tagline}</p>
         <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
             <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl text-sm">
-              Start vandaag, plan direct een eerste kennismaking
+              Plan een afspraak
             </button>
           </Link>
       </div>
