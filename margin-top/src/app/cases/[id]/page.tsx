@@ -32,7 +32,7 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
 
   return (
     <div className="max-w-full">
-      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url(/servicehero.jpg)` }}>
+      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url(${caseItem.backgroundImage})` }}>
         {/* Overlay */}
         <div className="absolute inset-0 bg-black opacity-40"></div>
         {/* Content */}
