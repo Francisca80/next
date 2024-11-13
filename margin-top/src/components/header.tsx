@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IoClose, IoMenu } from 'react-icons/io5';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,9 +28,10 @@ const Header: React.FC = () => {
           <span className="font-bold text-lg">Margin-Top</span>
         </Link>
         <div className="md:hidden">
-          <button onClick={toggleMenu} className="text-white focus:outline-none">
-            {isMenuOpen ? '✖' : '☰'}
-          </button>
+          {isMenuOpen ? 
+            <IoClose className="text-black text-2xl cursor-pointer" onClick={toggleMenu} /> : 
+            <IoMenu className="text-black text-2xl cursor-pointer" onClick={toggleMenu} />
+          }
         </div>
         <div className="hidden md:flex space-x-4 md:space-x-6">
           <Link href="/about" className="navButton text-sm" onClick={toggleMenu}>Over ons</Link>
@@ -37,7 +39,7 @@ const Header: React.FC = () => {
           <Link href="/cases" className="navButton text-sm" onClick={toggleMenu}>Cases</Link>
           <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
             <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl text-sm">
-              Plan een afspraak
+              Contact
             </button>
           </Link>
         </div>

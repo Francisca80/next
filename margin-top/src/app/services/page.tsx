@@ -61,12 +61,14 @@ const servicesData = [
 
 const Services: React.FC = () => {
   return (
+
+    
     <div className="max-w-full"> {/* Full width for the hero section */}
       {/* Hero Section */}
       <section className="relative h-screen bg-cover bg-center">
         {/* Optimized Image */}
         <Image 
-          src="/contact.jpg" 
+          src="/servicehero.jpg" 
           alt="Creative Workspace" 
           fill 
           objectFit="cover" 
@@ -119,7 +121,7 @@ const Services: React.FC = () => {
         </div>
 
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row">
-          <div className="md:w-1/2 mb-12 md:mb-0 text-left">
+          <div className="md:w-1/2 mb-24 md:mb-0 text-left">
             <h2 className="text-4xl font-bold mb-4" style={{ color: '#340066' }}>Services</h2>
             <hr className="border-gray-300 mb-4 w-1/2" />
             <p className="text-lg">Uw complete online oplossing: van server tot scherm.</p>
@@ -139,33 +141,41 @@ const Services: React.FC = () => {
           </div>
         </div>
 
-        {/* Cases Section */}
-        <div className="max-w-6xl mx-auto mt-12">
-          <h2 className="text-3xl font-bold mb-6 text-left" style={{ color: '#340066' }}>Bekijk onze meest recente cases</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {caseData.slice(0, 3).map((caseItem) => (
-              <Link key={caseItem.id} href={`/cases/${caseItem.id}`}>
-                <div className="relative border border-gray-200 rounded-lg overflow-hidden shadow-md cursor-pointer">
-                  <Image 
-                    src={caseItem.image} 
-                    alt={`Image for ${caseItem.title}`} 
-                    width={300} 
-                    height={300} 
-                    className="w-full h-48 object-cover" 
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-center p-4">
-                    <h3 className="text-xl text-white font-semibold">{caseItem.title}</h3>
-                  </div>
-                </div>
-              </Link>
-            ))}
+        {/* New CTA Banner */}
+        <div className="w-full bg-[#340066] py-12 my-16">
+          <div className="max-w-6xl mx-auto px-4">
+            <div className="flex flex-col md:flex-row items-center">
+              <div className="md:w-1/2 relative h-[300px] w-full mb-8 md:mb-0">
+                <Image
+                  src="/services.jpg"
+                  alt="Contact us"
+                  fill
+                  className="object-cover rounded-lg"
+                  loading="lazy"
+                />
+              </div>
+              <div className="md:w-1/2 md:pl-12 text-center md:text-left">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                  Hoe werkt het?
+                </h2>
+                <p className="text-white/90 mb-6">
+                  Om jouw website te maken, gaan we in een aantal stappen te werk. Ieder project is uniek, het proces kan daarom afwijken.
+                  De onderstaande stappen zijn een goed begin. <br/><br/>Jouw visie is belangrijk voor ons om een unieke website te maken. We bepalen samen wat de beste oplossing is.
+                  Neem contact op voor een vrijblijvend gesprek
+                </p>
+                <a href="mailto:info@margin-top.com?subject=Vraag over services">
+                  <button className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition">
+                    Mail ons
+                  </button>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Website Creation Process Section */}
-        <div className="max-w-6xl mx-auto mt-12">
-          <h2 className="text-3xl font-bold mb-6 text-left" style={{ color: '#340066' }}>Het basis proces van het maken van een nieuwe website</h2>
+        <div className="max-w-6xl mx-auto mt-12 mb-12">
+          <h2 className="text-2xl font-bold mb-6 text-left" style={{ color: '#340066' }}>Het basis proces van het maken van een nieuwe website</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               { step: 'Stap 1: Kennismaken', description: 'We bespreken jouw behoeften en doelen.' },
@@ -190,6 +200,30 @@ const Services: React.FC = () => {
             ))}
             
           </div>
+                {/* Cases Section */}
+        <div className="max-w-6xl mx-auto mt-12">
+          <h2 className="text-2xl font-bold mb-6 text-left" style={{ color: '#340066' }}>Bekijk onze meest recente cases</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {caseData.slice(0, 3).map((caseItem) => (
+              <Link key={caseItem.id} href={`/cases/${caseItem.id}`}>
+                <div className="relative border border-gray-200 rounded-lg overflow-hidden shadow-md cursor-pointer">
+                  <Image 
+                    src={caseItem.image} 
+                    alt={`Image for ${caseItem.title}`} 
+                    width={300} 
+                    height={300} 
+                    className="w-full h-48 object-cover" 
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 text-white text-center p-4">
+                    <h3 className="text-xl text-white font-semibold">{caseItem.title}</h3>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+
         </div>
 
       </div>
