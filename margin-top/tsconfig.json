@@ -36,7 +36,7 @@
     "**/*.ts", // TypeScript files
     "**/*.tsx", // TypeScript React files
     ".next/types/**/*.ts" // Next.js types
-  ],
+, "../src/components/AnimatedStats.tsx"  ],
   "exclude": [
     "node_modules"
   ] // Excludes node_modules from compilation

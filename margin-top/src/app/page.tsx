@@ -8,6 +8,7 @@ import SectionBanner from "@/components/SectionBanner";
 import ClientLogoBanner from "@/components/ClientLogoBanner";
 
 
+
 export default function Home() {
   return (
   <div>
@@ -16,6 +17,7 @@ export default function Home() {
     <SectionBanner />
     <ServicesSection />
     <ClientLogoBanner />  
+
   </div>
   );
 }

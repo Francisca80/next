@@ -15,21 +15,49 @@ const logos = [
 
 const ClientLogoBanner: React.FC = () => {
     return (
-        <div className="flex flex-col items-center py-10 bg-gray-100 p-8"> {/* Added padding for responsiveness */}
-            <h2 className="text-xl font-bold mb-10 text-center">Margin-Top heeft bijgedragen aan projecten voor</h2> {/* Heading above logos */}
-            <div className="flex flex-wrap justify-center space-x-8 mb-4"> {/* Space between logos and wrap on smaller screens */}
-                {logos.map((logo, index) => (
-                    <div key={index} className="flex-shrink-0 h-20 mb-4"> {/* Set a fixed height for logos and margin for spacing */}
-                        <Image 
-                            src={logo} 
-                            alt={`Client Logo ${index + 1}`} 
-                            width={100} 
-                            height={80} 
-                            className="object-contain h-full" // Make logos responsive
-                            priority // Optional: Use this if you want to load the image with high priority
-                        />
-                    </div>
-                ))}
+        <div className="flex flex-col items-center py-10 bg-[#340066] p-8">
+            <h2 className="text-xl font-bold mb-10 text-center text-white">Margin-Top heeft bijgedragen aan projecten voor</h2>
+            <div className="w-full max-w-5xl overflow-hidden">
+                <div className="animate-scroll flex gap-8 pt-4"
+                     style={{ animationDelay: `${logos.length * 0.2 + 0.5}s` }}>
+                    {/* First set of logos */}
+                    {logos.map((logo, index) => (
+                        <div 
+                            key={`first-${index}`} 
+                            className="relative flex-shrink-0 w-[200px] h-[120px] bg-white rounded-lg shadow-sm p-4 
+                                     flex items-center justify-center
+                                     animate-bounce-in"
+                            style={{ animationDelay: `${index * 0.2}s` }}
+                        >
+                            <div className="relative w-full h-full">
+                                <Image 
+                                    src={logo} 
+                                    alt={`Client Logo ${index + 1}`} 
+                                    fill
+                                    className="object-contain p-2"
+                                    priority
+                                />
+                            </div>
+                        </div>
+                    ))}
+                    {/* Duplicate set for continuous scroll */}
+                    {logos.map((logo, index) => (
+                        <div 
+                            key={`second-${index}`} 
+                            className="relative flex-shrink-0 w-[200px] h-[120px] bg-white rounded-lg shadow-sm p-4 
+                                     flex items-center justify-center"
+                        >
+                            <div className="relative w-full h-full">
+                                <Image 
+                                    src={logo} 
+                                    alt={`Client Logo ${index + 1}`} 
+                                    fill
+                                    className="object-contain p-2"
+                                />
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     );
