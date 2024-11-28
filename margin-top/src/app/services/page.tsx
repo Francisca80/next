@@ -4,65 +4,48 @@ import React from 'react';
 import Image from 'next/image';
 import { caseData } from '@/lib/case-data';
 import { motion } from 'framer-motion';
-
+import { FaArrowRight } from "react-icons/fa";
 
 const servicesData = [
   {
     title: 'Web Design',
-    description: 'Het creëren van visueel aantrekkelijke en gebruiksvriendelijke websites die zijn afgestemd op jouw merk.',
-    link: '/services/web-design',
+    description: 'Website ontwerp, product design en Design Systems zijn oplossingen die wij aanbieden om jouw idee om te zetten in een visueel aantrekkelijke oplossing. Gebruikers ervaring is hierbij de focus.',
+    link: '/',
   },
   {
-    title: 'Web Development',
-    description: 'Snelle, schaalbare en veilige websites bouwen met de nieuwste technologieën.',
-    link: '/services/web-development',
-  },
-  {
-    title: 'Web App Development',
-    description: 'Het ontwikkelen van robuuste webapplicaties om aan de behoeften van jouw bedrijf te voldoen.',
-    link: '/services/web-app-development',
-  },
-  {
-    title: 'Mobile App Development',
-    description: 'Het ontwerpen en ontwikkelen van mobiele apps voor iOS- en Android-platforms.',
-    link: '/services/mobile-app-development',
-  },
-  {
-    title: 'UI/UX Design',
-    description: 'Het leveren van intuïtieve en boeiende gebruikerservaringen door middel van doordacht ontwerp.',
-    link: '/services/ui-ux-design',
+    title: 'UX Design',
+    description: 'User Experience Design: begrijpt je gebruiker je website, product of applicatie? Margin-Top levert intuïtieve en boeiende gebruikerservaringen door middel van doordacht ontwerp. Ontwerp wat aansluit bij jouw doelen en die van je gebruiker.',
+    link: '/services/ux',
   },
   {
     title: 'Wordpress Websites',
-    description: 'Het creëren van op maat gemaakte WordPress-sites geoptimaliseerd voor prestaties en SEO.',
+    description: 'Het creëren van op maat gemaakte WordPress-sites geoptimaliseerd voor prestaties en SEO. WordPress is een flexibel platform dat aan jouw behoeften kan voldoen.',
     link: '/services/wordpress',
   },
   {
+    title: 'Web Development',
+    description: 'Snelle, schaalbare en veilige websites bouwen met de nieuwste technologieën. React, Next.js, Tailwind CSS en TypeScript zijn onze tools van keuze, maar ook andere technologieën zijn mogelijk.',
+    link: '/',
+  },
+  {
+    title: 'Mobile App Development',
+    description: 'Het ontwerpen en ontwikkelen van mobiele apps voor iOS- en Android-platforms. Zowel native als cross-platform apps zijn mogelijk.',
+    link: '/',
+  },
+  {
     title: 'Hosting',
-    description: 'Betrouwbare hostingoplossingen met hoge prestaties en uptime.',
-    link: '/services/hosting',
+    description: 'Betrouwbare hostingoplossingen met hoge prestaties en uptime. ',
+    link: '/',
   },
   {
     title: 'Onderhoud',
-    description: 'Voortdurende websiteondersteuning en onderhoud om je site soepel te laten draaien.',
-    link: '/services/onderhoud',
-  },
-  {
-    title: 'React/Next/Angular Development',
-    description: 'Moderne, dynamische webapplicaties bouwen met React, Next.js en Angular.',
-    link: '/services/react-next-angular-development',
-  },
-  {
-    title: 'SEO',
-    description: 'Het optimaliseren van jouw website voor betere zoekresultaten en meer verkeer.',
-    link: '/services/seo',
+    description: 'Voortdurende websiteondersteuning en onderhoud om je site niet alleen soepel te laten draaien, maar ook bij te blijven op techniek en veiligheid.',
+    link: '/',
   },
 ];
 
 const Services: React.FC = () => {
   return (
-
-    
     <div className="max-w-full"> {/* Full width for the hero section */}
       {/* Hero Section */}
       <section className="relative h-screen bg-cover bg-center">
@@ -126,17 +109,30 @@ const Services: React.FC = () => {
             <hr className="border-gray-300 mb-4 w-1/2" />
             <p className="text-lg">Uw complete online oplossing: van server tot scherm.</p>
           </div>
-          <div className="md:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="md:w-1/2 grid grid-cols-1 gap-6">
             {servicesData.map((service, index) => (
-              <div key={index} className="flex flex-col">
-                <div className="flex flex-col">
-                  <h3 className="text-xl font-semibold mb-1" style={{ color: '#340066' }}>
-                    {service.title}
-                  </h3>
-                  <hr className="border-gray-300 mb-1 w-full" />
-                </div>
-                <p className="text-gray-700">{service.description}</p>
-              </div>
+              <Link href={service.link} key={index}>
+                <motion.div 
+                  className="flex flex-col cursor-pointer group border border-transparent hover:border-gray-200 rounded-lg"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <div className="flex flex-col p-4 rounded-lg transition-all duration-300 hover:bg-gray-50">
+                    <div className="flex justify-between items-center">
+                      <h3 
+                        className="text-xl font-semibold group-hover:text-[#4F8BD2] transition-colors" 
+                        style={{ color: '#340066' }}
+                      >
+                        {service.title}
+                      </h3>
+                      <FaArrowRight className="opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-[#4F8BD2]" />
+                    </div>
+                    <hr className="border-gray-300 my-2 w-full" />
+                    <p className="text-gray-700">{service.description}</p>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
         </div>
@@ -178,14 +174,14 @@ const Services: React.FC = () => {
           <h2 className="text-2xl font-bold mb-6 text-left" style={{ color: '#340066' }}>Het basis proces van het maken van een nieuwe website</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
-              { step: 'Stap 1: Kennismaken', description: 'We bespreken jouw behoeften en doelen.' },
-              { step: 'Stap 2: Planning', description: 'We maken een plan en schetsen de structuur.' },
-              { step: 'Stap 3: Ontwerp', description: 'We creëren visuele ontwerpen voor de website.' },
-              { step: 'Stap 4: Ontwikkeling', description: 'We bouwen de website met de nieuwste technologieën.' },
-              { step: 'Stap 5: SEO Optimalisatie', description: 'We optimaliseren de website voor zoekmachines.' },
-              { step: 'Stap 6: Testen', description: 'We testen de website op functionaliteit en gebruiksvriendelijkheid.' },
-              { step: 'Stap 7: Lancering', description: 'We lanceren de website en zorgen voor een soepele overgang.'},
-              { step: '', description: 'Ieder project is uniek, het proces kan daarom afwijken. Vanaf januari 2025 controleren we ook of websites op digitale toegankelijkheid voldoen aan de eisen.', isFinalStep: true },
+              { step: 'Stap 1: Kennismaken', description: 'Kennis maken: We bespreken jouw behoeften en doelen.' },
+              { step: 'Stap 2: Planning', description: 'Onderzoek & Strategie: We maken een plan en onderzoeken de doelgroep.' },
+              { step: 'Stap 3: Idee', description: 'Concept & Structuur: We maken een eerste prototype, navigatiestructuur en wireframes.' },
+              { step: 'Stap 3: Ontwerp', description: 'Design & Prototyping: We creëren visuele ontwerpen voor de website met feedbackrondes.' },
+              { step: 'Stap 4: Ontwikkeling', description: 'Ontwikkeling & Implementatie: We bouwen de website met de nieuwste technologieën.' },
+              { step: 'Stap 5: Testen', description: 'Testen en Optimalisatie: We testen de website op functionaliteit en gebruiksvriendelijkheid.' },
+              { step: 'Stap 6: Lancering', description: 'Lancering: We lanceren de website en zorgen voor een soepele overgang.'},
+              { step: '', description: 'Ieder project is uniek, het proces kan daarom afwijken. Vanaf begin 2025 controleren we ook of websites op digitale toegankelijkheid voldoen aan de eisen.', isFinalStep: true }
             ].map((item, index) => (
               <motion.div
                 key={index}
