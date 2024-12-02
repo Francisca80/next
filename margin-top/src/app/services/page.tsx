@@ -4,7 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { caseData } from '@/lib/case-data';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaPalette, FaUserFriends, FaWordpress, FaCode, FaMobile, FaServer, FaTools } from "react-icons/fa";
+import { FaArrowRight, FaPalette, FaUserFriends, FaWordpress, FaCode, FaMobile, FaServer, FaTools, FaGoogle } from "react-icons/fa";
 
 const servicesData = [
   {
@@ -40,6 +40,20 @@ const servicesData = [
     description: 'Het ontwerpen en ontwikkelen van mobiele apps voor iOS- en Android-platforms. Zowel native als cross-platform apps zijn mogelijk.',
     link: '/',
     icon: FaMobile,
+    color: '#4F8BD2'
+  },
+  {
+    title: 'Social Media Management',
+    description: 'Opzetten en onderhouden van social media accounts. Het creëren van content, engagement en analyse.',
+    link: '/',
+    icon: FaMobile,
+    color: '#4F8BD2'
+  },
+  {
+    title: 'SEO / SEA',
+    description: 'SEO en SEA zijn strategieën om jouw website te helpen ranken in zoekmachines en te helpen groeien in traffic.',
+    link: '/',
+    icon: FaGoogle,
     color: '#4F8BD2'
   },
   {

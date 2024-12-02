@@ -37,9 +37,10 @@ const Header: React.FC = () => {
           <Link href="/about" className="navButton text-sm" onClick={toggleMenu}>Over ons</Link>
           <Link href="/services" className="navButton text-sm" onClick={toggleMenu}>Services</Link>
           <Link href="/cases" className="navButton text-sm" onClick={toggleMenu}>Cases</Link>
+          <Link href="/contact" className="navButton text-sm" onClick={toggleMenu}>Contact</Link>
           <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
             <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl text-sm">
-              Contact
+              Plan een afspraak
             </button>
           </Link>
         </div>
@@ -50,6 +51,7 @@ const Header: React.FC = () => {
             <Link href="/about" className="navButton text-sm" onClick={toggleMenu}>Over ons</Link>
             <Link href="/services" className="navButton text-sm" onClick={toggleMenu}>Services</Link>
             <Link href="/cases" className="navButton text-sm" onClick={toggleMenu}>Cases</Link>
+            <Link href="/contact" className="navButton text-sm" onClick={toggleMenu}>Contact</Link>
             <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
               <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl text-sm w-full">
                 Plan een afspraak

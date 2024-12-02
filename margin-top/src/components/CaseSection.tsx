@@ -24,7 +24,7 @@ const CasesSection: React.FC = () => {
             Recent Werk
           </h2>
           <p className="text-left text-gray-700 mb-12 text-lg max-w-2xl">
-            Met trots werken we aan projecten die onze klanten helpen hun merken te laten groeien door slimme, digitale oplossingen
+            Met trots zijn deze projecten gemaakt voor klanten die hun merken laten groeien door slimme, digitale oplossingen
           </p>
         </div>
 

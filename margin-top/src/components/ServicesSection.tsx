@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
-import { FaArrowRight, FaPalette, FaUserFriends, FaWordpress, FaCode, FaMobile, FaServer, FaTools } from 'react-icons/fa';
+import { FaArrowRight, FaPalette, FaUserFriends, FaWordpress, FaCode, FaMobile, FaServer, FaTools, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
 
 const servicesData = [
@@ -40,6 +40,20 @@ const servicesData = [
     link: '/',
     icon: FaMobile,
     color: '#F59E0B'
+  },
+  {
+    title: 'Social Media Management',
+    description: 'Opzetten en onderhouden van social media accounts. Het creëren van content, engagement en analyse.',
+    link: '/',
+    icon: FaMobile,
+    color: '#4F8BD2'
+  },
+  {
+    title: 'SEO / SEA',
+    description: 'SEO en SEA zijn strategieën om jouw website te helpen ranken in zoekmachines zoals Google en te helpen groeien in traffic.',
+    link: '/',
+    icon: FaGoogle,
+    color: '#4F8BD2'
   },
   {
     title: 'Hosting',
