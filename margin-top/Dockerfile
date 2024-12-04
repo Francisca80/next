@@ -19,6 +19,10 @@ RUN npm run build
 # Stage 2: Set up the production environment
 FROM node:18-alpine
 
+# Add build arg for SendGrid
+ARG SENDGRID_API_KEY
+ENV SENDGRID_API_KEY=$SENDGRID_API_KEY
+
 # Set the working directory inside the container
 WORKDIR /app
 
