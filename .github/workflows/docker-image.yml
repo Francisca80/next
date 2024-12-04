@@ -24,8 +24,14 @@ jobs:
 
       # Build the Docker image
       - name: Margin-Top Docker image
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
         run: |
-          docker build -f margin-top/Dockerfile -t ghcr.io/francisca80/next/next:latest .
+          docker build \
+            --build-arg SENDGRID_API_KEY="${SENDGRID_API_KEY}" \
+            -f margin-top/Dockerfile \
+            -t ghcr.io/francisca80/next/next:latest .
+
 
       # Push the Docker image to GitHub Container Registry
       - name: Push Docker image to GitHub Container Registry
