@@ -124,7 +124,7 @@ const Services: React.FC = () => {
           <p className="text-lg text-gray-700 mb-6">
             Neem vandaag nog contact met ons op en ontdek hoe wij jouw online doelen kunnen bereiken.
           </p>
-          <a href="mailto:info@margin-top.com">
+          <a href="mailto:francisca@margin-top.com">
             <button className="bg-blue-600 text-white font-semibold py-2 px-4 rounded hover:bg-blue-700 transition">
               Neem contact op
             </button>
@@ -193,7 +193,7 @@ const Services: React.FC = () => {
                   De onderstaande stappen zijn een goed begin. <br/><br/>Jouw visie is belangrijk voor ons om een unieke website te maken. We bepalen samen wat de beste oplossing is.
                   Neem contact op voor een vrijblijvend gesprek
                 </p>
-                <a href="mailto:info@margin-top.com?subject=Vraag over services">
+                <a href="mailto:francisca@margin-top.com?subject=Vraag over services">
                   <button className="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition">
                     Mail ons
                   </button>

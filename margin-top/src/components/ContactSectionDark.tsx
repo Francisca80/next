@@ -25,7 +25,7 @@ const ContactSectionDark = () => {
                         <div className="flex space-x-2 mb-2">
                             <button 
                                 aria-label="Send an email"
-                                onClick={() => window.location.href = "mailto:info@margin-top.com"}
+                                onClick={() => window.location.href = "mailto:francisca@margin-top.com"}
                                 className="flex items-center bg-blue-500/90 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
                             >
                                 <span className="mr-2">

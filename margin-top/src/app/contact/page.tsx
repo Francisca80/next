@@ -70,8 +70,8 @@ const ContactPage = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Email</h3>
-                  <a href="mailto:info@margin-top.com" className="text-blue-600 hover:text-blue-700">
-                    info@margin-top.com
+                  <a href="mailto:francisca@margin-top.com" className="text-blue-600 hover:text-blue-700">
+                    francisca@margin-top.com
                   </a>
                 </div>
               </div>
@@ -85,7 +85,7 @@ const ContactPage = () => {
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Telefoon</h3>
                   <a href="tel:+31653894771" className="text-purple-600 hover:text-purple-700">
-                    +31 6 12345678
+                    +31 6 53894771
                   </a>
                 </div>
               </div>
@@ -136,7 +136,7 @@ const ContactPage = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  placeholder="uw@email.com"
+                  placeholder=""
                 />
               </div>
 

@@ -12,6 +12,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write
 
     steps:
       - name: Checkout repository
@@ -21,8 +22,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
-          username: ${{ secrets.GHCR_USERNAME }}
-          password: ${{ secrets.GHCR_TOKEN }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Extract metadata
         id: meta
@@ -36,11 +37,12 @@ jobs:
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
+        env:
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
         with:
           context: .
           file: margin-top/Dockerfile
           push: true
-          build-args: |
-            SENDGRID_API_KEY=${{ secrets.SENDGRID_API_KEY }}
+          build-args: SENDGRID_API_KEY=${SENDGRID_API_KEY}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

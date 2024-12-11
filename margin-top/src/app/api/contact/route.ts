@@ -20,8 +20,8 @@ export async function POST(request: Request) {
     }
 
     const msg = {
-      to: 'your-email@example.com', // Replace with your email
-      from: 'your-verified-sender@example.com', // Replace with your SendGrid verified sender
+      to: 'francisca@margin-top.com', // Replace with your email
+      from: 'francisca@margin-top.com', // Replace with your SendGrid verified sender
       subject: `New Contact Form Submission from ${name}`,
       text: `
         Name: ${name}

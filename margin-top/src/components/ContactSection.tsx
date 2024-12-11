@@ -23,7 +23,7 @@ const ContactSection = () => {
                     <div className="flex space-x-2 mb-2"> {/* Added space between buttons */}
                     <button 
                         aria-label="Send an email"
-                        onClick={() => window.location.href = "mailto:info@margin-top.com"} // Replace with your email address
+                        onClick={() => window.location.href = "mailto:francisca@margin-top.com"} // Replace with your email address
                         className="flex items-center bg-gray-500 text-white rounded px-4 py-2 hover:bg-gray-600 transition duration-200"
                     >
                         <Image src="/mail.png" alt="Email Icon" 

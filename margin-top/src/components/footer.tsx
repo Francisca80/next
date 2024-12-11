@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
           <h3 className="text-lg font-bold text-white">Adres</h3>
           <p className="text-sm text-white">Bergfluiter 7, Nieuwegein, NL</p>
           <p className="text-sm text-white">
-            Email: <a href="mailto:info@margin-top.com" className="underline">info@margin-top.com</a>
+            Email: <a href="mailto:francisca@margin-top.com" className="underline">francisca@margin-top.com</a>
           </p>
           <p className="text-sm text-white">KVK: 95142754</p>
         </div>
