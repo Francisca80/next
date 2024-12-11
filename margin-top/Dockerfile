@@ -4,6 +4,10 @@ FROM node:18 AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
+# Accept the API key as a build argument
+ARG SENDGRID_API_KEY
+ENV SENDGRID_API_KEY=$SENDGRID_API_KEY
+
 # Copy the package.json and package-lock.json (if available)
 COPY margin-top/package*.json ./
 
@@ -19,9 +23,6 @@ RUN npm run build
 # Stage 2: Set up the production environment
 FROM node:18-alpine
 
-# Add build arg for SendGrid
-ARG SENDGRID_API_KEY
-ENV SENDGRID_API_KEY=$SENDGRID_API_KEY
 
 # Set the working directory inside the container
 WORKDIR /app
