@@ -1,189 +1,104 @@
 'use client';
-import { useState } from 'react';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
+import { useEffect } from 'react';
+import { FaLinkedin, FaInstagram, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
+import { MdEmail, MdPhone } from 'react-icons/md';
 
-const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+export default function Contact() {
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    document.body.appendChild(script);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+  const contactDetails = [
+    { icon: MdEmail, text: 'francisca@margin-top.com', href: 'mailto:francisca@margin-top.com' },
+    { icon: MdPhone, text: '+31 6 53 89 47 71', href: 'tel:+31653894771' },
+    { 
+      icon: FaWhatsapp, 
+      text: 'WhatsApp', 
+      href: 'https://wa.me/31653894771',
+      className: 'text-green-500 hover:text-green-600'
+    },
+    { icon: FaMapMarkerAlt, text: 'Nieuwegein, Netherlands', href: 'https://goo.gl/maps/YZZHGe9bAv8jbqSt7' },
+  ];
 
-      if (!response.ok) {
-        throw new Error('Failed to send message');
-      }
-
-      setStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setStatus('idle'), 5000);
-    } catch {
-      setStatus('error');
-      // Reset error message after 5 seconds
-      setTimeout(() => setStatus('idle'), 5000);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.id]: e.target.value
-    }));
-  };
+  const socialLinks = [
+    { icon: FaLinkedin, href: 'https://www.linkedin.com/company/margin-top', label: 'LinkedIn' },
+    { icon: FaInstagram, href: 'https://www.instagram.com/margin_top_/', label: 'Instagram' },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32">
-      <div className="max-w-6xl mx-auto px-4">
-        {/* Header Section */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-[#6366F1] to-[#9333EA] text-transparent bg-clip-text">
-            Neem Contact Op
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-16">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] text-transparent bg-clip-text">
+            Plan een afspraak
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Heeft u een vraag of wilt u meer informatie? Neem gerust contact op!
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
+           Stel een vraag of maak vrijblijvend een afspraak om te zien wat we voor jou kunnen betekenen.
           </p>
         </div>
 
-        {/* Contact Grid */}
-        <div className="grid md:grid-cols-2 gap-12 mb-20">
-          {/* Contact Info Cards */}
-          <div className="space-y-6">
-            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div className="flex items-center space-x-4">
-                <div className="bg-blue-100 p-3 rounded-full">
-                  <FaEnvelope className="text-blue-600 text-xl" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Email</h3>
-                  <a href="mailto:francisca@margin-top.com" className="text-blue-600 hover:text-blue-700">
-                    francisca@margin-top.com
+        <div className="grid md:grid-cols-3 gap-8 mb-20">
+          {/* Contact Details */}
+          <div className="md:col-span-1 space-y-8">
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h2 className="text-2xl font-semibold mb-6 text-gray-800">Contact Details</h2>
+              <div className="space-y-4">
+                {contactDetails.map((detail, index) => (
+                  <a
+                    key={index}
+                    href={detail.href}
+                    className={`flex items-center space-x-3 text-gray-600 hover:text-[#4F8BD2] transition-colors ${detail.className || ''}`}
+                    target={detail.href.startsWith('http') ? '_blank' : undefined}
+                    rel={detail.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  >
+                    <detail.icon className="w-5 h-5" />
+                    <span>{detail.text}</span>
                   </a>
-                </div>
+                ))}
               </div>
             </div>
 
-            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div className="flex items-center space-x-4">
-                <div className="bg-purple-100 p-3 rounded-full">
-                  <FaPhone className="text-purple-600 text-xl" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Telefoon</h3>
-                  <a href="tel:+31653894771" className="text-purple-600 hover:text-purple-700">
-                    +31 6 53894771
+            <div className="bg-white rounded-xl shadow-lg p-6">
+              <h2 className="text-2xl font-semibold mb-6 text-gray-800">Social Media</h2>
+              <div className="flex space-x-4">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="text-gray-600 hover:text-[#4F8BD2] transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-6 h-6" />
                   </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
-              <div className="flex items-center space-x-4">
-                <div className="bg-indigo-100 p-3 rounded-full">
-                  <FaMapMarkerAlt className="text-indigo-600 text-xl" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Adres</h3>
-                  <p className="text-gray-600">
-                    Bergfluiter 7<br />
-                    3435AT Nieuwegein
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
-          <div className="bg-white rounded-xl p-8 shadow-lg">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Naam
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  placeholder="Uw naam"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  placeholder=""
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Bericht
-                </label>
-                <textarea
-                  id="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  placeholder="Uw bericht..."
-                ></textarea>
-              </div>
-
-              {status === 'success' && (
-                <div className="text-green-600 text-sm">
-                  Bericht succesvol verzonden!
-                </div>
-              )}
-
-              {status === 'error' && (
-                <div className="text-red-600 text-sm">
-                  Er is iets misgegaan. Probeer het later opnieuw.
-                </div>
-              )}
-
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                className={`w-full bg-gradient-to-r from-[#2563EB] to-[#6366F1] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300
-                  ${status === 'loading' 
-                    ? 'opacity-70 cursor-not-allowed' 
-                    : 'hover:opacity-90 hover:-translate-y-1'
-                  }`}
-              >
-                {status === 'loading' ? 'Verzenden...' : 'Verstuur Bericht'}
-              </button>
-            </form>
+          {/* Calendly Widget */}
+          <div className="md:col-span-2">
+            <div className="bg-white rounded-xl shadow-lg p-4 h-full">
+              <div 
+                className="calendly-inline-widget" 
+                data-url="https://calendly.com/francisca-margin-top"
+                style={{ 
+                  minWidth: '320px',
+                  height: '700px',
+                }}
+              />
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
-
-export default ContactPage;
+}

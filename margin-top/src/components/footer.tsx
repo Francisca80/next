@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link'; 
-import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaWhatsapp, FaLinkedin } from "react-icons/fa";
 
 
 const Footer: React.FC = () => {
@@ -21,12 +21,32 @@ const Footer: React.FC = () => {
             <Link href="/cases" className="underline text-white">Cases</Link>
             <Link href="/services" className="underline text-white">Services</Link>
             <Link href="/about" className="underline text-white">Over ons</Link>
-          
+            <Link href="/contact" className="underline text-white">Contact</Link>
           </div>
         </div>
         <div className="mb-4 md:mb-0">
-          <h3 className="text-lg font-bold text-white">Socials</h3>
-          <div className="flex space-x-4">
+          <h3 className="text-lg font-bold text-white mb-3">Socials</h3>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+            <Link 
+              href="https://www.linkedin.com/company/margin-top" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Visit our LinkedIn page"
+            >
+              <FaLinkedin size={20} color="white" />
+              <span className="ml-2">LinkedIn</span>
+            </Link>
+            <Link 
+              href="https://wa.me/31653894771" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
+              aria-label="Contact us on WhatsApp"
+            >
+              <FaWhatsapp size={20} color="white" />
+              <span className="ml-2">WhatsApp</span>
+            </Link>
             <Link 
               href="https://instagram.com/margin_top_" 
               target="_blank" 
@@ -34,7 +54,7 @@ const Footer: React.FC = () => {
               className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label="Visit our Instagram page"
             >
-              <FaInstagram size={24} color="white" />
+              <FaInstagram size={20} color="white" />
               <span className="ml-2">Instagram</span>
             </Link>
             <Link 
@@ -44,7 +64,7 @@ const Footer: React.FC = () => {
               className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
               aria-label="Visit our Facebook page"
             >
-              <FaFacebook size={24} color="white" />
+              <FaFacebook size={20} color="white" />
               <span className="ml-2">Facebook</span>
             </Link>
           </div>
