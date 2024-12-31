@@ -1,10 +1,10 @@
 'use client';
 import './globals.css';
-
 import Header from '../components/header';
 import Footer from '../components/footer';
 import ContactSectionDark from '@/components/ContactSectionDark';
 import { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function RootLayout({
   children,
@@ -12,8 +12,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const [isMounted, setIsMounted] = useState(false);
+  const pathname = usePathname();
+  const isLinkInBio = pathname === '/link-in-bio';
 
-  // Use useEffect to set isMounted to true after the component mounts
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -21,12 +22,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
+        {!isLinkInBio && <Header />}
         <main className="flex-grow">
-          {isMounted ? children : null} {/* Render children only after mounting */}
+          {isMounted ? children : null}
         </main>
-        <ContactSectionDark />    
-        <Footer />              
+        {!isLinkInBio && (
+          <>
+            <ContactSectionDark />    
+            <Footer />
+          </>
+        )}              
       </body>
     </html>
   );

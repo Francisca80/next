@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { FaLinkedin, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
