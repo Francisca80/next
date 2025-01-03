@@ -1,9 +1,19 @@
+'use client';
 import React from 'react';
 import { CgWebsite } from 'react-icons/cg';
 import { MdAppShortcut } from "react-icons/md";
 import { HiOutlineCursorClick } from "react-icons/hi";
+import * as gtag from '@/lib/gtag';
 
 const CTA = () => {
+    const handleCTAClick = (ctaType: string) => {
+        gtag.event({
+            action: 'cta_click',
+            category: 'conversion',
+            label: ctaType,
+        });
+    };
+
     return (
         <div className="bg-black text-white p-16 text-center">
             <div className="max-w-6xl mx-auto">
@@ -59,7 +69,7 @@ const CTA = () => {
                     </div>
                 </div>
                 {/* Call to Action Button */}
-                <button className="mt-8 font-bold py-3 px-6 w-1/2 rounded-lg hover:bg-purple-700 transition duration-300">
+                <button className="mt-8 font-bold py-3 px-6 w-1/2 rounded-lg hover:bg-purple-700 transition duration-300" onClick={() => handleCTAClick('Aan de Slag')}>
                     Aan de Slag
                 </button>
             </div>

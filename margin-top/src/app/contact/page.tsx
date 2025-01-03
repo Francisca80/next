@@ -2,6 +2,7 @@
 import { useEffect } from 'react';
 import { FaLinkedin, FaInstagram, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import { MdEmail, MdPhone } from 'react-icons/md';
+import * as gtag from '@/lib/gtag';
 
 export default function Contact() {
   useEffect(() => {
@@ -32,6 +33,52 @@ export default function Contact() {
     { icon: FaInstagram, href: 'https://www.instagram.com/margin_top_/', label: 'Instagram' },
   ];
 
+  const handleContactMethodClick = async (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    method: string,
+    href: string
+  ) => {
+    e.preventDefault();
+    
+    try {
+      await gtag.event({
+        action: 'contact_method_click',
+        category: 'conversion',
+        label: method,
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Failed to track contact click:', error.message);
+      }
+    } finally {
+      if (href.startsWith('http')) {
+        window.open(href, '_blank', 'noopener,noreferrer');
+      } else {
+        window.location.href = href;
+      }
+    }
+  };
+
+  const handleSocialClick = async (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    platform: string,
+    href: string
+  ) => {
+    e.preventDefault();
+    
+    try {
+      await gtag.event({
+        action: 'social_link_click',
+        category: 'engagement',
+        label: platform,
+      });
+    } catch (error) {
+      console.error('Failed to track social click:', error);
+    }
+
+    window.open(href, '_blank', 'noopener,noreferrer');
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 px-4">
       <div className="max-w-6xl mx-auto">
@@ -54,6 +101,7 @@ export default function Contact() {
                   <a
                     key={index}
                     href={detail.href}
+                    onClick={(e) => handleContactMethodClick(e, detail.text, detail.href)}
                     className={`flex items-center space-x-3 text-gray-600 hover:text-[#4F8BD2] transition-colors ${detail.className || ''}`}
                     target={detail.href.startsWith('http') ? '_blank' : undefined}
                     rel={detail.href.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -72,6 +120,7 @@ export default function Contact() {
                   <a
                     key={index}
                     href={social.href}
+                    onClick={(e) => handleSocialClick(e, social.label, social.href)}
                     className="text-gray-600 hover:text-[#4F8BD2] transition-colors"
                     target="_blank"
                     rel="noopener noreferrer"

@@ -6,6 +6,7 @@ import Image from 'next/image'; // Import Image from Next.js
 import { caseData } from '../lib/case-data'; // Ensure this path is correct
 import { FaArrowRight } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
+import * as gtag from '@/lib/gtag';
 
 
 const CasesSection: React.FC = () => {
@@ -13,6 +14,14 @@ const CasesSection: React.FC = () => {
     triggerOnce: true,
     threshold: 0.1
   });
+
+  const handleCaseClick = (caseTitle: string) => {
+    gtag.event({
+      action: 'case_click',
+      category: 'engagement',
+      label: caseTitle,
+    });
+  };
 
   return (
     <div className="py-24 bg-gradient-to-b from-white to-gray-50">
@@ -33,6 +42,7 @@ const CasesSection: React.FC = () => {
             <Link 
               href={`/cases/${caseItem.id}`} 
               key={caseItem.id} 
+              onClick={() => handleCaseClick(caseItem.title)}
               className={`group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ${
                 inView 
                   ? 'opacity-100 translate-y-0' 
@@ -45,9 +55,10 @@ const CasesSection: React.FC = () => {
               <Image 
                 src={caseItem.image} 
                 alt={`Image for ${caseItem.title}`} 
-                width={500}
-                height={400}
-                className="w-full h-48 object-cover transform transition-transform group-hover:scale-105 duration-500"
+                width={800}
+                height={600}
+                loading="lazy"
+                className="object-cover w-full h-full rounded-lg"
               />
               <div className="p-6 text-left flex flex-col justify-between" style={{ height: '250px' }}>
                 <div>

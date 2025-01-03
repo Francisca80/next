@@ -1,13 +1,18 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link'; 
 import { FaFacebook, FaInstagram, FaWhatsapp, FaLinkedin } from "react-icons/fa";
+import { useCookieConsent } from '@/context/CookieConsentContext';
 
 
 const Footer: React.FC = () => {
+  const { setShowBanner } = useCookieConsent();
+
   return (
     <footer className="text-white bg-black py-6">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start px-4">
-        <div className="mb-4 md:mb-0">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start px-4 mb-8 text-center md:text-left">
+        <div className="mb-8 md:mb-0">
           <h3 className="text-lg font-bold text-white">Adres</h3>
           <p className="text-sm text-white">Bergfluiter 7, Nieuwegein, NL</p>
           <p className="text-sm text-white">
@@ -15,18 +20,18 @@ const Footer: React.FC = () => {
           </p>
           <p className="text-sm text-white">KVK: 95142754</p>
         </div>
-        <div className="mb-4 md:mb-0">
+        <div className="mb-8 md:mb-0">
           <h3 className="text-lg font-bold text-white">Links</h3>
-          <div className="flex space-x-4">
+          <div className="flex flex-col space-y-2 items-center md:items-start">
             <Link href="/cases" className="underline text-white">Cases</Link>
             <Link href="/services" className="underline text-white">Services</Link>
             <Link href="/about" className="underline text-white">Over ons</Link>
             <Link href="/contact" className="underline text-white">Contact</Link>
           </div>
         </div>
-        <div className="mb-4 md:mb-0">
-          <h3 className="text-lg font-bold text-white mb-3">Socials</h3>
-          <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+        <div className="mb-8 md:mb-0">
+          <h3 className="text-lg font-bold text-white">Socials</h3>
+          <div className="flex flex-col space-y-2 items-center md:items-start">
             <Link 
               href="https://www.linkedin.com/company/margin-top" 
               target="_blank" 
@@ -69,8 +74,26 @@ const Footer: React.FC = () => {
             </Link>
           </div>
         </div>
+        <div className="mb-8 md:mb-0">
+          <h3 className="text-lg font-bold text-white">Legal</h3>
+          <div className="flex flex-col space-y-2 items-center md:items-start">
+            <Link href="/privacy" className="underline text-white">
+              Privacy Policy
+            </Link>
+            <a 
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowBanner(true);
+              }}
+              className="underline text-white"
+            >
+              Cookie Settings
+            </a>
+          </div>
+        </div>
       </div>
-      <div className="text-center mt-4">
+      <div className="text-center mt-8 pt-8 border-t border-gray-800">
         <p className="text-sm text-white">&copy; {new Date().getFullYear()} Margin Top. All rights reserved.</p>
       </div>
     </footer>

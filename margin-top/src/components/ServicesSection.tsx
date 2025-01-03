@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import { FaArrowRight, FaPalette, FaUserFriends, FaWordpress, FaCode, FaMobile, FaServer, FaTools, FaGoogle } from 'react-icons/fa';
 import Link from 'next/link';
+import * as gtag from '@/lib/gtag';
 
 const servicesData = [
   {
@@ -72,7 +73,13 @@ const servicesData = [
 ];
 
 const ServicesSection: React.FC = () => {
-
+  const handleServiceClick = (serviceName: string) => {
+    gtag.event({
+      action: 'service_click',
+      category: 'engagement',
+      label: serviceName,
+    });
+  };
 
   return (
     <div className="relative py-24 bg-white overflow-hidden">
@@ -84,7 +91,12 @@ const ServicesSection: React.FC = () => {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {servicesData.map((service, index) => (
-            <Link href={service.link} key={index} className="group">
+            <Link 
+              href={service.link} 
+              key={index} 
+              className="group" 
+              onClick={() => handleServiceClick(service.title)}
+            >
               <motion.div 
                 className="h-full bg-white border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-lg"
                 initial={{ opacity: 0, y: 20 }}
