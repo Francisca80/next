@@ -1,13 +1,12 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link'; // Import Link from Next.js
-import Image from 'next/image'; // Import Image from Next.js
-import { caseData } from '../lib/case-data'; // Ensure this path is correct
+import Link from 'next/link';
+import Image from 'next/image';
+import { caseData } from '../lib/case-data';
 import { FaArrowRight } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import * as gtag from '@/lib/gtag';
-
 
 const CasesSection: React.FC = () => {
   const { ref, inView } = useInView({
@@ -15,7 +14,7 @@ const CasesSection: React.FC = () => {
     threshold: 0.1
   });
 
-  const handleCaseClick = (caseTitle: string) => {
+  const handleCaseClick = (e: React.MouseEvent<HTMLAnchorElement>, caseTitle: string) => {
     gtag.event({
       action: 'case_click',
       category: 'engagement',
@@ -29,7 +28,7 @@ const CasesSection: React.FC = () => {
         <div className={`transform transition-all duration-1000 ${
           inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
         }`}>
-          <h2 className="text-5xl font-bold mb-6 text-left bg-clip-text  text-[#340066]">
+          <h2 className="text-5xl font-bold mb-6 text-left bg-clip-text text-[#340066]">
             Recent Werk
           </h2>
           <p className="text-left text-gray-700 mb-12 text-lg max-w-2xl">
@@ -41,8 +40,8 @@ const CasesSection: React.FC = () => {
           {caseData.slice(0, 3).map((caseItem, index) => (
             <Link 
               href={`/cases/${caseItem.id}`} 
-              key={caseItem.id} 
-              onClick={() => handleCaseClick(caseItem.title)}
+              key={caseItem.id}
+              onClick={(e) => handleCaseClick(e, caseItem.title)}
               className={`group relative bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ${
                 inView 
                   ? 'opacity-100 translate-y-0' 
@@ -55,10 +54,9 @@ const CasesSection: React.FC = () => {
               <Image 
                 src={caseItem.image} 
                 alt={`Image for ${caseItem.title}`} 
-                width={800}
-                height={600}
-                loading="lazy"
-                className="object-cover w-full h-full rounded-lg"
+                width={500}
+                height={400}
+                className="w-full h-48 object-cover transform transition-transform group-hover:scale-105 duration-500"
               />
               <div className="p-6 text-left flex flex-col justify-between" style={{ height: '250px' }}>
                 <div>
