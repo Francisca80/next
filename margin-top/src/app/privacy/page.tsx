@@ -1,31 +1,59 @@
-export default function Privacy() {
+export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-white pt-32 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8">Privacybeleid</h1>
+    <div className="max-w-4xl mx-auto py-16 px-4">
+      <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
+      
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Cookie Policy</h2>
+        <p className="mb-4">
+          We use cookies and similar technologies to provide, protect, and improve our services. 
+          This policy explains how and why we use these technologies and the choices you have.
+        </p>
+
+        <h3 className="text-xl font-semibold mb-2">Cookie Categories</h3>
         
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4">Cookiebeleid</h2>
-          <p className="mb-4">
-            Wij gebruiken cookies om uw ervaring op onze website te verbeteren. 
-            Deze cookies vallen in de volgende categorieën:
-          </p>
-          
-          <h3 className="text-xl font-semibold mb-2">Noodzakelijke cookies</h3>
-          <p className="mb-4">
-            Deze cookies zijn essentieel voor het functioneren van de website. 
-            Ze onthouden bijvoorbeeld uw cookie-voorkeuren.
-          </p>
+        <div className="space-y-4">
+          <div>
+            <h4 className="font-semibold">Essential/Functional Cookies</h4>
+            <p className="text-gray-600">
+              These cookies are necessary for the website to function and cannot be switched off. 
+              They are usually only set in response to actions you take such as setting your privacy preferences, 
+              logging in, or filling in forms.
+            </p>
+          </div>
 
-          <h3 className="text-xl font-semibold mb-2">Analytische cookies</h3>
-          <p className="mb-4">
-            We gebruiken Google Analytics om te begrijpen hoe bezoekers onze website gebruiken. 
-            Deze informatie helpt ons de website te verbeteren.
-          </p>
-        </section>
+          <div>
+            <h4 className="font-semibold">Analytics Cookies</h4>
+            <p className="text-gray-600">
+              These cookies allow us to count visits and traffic sources so we can measure and improve the performance 
+              of our site. They help us to know which pages are the most and least popular and see how visitors move 
+              around the site.
+            </p>
+          </div>
 
-        {/* Add more sections about data collection, user rights, etc. */}
-      </div>
+          <div>
+            <h4 className="font-semibold">Marketing Cookies</h4>
+            <p className="text-gray-600">
+              These cookies may be set through our site by our advertising partners. They may be used by those 
+              companies to build a profile of your interests and show you relevant adverts on other sites.
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-semibold">Personalization Cookies</h4>
+            <p className="text-gray-600">
+              These cookies enable the website to provide enhanced functionality and personalization. They may be 
+              set by us or by third party providers whose services we have added to our pages.
+            </p>
+          </div>
+        </div>
+
+        <p className="mt-4">
+          You can adjust your cookie preferences at any time by clicking the "Cookie Settings" link in the footer.
+        </p>
+      </section>
+
+      {/* Rest of your privacy policy content */}
     </div>
   );
 } 
