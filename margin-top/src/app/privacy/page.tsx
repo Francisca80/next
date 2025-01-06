@@ -6,8 +6,8 @@ export default function PrivacyPolicy() {
       <section className="mb-8">
         <h2 className="text-2xl font-semibold mb-4">Cookie Policy</h2>
         <p className="mb-4">
-          We use cookies and similar technologies to provide, protect, and improve our services. 
-          This policy explains how and why we use these technologies and the choices you have.
+          We primarily use first-party cookies and similar technologies to provide essential functionality 
+          and improve your experience. Third-party cookies are only used with your explicit consent.
         </p>
 
         <h3 className="text-xl font-semibold mb-2">Cookie Categories</h3>

@@ -1,5 +1,3 @@
-// app/cases/[id]/page.tsx
-
 import { notFound } from 'next/navigation';
 import { caseData } from '../../../lib/case-data';
 import CaseDetailClient from '@/components/CaseDetailClient';
@@ -30,15 +28,19 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
 
   return (
     <div className="max-w-full">
-      <section className="relative h-screen bg-cover bg-center" style={{ backgroundImage: `url(${caseItem.backgroundImage})` }}>
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-6 text-white underline" style={{ textDecorationColor: '#4F8BD2' }}>
+      <section className="relative h-screen">
+        <Image
+          src={caseItem.backgroundImage}
+          alt={caseItem.title}
+          fill
+          priority
+          className="object-cover"
+          quality={85}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <h1 className="text-4xl md:text-6xl text-white font-bold text-center">
             {caseItem.title}
           </h1>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl text-white">
-            {caseItem.description}
-          </p>
         </div>
       </section>
 
@@ -82,6 +84,7 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
               width={1920} 
               height={1080} 
               className="object-cover w-full h-full"
+              loading="lazy"  
             />
             <div className="absolute bottom-0 right-0 p-6 text-right">
               <span className="text-lg text-white group-hover:underline transition-all duration-300">
@@ -106,9 +109,10 @@ const CaseDetail = async ({ params }: CaseDetailProps) => {
               <Image 
                 src={caseItem.procesImage}
                 alt="Techniques Image"
-                width={300}
-                height={200}
-                className="rounded-lg shadow-md"
+                width={1200}
+                height={675}
+                className="w-full h-auto object-contain"
+                loading="lazy"
               />
               <p className="text-center text-black mt-2">{caseItem.procesImageCaption}</p>
             </div>

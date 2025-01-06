@@ -3,6 +3,7 @@
 import React from 'react';
 import LogoSlider from './LogoSlider';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface HeroProps {
   imgData: string;
@@ -13,6 +14,14 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ imgData, title, tagline }) => {
   return (
     <div className="relative w-full h-screen bg-cover bg-center" style={{ backgroundImage: `url(${imgData})` }}>
+      <Image 
+        src={imgData}
+        alt="Hero background"
+        fill
+        priority
+        className="object-cover"
+        quality={90}
+      />
       <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center p-4">
         <h1 className="text-4xl md:text-6xl font-bold text-white underline mb-4" style={{ textDecorationColor: '#4F8BD2' }}>{title}</h1>
         <p className="text-lg md:text-xl text-white mb-8">{tagline}</p>

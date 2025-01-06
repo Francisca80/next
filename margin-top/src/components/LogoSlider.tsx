@@ -2,33 +2,69 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-const logos = [
-  '/tools/angular-light.svg',
-  '/tools/figma-light.svg',
-  '/tools/nextjs-light.svg',
-  '/tools/react-light.svg',
-  '/tools/tailwind-light.svg',
-  '/tools/shopify-white.svg',
-];
+const LogoSlider = () => {
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 3000,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 0,
+    cssEase: "linear",
+    pauseOnHover: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 4,
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+        }
+      }
+    ]
+  };
 
-const LogoSlider: React.FC = () => {
+  const logos = [
+    '/tools/angular-light.svg',
+    '/tools/figma-light.svg',
+    '/tools/nextjs-light.svg',
+    '/tools/react-light.svg',
+    '/tools/tailwind-light.svg',
+    '/tools/shopify-white.svg',
+  ];
+
   return (
-    <div className="overflow-hidden">
-      <div className="flex animate-marquee space-x-8 py-4 bg-transparent">
-        {logos.concat(logos).map((logo, index) => (
-          <div key={index} className="flex-shrink-0 w-32">
-            <Image 
-              src={logo} 
-              alt={`Logo ${index + 1}`} 
-              width={100}
-              height={80}
-              className="object-contain filter brightness-0 invert" 
+    <div className="w-full bg-transparent py-4 px-2 rounded-lg">
+      <Slider {...settings}>
+        {logos.map((logo, index) => (
+          <div key={index} className="px-2">
+            <Image
+              src={logo}
+              alt={`Partner logo ${index + 1}`}
+              width={80}
+              height={40}
+              className="object-contain h-8 w-auto mx-auto filter brightness-0 invert"
               loading="lazy"
             />
           </div>
         ))}
-      </div>
+      </Slider>
     </div>
   );
 };

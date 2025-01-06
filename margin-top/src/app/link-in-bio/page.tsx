@@ -24,7 +24,8 @@ export default function Bio() {
                     alt="Margin-Top Logo"
                     width={200}
                     height={80}
-                    className="mb-4 relative z-10"
+                    className="w-auto h-auto"
+                    priority
                 />
             </div>
             

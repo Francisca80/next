@@ -148,6 +148,8 @@ const CaseDetailClient = ({ caseItem }: CaseDetailClientProps) => {
           <div className="absolute right-4 top-1/2 -translate-y-1/2 flex flex-col items-center h-64 justify-center bg-black/20 backdrop-blur-sm rounded-full px-2">
             <input 
               type="range" 
+              id="zoom-control"
+              name="zoom-control"
               min="1" 
               max="2" 
               step="0.1" 

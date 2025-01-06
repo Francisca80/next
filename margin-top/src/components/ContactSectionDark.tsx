@@ -12,9 +12,10 @@ const ContactSectionDark = () => {
                         <Image 
                             src="/logo.png"
                             alt="Logo" 
-                            className="h-16 mr-4" 
                             width={64}
                             height={64}
+                            className="h-16 w-16 mr-4 object-contain"
+                            loading="lazy"
                         />
                         <div className="text-left">
                             <h2 className="text-3xl font-bold text-[#6EC1E4]">Neem contact op</h2>
@@ -25,6 +26,8 @@ const ContactSectionDark = () => {
                         <div className="flex space-x-2 mb-2">
                             <button 
                                 aria-label="Send an email"
+                                id="email-button-dark"
+                                name="email-button-dark"
                                 onClick={() => window.location.href = "mailto:francisca@margin-top.com"}
                                 className="flex items-center bg-blue-500/90 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
                             >
@@ -34,6 +37,8 @@ const ContactSectionDark = () => {
                                 Mail
                             </button>
                             <button 
+                                id="phone-button-dark"
+                                name="phone-button-dark"
                                 onClick={() => window.location.href = "tel:+31653894771"}
                                 className="flex items-center bg-blue-500/90 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
                             >

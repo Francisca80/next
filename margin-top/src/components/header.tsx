@@ -35,14 +35,13 @@ const Header: React.FC = () => {
         <Link href="/" className="flex items-center">
           <Image
             src="/logo.png"
-            alt="Company Logo Margin-Top"
+            alt="Margin-Top Logo"
             width={40}
-            height={15}
-            className="mr-2 object-contain"
-            priority={true}
-            style={{ width: 'auto', height: 'auto' }}
+            height={40}            
+            className="w-auto h-auto"
+            priority
           />
-          <span className="font-bold text-lg">Margin-Top</span>
+          <span className="font-bold ml-2 text-lg">Margin-Top</span>
         </Link>
         <div className="md:hidden">
           {isMenuOpen ? 
