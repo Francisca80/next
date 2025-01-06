@@ -1,5 +1,3 @@
-import { GtagEventParams } from "@/types/gtag";
-
 export const GA_TRACKING_ID = 'G-ZG4Q00ZZY5';
 
 // Initialize consent mode
