@@ -1,15 +1,15 @@
 'use client';
-import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from 'next/navigation';
 
-export default function LangToggle() {
+import { useLocale } from 'next-intl';
+import { usePathname, useRouter } from '@/i18n/routing';
+
+const LangToggle = () => {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
 
   const toggleLanguage = (newLocale: 'en' | 'nl') => {
-    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
-    router.push(newPath);
+    router.replace(pathname, { locale: newLocale });
   };
 
   return (
@@ -37,4 +37,6 @@ export default function LangToggle() {
       </span>
     </div>
   );
-}
+};
+
+export default LangToggle;

@@ -3,8 +3,13 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { FaLinkedin } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import {useTranslations} from 'next-intl';
+import {Link} from '@/i18n/routing';
+
+
 
 const About: React.FC = () => {
+  const t = useTranslations('about');
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (event: MouseEvent) => {
@@ -23,7 +28,7 @@ const About: React.FC = () => {
     <div className="flex flex-col items-center justify-center py-36 bg-white text-black">
       <div className="flex flex-col md:flex-row max-w-6xl w-full items-center">
         <div className="md:w-1/2 text-center md:text-left md:pr-8 mx-4">
-          <h2 className="text-4xl font-bold mb-4 md:mb-6">Webdesign & Development</h2>
+          <h2 className="text-4xl font-bold mb-4 md:mb-6">{t('title')}</h2>
           <p className="mb-6">
             Bij Margin-Top geven we jouw visie de ruimte die het verdient. 
             Hierbij gaat het niet alleen om het bouwen van websites, maar om het creëren van digitale omgevingen 
@@ -80,22 +85,22 @@ const About: React.FC = () => {
           <div className="bg-[#340066] rounded-lg mt-8 p-4 shadow-sm border border-gray-100">
             <p className="text-sm text-white mb-3">Neem contact op:</p>
             <div className="flex space-x-4 justify-center md:justify-start">
-              <a 
+                <Link 
                 href="https://www.linkedin.com/in/francisca-van-maurik/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center bg-white px-4 py-2 rounded-md text-blue-600 hover:bg-blue-50 transition-colors"
               >
                 <FaLinkedin className="w-5 h-5" />
-                <span className="ml-2">LinkedIn</span>
-              </a>
-              <a 
+                <span className="ml-2">{t('linkedin')}</span>
+              </Link>
+              <Link 
                 href="mailto:francisca@margin-top.com" 
                 className="flex items-center bg-white px-4 py-2 rounded-md text-gray-600 hover:bg-gray-50 transition-colors"
               >
                 <MdEmail className="w-5 h-5" />
-                <span className="ml-2">Email </span>
-              </a>
+                <span className="ml-2">{t('email')}</span>
+              </Link>
             </div>
           </div>
         </div>

@@ -9,14 +9,55 @@
     "home": {
       "hero": {
         "title": "Creating space for BOLD designs",
-        "tagline": "Margin-Top design & development"
+        "tagline": "Margin-Top design & development",
+        "cta": "Get in touch"
+      },
+      "services": {
+        "title": "Our Services",
+        "design": "Design",
+            "development": "Development",
+        "marketing": "Marketing"
       }
+    },
+    "about": {
+      "title": "About Us",
+      "intro": "We create digital solutions that help your business grow",
+      "mission": "Our Mission",
+      "vision": "Our Vision",
+      "linkedin": "LinkedIn",
+      "email": "Email"
+    },
+    "services": {
+      "title": "Our Services",
+      "webdev": {
+        "title": "Web Development",
+        "description": "Custom websites and web applications"
+      },
+      "design": {
+        "title": "UI/UX Design",
+        "description": "User-centered design solutions"
+      },
+      "marketing": {
+        "title": "Digital Marketing",
+        "description": "Strategic online marketing"
+      }
+    },
+    "cases": {
+      "title": "Case Studies",
+      "viewCase": "View Case",
+      "allCases": "All Cases"
     },
     "contact": {
       "title": "Get in touch",
       "description": "Contact us to discuss how we can help you",
       "email": "Email",
-      "call": "Call"
+      "call": "Call",
+      "form": {
+        "name": "Name",
+        "email": "Email",
+        "message": "Message",
+        "send": "Send Message"
+      }
     },
     "footer": {
       "address": "Address",
