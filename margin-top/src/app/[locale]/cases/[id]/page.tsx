@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { caseData } from '../../../lib/case-data';
+import { caseData } from '../../../../lib/case-data';
 import CaseDetailClient from '@/components/CaseDetailClient';
 import Image from 'next/image';
 import Link from 'next/link';

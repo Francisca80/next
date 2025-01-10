@@ -1,13 +1,13 @@
 export interface ICaseData {
-    id: number; // Change Number to number for primitive type
+    id: number;
     title: string;
     description: string;
-    image: string;                  
+    image: string;
     url: string;
     about: string;
     services: string;
     caseScreens: string;
-    backgroundImage: string;    
+    backgroundImage: string;
     headingProject: string;
     procesImage: string;
     procesImageCaption: string;

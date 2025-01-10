@@ -1,0 +1,46 @@
+{
+    "navigation": {
+      "about": "About",
+      "services": "Services",
+      "cases": "Cases",
+      "contact": "Contact",
+      "schedule": "Schedule a call"
+    },
+    "home": {
+      "hero": {
+        "title": "Creating space for BOLD designs",
+        "tagline": "Margin-Top design & development"
+      }
+    },
+    "contact": {
+      "title": "Get in touch",
+      "description": "Contact us to discuss how we can help you",
+      "email": "Email",
+      "call": "Call"
+    },
+    "footer": {
+      "address": "Address",
+      "email": "Email",
+      "kvk": "Chamber of Commerce",
+      "links": {
+        "title": "Links",
+        "cases": "Cases",
+        "services": "Services",
+        "about": "About",
+        "contact": "Contact"
+      },
+      "socials": {
+        "title": "Social Media",
+        "linkedin": "LinkedIn",
+        "whatsapp": "WhatsApp",
+        "instagram": "Instagram",
+        "facebook": "Facebook"
+      },
+      "legal": {
+        "title": "Legal",
+        "privacy": "Privacy Policy",
+        "cookies": "Cookie Settings"
+      },
+      "copyright": "© {year} Margin Top. All rights reserved."
+    }
+}

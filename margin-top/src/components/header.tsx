@@ -5,8 +5,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { IoClose, IoMenu } from 'react-icons/io5';
 import * as gtag from '@/lib/gtag';
+import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
+import { useRouter, usePathname } from 'next/navigation';
+import { locales } from '@/i18n/routing';
+import LangToggle from './LangToggle';
 
 const Header: React.FC = () => {
+  const t = useTranslations('navigation');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -27,6 +36,12 @@ const Header: React.FC = () => {
       category: 'conversion',
       label: 'header_calendly',
     });
+  };
+
+  const toggleLanguage = () => {
+    const newLocale = locale === 'nl' ? 'en' : 'nl';
+    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`);
+    router.push(newPath);
   };
 
   return (
@@ -50,10 +65,11 @@ const Header: React.FC = () => {
           }
         </div>
         <div className="hidden md:flex space-x-4 md:space-x-6">
-          <Link href="/about" className="navButton text-sm" onClick={() => handleNavClick('about')}>Over ons</Link>
-          <Link href="/services" className="navButton text-sm" onClick={() => handleNavClick('services')}>Services</Link>
-          <Link href="/cases" className="navButton text-sm" onClick={() => handleNavClick('cases')}>Cases</Link>
-          <Link href="/contact" className="navButton text-sm" onClick={() => handleNavClick('contact')}>Contact</Link>
+          <Link href={`/${locale}/about`} className="navButton text-sm">{t('about')}</Link>
+          <Link href={`/${locale}/services`} className="navButton text-sm">{t('services')}</Link>
+          <Link href={`/${locale}/cases`} className="navButton text-sm">{t('cases')}</Link>
+          <Link href={`/${locale}/contact`} className="navButton text-sm">{t('contact')}</Link>
+          <LangToggle />
           <Link 
             href="https://calendly.com/francisca-margin-top" 
             target="_blank" 
@@ -69,10 +85,10 @@ const Header: React.FC = () => {
       {isMenuOpen && (
         <div className="fixed left-0 right-0 top-[85px] bg-white shadow-lg md:hidden">
           <div className="flex flex-col space-y-4 p-6">
-            <Link href="/about" className="navButton text-sm" onClick={toggleMenu}>Over ons</Link>
-            <Link href="/services" className="navButton text-sm" onClick={toggleMenu}>Services</Link>
-            <Link href="/cases" className="navButton text-sm" onClick={toggleMenu}>Cases</Link>
-            <Link href="/contact" className="navButton text-sm" onClick={toggleMenu}>Contact</Link>
+            <Link href={`/${locale}/about`}>{t('about')}</Link>
+            <Link href={`/${locale}/services`}>{t('services')}</Link>
+            <Link href={`/${locale}/cases`}>{t('cases')}</Link>
+            <Link href={`/${locale}/contact`}>{t('contact')}</Link>
             <Link href="https://calendly.com/francisca-margin-top" target="_blank" rel="noopener noreferrer">
               <button className="bg-blue-600 text-white font-bold py-2 px-4 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:shadow-xl text-sm w-full">
                 Plan een afspraak
