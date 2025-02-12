@@ -4,7 +4,7 @@ export const GA_TRACKING_ID = 'G-ZG4Q00ZZY5';
 export const initializeConsent = () => {
   if (typeof window !== 'undefined' && window.gtag) {
     // Set default consent state
-    window.gtag('config', GA_TRACKING_ID, {
+    window.gtag('consent', 'default', {
       'default_storage': 'denied',
       'analytics_storage': 'denied',
       'ad_storage': 'denied',
@@ -37,7 +37,7 @@ type ConsentSettings = {
 // Update consent state with first-party data handling
 export const updateConsent = (settings: ConsentSettings) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', GA_TRACKING_ID, {
+    window.gtag('consent', 'update', {
       'analytics_storage': settings.analytics ? 'granted' : 'denied',
       'ad_storage': settings.marketing ? 'granted' : 'denied',
       'functionality_storage': settings.functionality ? 'granted' : 'denied',
@@ -56,7 +56,7 @@ export const updateConsent = (settings: ConsentSettings) => {
 
 export const pageview = (url: string) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', GA_TRACKING_ID, {
+    window.gtag('event', 'page_view', {
       page_path: url,
     });
   }
@@ -96,7 +96,7 @@ const cleanupAnalytics = () => {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') {
       if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('config', GA_TRACKING_ID, {
+        window.gtag('event', 'page_view', {
           'transport_type': 'beacon'
         });
       }

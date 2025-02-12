@@ -36,7 +36,7 @@ declare global {
     interface Window {
         dataLayer: unknown[];
         gtag: (
-            command: 'config' | 'event' | 'js',
+            command: 'consent' | 'event' | 'js',
             targetId: string,
             params?: GtagEventParams
         ) => void;
