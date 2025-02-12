@@ -4,9 +4,6 @@ FROM node:18 AS builder
 # Set the working directory inside the container
 WORKDIR /app
 
-# Accept the API key as a build argument
-ARG SENDGRID_API_KEY
-ENV SENDGRID_API_KEY=$SENDGRID_API_KEY
 
 # Copy the package.json and package-lock.json (if available)
 COPY margin-top/package*.json ./
