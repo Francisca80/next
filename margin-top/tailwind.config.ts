@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+     
       animation: {
         'bounce-in': 'bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
         'scroll': 'scroll 30s linear infinite',
@@ -32,8 +33,15 @@ const config: Config = {
           '100%': { transform: 'translateX(-50%)' },
         },
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':
+          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
     },
   },
+
+ 
   plugins: [],
 };
 export default config;

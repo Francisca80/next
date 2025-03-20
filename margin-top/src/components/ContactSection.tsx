@@ -27,7 +27,7 @@ const ContactSection = () => {
                         id="email-button"
                         name="email-button"
                         onClick={() => window.location.href = "mailto:francisca@margin-top.com"}
-                        className="flex items-center bg-gray-500 text-white rounded px-4 py-2 hover:bg-gray-600 transition duration-200"
+                        className="flex items-center bg-gray-500 !text-white rounded px-4 py-2 hover:bg-gray-600 transition duration-200"
                     >
                         <Image src="/mail.png" alt="Email Icon" width={24} height={24} className="h-5 w-5 mr-2" />
                         Mail
@@ -36,7 +36,7 @@ const ContactSection = () => {
                             id="phone-button"
                             name="phone-button"
                             onClick={() => window.location.href = "tel:+31653894771"}
-                            className="flex items-center bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
+                            className="flex items-center bg-blue-500 !text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
                         >
                             <Image   src="/phone-call.png" alt="Phone Icon" 
                             width={24}

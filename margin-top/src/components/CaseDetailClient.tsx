@@ -117,7 +117,7 @@ const CaseDetailClient = ({ caseItem }: CaseDetailClientProps) => {
           {/* Close button */}
           <IoClose 
             onClick={closeModal}
-            className="absolute top-4 right-4 text-white text-3xl cursor-pointer hover:text-gray-300 transition-colors z-50"
+            className="absolute top-4 right-4 !text-white text-3xl cursor-pointer hover:text-gray-300 transition-colors z-50"
           />
 
           {/* Image container */}
@@ -176,7 +176,7 @@ const CaseDetailClient = ({ caseItem }: CaseDetailClientProps) => {
                          [&::-moz-range-thumb]:bg-white
                          [&::-moz-range-thumb]:border-0"
             />
-            <span className="text-white text-xs mt-2 absolute bottom-2">
+            <span className="!text-white text-xs mt-2 absolute bottom-2">
               {zoomLevel.toFixed(1)}x
             </span>
           </div>

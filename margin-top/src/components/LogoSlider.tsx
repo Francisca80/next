@@ -50,7 +50,7 @@ const LogoSlider = () => {
   ];
 
   return (
-    <div className="w-full bg-transparent py-4 px-2 rounded-lg">
+    <div className="w-full py-5 px-4 rounded">
       <Slider {...settings}>
         {logos.map((logo, index) => (
           <div key={index} className="px-2">
@@ -59,7 +59,7 @@ const LogoSlider = () => {
               alt={`Partner logo ${index + 1}`}
               width={80}
               height={40}
-              className="object-contain h-8 w-auto mx-auto filter brightness-0 invert"
+              className="object-contain h-6 w-auto mx-auto filter brightness-0 invert opacity-75 hover:opacity-100 transition-opacity"
               loading="lazy"
             />
           </div>

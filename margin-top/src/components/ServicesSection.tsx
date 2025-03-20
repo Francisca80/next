@@ -1,78 +1,60 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion'; // Import motion from Framer Motion
-import { FaArrowRight, FaPalette, FaUserFriends, FaWordpress, FaCode, FaMobile, FaServer, FaTools, FaGoogle } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 import * as gtag from '@/lib/gtag';
 
-const servicesData = [
-  {
-    title: 'Web Design',
-    description: 'Website ontwerp, product design en Design Systems zijn oplossingen die wij aanbieden om jouw idee om te zetten in een visueel aantrekkelijke oplossing. Gebruikers ervaring is hierbij de focus.',
-    link: '/',
-    icon: FaPalette,
-    color: '#4F8BD2'
-  },
-  {
-    title: 'UX Design',
-    description: 'User Experience Design: begrijpt je gebruiker je website, product of applicatie? Margin-Top levert intuïtieve en boeiende gebruikerservaringen door middel van doordacht ontwerp. Ontwerp wat aansluit bij jouw doelen en die van je gebruiker.',
-    link: '/services/ux',
-    icon: FaUserFriends,
-    color: '#10B981'
-  },
-  {
-    title: 'Wordpress Websites',
-    description: 'Het creëren van op maat gemaakte WordPress-sites geoptimaliseerd voor prestaties en SEO. WordPress is een flexibel platform dat aan jouw behoeften kan voldoen.',
-    link: '/services/wordpress',
-    icon: FaWordpress,
-    color: '#8B5CF6'
-  },
-  {
-    title: 'Web Development',
-    description: 'Snelle, schaalbare en veilige websites bouwen met de nieuwste technologieën. React, Next.js, Tailwind CSS en TypeScript zijn onze tools van keuze, maar ook andere technologieën zijn mogelijk.',
-    link: '/',
-    icon: FaCode,
-    color: '#EF4444'
-  },
-  {
-    title: 'Mobile App Development',
-    description: 'Het ontwerpen en ontwikkelen van mobiele apps voor iOS- en Android-platforms. Zowel native als cross-platform apps zijn mogelijk.',
-    link: '/',
-    icon: FaMobile,
-    color: '#F59E0B'
-  },
-  {
-    title: 'Social Media Management',
-    description: 'Opzetten en onderhouden van social media accounts. Het creëren van content, engagement en analyse.',
-    link: '/',
-    icon: FaMobile,
-    color: '#4F8BD2'
-  },
-  {
-    title: 'SEO / SEA',
-    description: 'SEO en SEA zijn strategieën om jouw website te helpen ranken in zoekmachines zoals Google en te helpen groeien in traffic.',
-    link: '/',
-    icon: FaGoogle,
-    color: '#4F8BD2'
-  },
-  {
-    title: 'Hosting',
-    description: 'Betrouwbare hostingoplossingen met hoge prestaties en uptime. ',
-    link: '/',
-    icon: FaServer,
-    color: '#6366F1'
-  },
-  {
-    title: 'Onderhoud',
-    description: 'Voortdurende websiteondersteuning en onderhoud om je site niet alleen soepel te laten draaien, maar ook bij te blijven op techniek en veiligheid.',
-    link: '/',
-    icon: FaTools,
-    color: '#14B8A6'
-  },
-];
+interface ServiceProps {
+  title: string;
+  description: string;
+  link: string;
+  id: string;
+  order: number;
+}
 
-const ServicesSection: React.FC = () => {
+interface ServicesSectionProps {
+  initialServices?: ServiceProps[];
+}
+
+const ServicesSection: React.FC<ServicesSectionProps> = ({ initialServices = [] }) => {
+  const [services, setServices] = useState<ServiceProps[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(initialServices.length === 0);
+  const [hoveredService, setHoveredService] = useState<ServiceProps | null>(null);
+
+  useEffect(() => {
+    if (initialServices.length > 0) {
+      const sortedInitialServices = [...initialServices].sort((a, b) => {
+        if (a.order === undefined) return 1;
+        if (b.order === undefined) return -1;
+        return a.order - b.order;
+      });
+      setServices(sortedInitialServices);
+      setIsLoading(false);
+      return;
+    }
+
+    const fetchServices = async () => {
+      try {
+        const response = await fetch('/api/services');
+        const data = await response.json();
+        const sortedServices = [...(data.docs || [])].sort((a: ServiceProps, b: ServiceProps) => {
+          if (a.order === undefined) return 1;
+          if (b.order === undefined) return -1;
+          return a.order - b.order;
+        });
+        setServices(sortedServices);
+      } catch (error) {
+        console.error('Error fetching services:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchServices();
+  }, [initialServices]);
+
   const handleServiceClick = (serviceName: string) => {
     gtag.event({
       action: 'service_click',
@@ -82,52 +64,105 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <div className="relative py-24 bg-white overflow-hidden">
-      <div className="max-w-6xl mx-auto px-8">
-        <div className="text-left mb-12">
-          <h2 className="text-4xl font-bold mb-4" style={{ color: '#340066' }}>Services</h2>
-          <hr className="border-gray-300 mb-4 w-1/4 ml-0" />
-          <p className="text-lg">Uw complete online oplossing: van server tot scherm.</p>
+    <div className="h-[100vh] bg-black text-white">
+      <div className="sticky top-0 h-full container mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col justify-center">
+        <div className="text-left mb-8 md:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4 !text-white">Services</h1>
+          <hr className="border-gray-600 mb-4 w-24 sm:w-32 md:w-1/4 ml-0" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.map((service, index) => (
-            <Link 
-              href={service.link} 
-              key={index} 
-              className="group" 
-              onClick={() => handleServiceClick(service.title)}
-            >
-              <motion.div 
-                className="h-full bg-white border border-gray-100 hover:border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 rounded-lg"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+        
+        {isLoading ? (
+          <div className="space-y-2 w-full">
+            {[...Array(6)].map((_, index) => (
+              <div key={index} className="h-12 bg-gray-800 animate-pulse rounded-lg"></div>
+            ))}
+          </div>
+        ) : (
+          <div className="space-y-2 w-full">
+            {services.map((service, index) => (
+              <Link 
+                href={service.link || '/'} 
+                key={service.id || index}
+                className="block group relative border-b border-gray-800 hover:border-[#4F8BD2] transition-colors"
+                onClick={() => handleServiceClick(service.title)}
+                onMouseEnter={() => setHoveredService(service)}
+                onMouseLeave={() => setHoveredService(null)}
               >
-                <div className="flex flex-col p-6">
-                  <div className="flex items-center justify-between mb-4">
-                    <service.icon 
-                      className="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
-                      style={{ color: service.color }}
-                    />
+                <motion.div 
+                  className="flex items-center justify-between group cursor-pointer"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <motion.div 
+                    className="flex-grow pr-8 overflow-hidden py-4"
+                    layout
+                    transition={{
+                      layout: { duration: 0.3, ease: "easeOut" }
+                    }}
+                  >
+                    <AnimatePresence mode="wait">
+                      {hoveredService?.id === service.id ? (
+                        <motion.div
+                          key="description-container"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ 
+                            height: "auto", 
+                            opacity: 1,
+                            transition: {
+                              height: { duration: 0.3, ease: "easeOut" },
+                              opacity: { duration: 0.2, ease: "easeOut" }
+                            }
+                          }}
+                          exit={{ 
+                            height: 0, 
+                            opacity: 0,
+                            transition: {
+                              height: { duration: 0.3, ease: "easeOut" },
+                              opacity: { duration: 0.2, ease: "easeOut" }
+                            }
+                          }}
+                        >
+                          <motion.p
+                            className="text-sm sm:text-base md:text-lg !text-white max-w-3xl"
+                            initial={{ y: -20 }}
+                            animate={{ y: 0 }}
+                            exit={{ y: -20 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                          >
+                            {service.description}
+                          </motion.p>
+                        </motion.div>
+                      ) : (
+                        <motion.div
+                          key="title"
+                          className="relative inline-block"
+                        >
+                          <motion.h3
+                            className="text-lg sm:text-xl md:text-2xl !text-white group-hover:text-[#4F8BD2] transition-colors font-normal"
+                            initial={{ y: 20 }}
+                            animate={{ y: 0 }}
+                            exit={{ y: 20 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                          >
+                            {service.title}
+                          </motion.h3>
+                          <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                  <div className="flex-shrink-0 w-6 py-4">
                     <FaArrowRight 
-                      className="opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-[#4F8BD2] w-4 h-4"
+                      className="opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300 text-[#4F8BD2] w-3 h-3"
                       aria-hidden="true"
                     />
                   </div>
-                  <h3 
-                    className="text-xl font-semibold mb-2 group-hover:text-[#4F8BD2] transition-colors" 
-                    style={{ color: '#340066' }}
-                  >
-                    {service.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-              </motion.div>
-            </Link>
-          ))}
-        </div>
+                </motion.div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -137,7 +137,7 @@ const ContactPage = () => {
 
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transform hover:-translate-y-1 transition-all duration-300"
+                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 !text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transform hover:-translate-y-1 transition-all duration-300"
               >
                 Verstuur Bericht
               </button>

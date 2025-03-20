@@ -216,7 +216,7 @@ export default function CookieConsent() {
                   name="accept-cookies"
                   form="cookie-consent-form"
                   onClick={handleAcceptAll}
-                  className="px-4 py-2 text-sm bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] text-white rounded hover:opacity-90 transition-colors"
+                  className="px-4 py-2 text-sm bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] !text-white rounded hover:opacity-90 transition-colors"
                 >
                   Accept All
                 </button>

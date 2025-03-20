@@ -19,7 +19,7 @@ const ContactSectionDark = () => {
                         />
                         <div className="text-left">
                             <h2 className="text-3xl font-bold text-[#6EC1E4]">Neem contact op</h2>
-                            <p className="text-lg text-gray-200">Neem contact op om te bespreken hoe we jou kunnen helpen.</p>
+                            <p className="text-lg !text-white">Neem contact op om te bespreken hoe we jou kunnen helpen.</p>
                         </div>
                     </div>
                     <div className="flex flex-col items-end">
@@ -29,7 +29,7 @@ const ContactSectionDark = () => {
                                 id="email-button-dark"
                                 name="email-button-dark"
                                 onClick={() => window.location.href = "mailto:francisca@margin-top.com"}
-                                className="flex items-center bg-blue-500/90 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
+                                className="flex items-center bg-blue-500/90 !text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
                             >
                                 <span className="mr-2">
                                     <MdOutlineEmail size={24} color="white" />
@@ -40,7 +40,7 @@ const ContactSectionDark = () => {
                                 id="phone-button-dark"
                                 name="phone-button-dark"
                                 onClick={() => window.location.href = "tel:+31653894771"}
-                                className="flex items-center bg-blue-500/90 text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
+                                className="flex items-center bg-blue-500/90 !text-white rounded px-4 py-2 hover:bg-blue-600 transition duration-200"
                             >
                                 <span className="mr-2">
                                     <MdOutlinePhoneAndroid size={24} color="white" />

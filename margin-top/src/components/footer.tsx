@@ -4,39 +4,36 @@ import React from 'react';
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaWhatsapp, FaLinkedin } from "react-icons/fa";
 import { useCookieConsent } from '@/context/CookieConsentContext';
-import { useTranslations } from 'next-intl';
-import { useLocale } from 'next-intl';
+
 
 const Footer: React.FC = () => {
   const { setShowBanner } = useCookieConsent();
-  const t = useTranslations('footer');
-  const locale = useLocale();
   const year = new Date().getFullYear();
 
   return (
-    <footer className="text-white bg-black py-6">
+    <footer className="!text-white bg-black py-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start px-4 mb-8 text-center md:text-left">
         <div className="mb-8 md:mb-0">
-          <h3 className="text-lg font-bold text-white">{t('address')}</h3>
-          <p className="text-sm text-white">Bergfluiter 7, Nieuwegein, NL</p>
-          <p className="text-sm text-white">
-            {t('email')}: <a href="mailto:francisca@margin-top.com" className="underline">francisca@margin-top.com</a>
+          <h3 className="text-lg font-bold !text-white">Address</h3>
+          <p className="text-sm !text-white">Bergfluiter 7, Nieuwegein, NL</p>
+          <p className="text-sm !text-white">
+            Email: <a href="mailto:francisca@margin-top.com" className="underline">francisca@margin-top.com</a>
           </p>
-          <p className="text-sm text-white">{t('kvk')}: 95142754</p>
+          <p className="text-sm !text-white">KVK: 95142754</p>
         </div>
 
         <div className="mb-8 md:mb-0">
-          <h3 className="text-lg font-bold text-white">{t('links.title')}</h3>
+          <h3 className="text-lg font-bold !text-white">Links</h3>
           <div className="flex flex-col space-y-2 items-center md:items-start">
-            <Link href={`/${locale}/cases`} className="underline text-white">{t('links.cases')}</Link>
-            <Link href={`/${locale}/services`} className="underline text-white">{t('links.services')}</Link>
-            <Link href={`/${locale}/about`} className="underline text-white">{t('links.about')}</Link>
-            <Link href={`/${locale}/contact`} className="underline text-white">{t('links.contact')}</Link>
+            <Link href={`/cases`} className="underline !text-white">Cases</Link>
+            <Link href={`/services`} className="underline !text-white">Services</Link>
+            <Link href={`/about`} className="underline !text-white">About</Link>
+            <Link href={`/contact`} className="underline !text-white">Contact</Link>
           </div>
         </div>
 
         <div className="mb-8 md:mb-0">
-          <h3 className="text-lg font-bold text-white">{t('socials.title')}</h3>
+          <h3 className="text-lg font-bold !text-white">Socials</h3>
           <div className="flex flex-col space-y-2 items-center md:items-start">
             <Link 
               href="https://www.linkedin.com/company/margin-top" 
@@ -45,7 +42,7 @@ const Footer: React.FC = () => {
               className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <FaLinkedin size={20} color="white" />
-              <span className="ml-2">{t('socials.linkedin')}</span>
+              <span className="ml-2">LinkedIn</span>
             </Link>
             <Link 
               href="https://wa.me/31653894771" 
@@ -54,7 +51,7 @@ const Footer: React.FC = () => {
               className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <FaWhatsapp size={20} color="white" />
-              <span className="ml-2">{t('socials.whatsapp')}</span>
+              <span className="ml-2">WhatsApp</span>
             </Link>
             <Link 
               href="https://instagram.com/margin_top_" 
@@ -63,7 +60,7 @@ const Footer: React.FC = () => {
               className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <FaInstagram size={20} color="white" />
-              <span className="ml-2">{t('socials.instagram')}</span>
+              <span className="ml-2">Instagram</span>
             </Link>
             <Link 
               href="https://facebook.com/margintopnl" 
@@ -72,16 +69,16 @@ const Footer: React.FC = () => {
               className="flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <FaFacebook size={20} color="white" />
-              <span className="ml-2">{t('socials.facebook')}</span>
+              <span className="ml-2">Facebook</span>
             </Link>
           </div>
         </div>
 
         <div className="mb-8 md:mb-0">
-          <h3 className="text-lg font-bold text-white">{t('legal.title')}</h3>
+          <h3 className="text-lg font-bold !text-white">Legal</h3>
           <div className="flex flex-col space-y-2 items-center md:items-start">
-            <Link href={`/${locale}/privacy`} className="underline text-white">
-              {t('legal.privacy')}
+            <Link href={`/privacy`} className="underline !text-white">
+              Privacy
             </Link>
             <a 
               href="#"
@@ -89,16 +86,16 @@ const Footer: React.FC = () => {
                 e.preventDefault();
                 setShowBanner(true);
               }}
-              className="underline text-white hover:text-gray-300 transition-colors"
+              className="underline !text-white hover:text-gray-300 transition-colors"
             >
-              {t('legal.cookies')}
+              Cookies
             </a>
           </div>
         </div>
       </div>
 
       <div className="text-center mt-8 pt-8 border-t border-gray-800">
-        <p className="text-sm text-white">{t('copyright', { year })}</p>
+                  <p className="text-sm !text-white">Copyright {year}</p>
       </div>
     </footer>
   );

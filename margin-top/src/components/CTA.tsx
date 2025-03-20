@@ -15,35 +15,35 @@ const CTA = () => {
     };
 
     return (
-        <div className="bg-black text-white p-16 text-center">
+        <div className="bg-black !text-white p-16 text-center">
             <div className="max-w-6xl mx-auto">
                 <h2 className="text-5xl font-extrabold text-[#6EC1E4] mb-4">We helpen je met je websites en apps</h2>
-                <p className="mb-4 text-lg text-white">Je faalt in het omzetten van dat verkeer naar leads. De ECHTE uitdaging is het omzetten van klikken naar conversies.</p>
+                <p className="mb-4 text-lg !text-white">Je faalt in het omzetten van dat verkeer naar leads. De ECHTE uitdaging is het omzetten van klikken naar conversies.</p>
                 <div className="flex justify-around mt-10">
                     {/* Websites Section */}
                     <div className="flex flex-col items-center">
-                        <div className="mb-2 text-white">
+                        <div className="mb-2 !text-white">
                             <CgWebsite size={40} />
                         </div>
-                        <h3 className="text-2xl mt-2 font-semibold text-white">Websites</h3>
-                        <p className="mb-4 mt-2 text-white">In een zee van concurrenten is het moeilijk om je merk te laten opvallen wanneer 
+                        <h3 className="text-2xl mt-2 font-semibold !text-white">Websites</h3>
+                        <p className="mb-4 mt-2 !text-white">In een zee van concurrenten is het moeilijk om je merk te laten opvallen wanneer 
                             iedereen vecht om aandacht. </p>
                     </div>
                     {/* Apps Section */}
                     <div className="flex flex-col items-center">
-                        <div className="mb-2 text-white">
+                        <div className="mb-2 !text-white">
                             <MdAppShortcut size={40} />
                         </div>
-                        <h3 className="text-2xl mt-2 font-semibold text-white">Apps</h3>
-                        <p className="mb-4 mt-2 text-white">Heb je een idee voor een app? Native of Hybrid, Margin-Top helpt je om je app te maken.</p>
+                        <h3 className="text-2xl mt-2 font-semibold !text-white">Apps</h3>
+                        <p className="mb-4 mt-2 !text-white">Heb je een idee voor een app? Native of Hybrid, Margin-Top helpt je om je app te maken.</p>
                     </div>
                     {/* Consultancy Section */}
                     <div className="flex flex-col items-center">
-                        <div className="mb-2 text-white">
+                        <div className="mb-2 !text-white">
                             <HiOutlineCursorClick size={40} />
                         </div>
-                        <h3 className="text-2xl mt-2 font-semibold text-white">Consultancy</h3>
-                        <p className="mb-4 mt-2 text-white">Margin-Top ondersteunt je team met UX, UI en Development uitdagingen.</p>
+                        <h3 className="text-2xl mt-2 font-semibold !text-white">Consultancy</h3>
+                        <p className="mb-4 mt-2 !text-white">Margin-Top ondersteunt je team met UX, UI en Development uitdagingen.</p>
                     </div>
                 </div>
              
@@ -53,18 +53,18 @@ const CTA = () => {
                     <div className="flex justify-around mt-8">
                         {/* Custom Websites and Apps */}
                         <div className="flex flex-col items-center">
-                            <h3 className="text-xl font-semibold text-white">Websites op maat</h3>
-                            <p className="mb-4 text-white">Websites die passen bij jouw behoefte, van een eenvoudige landingspagina tot een complexe webshop.</p>
+                            <h3 className="text-xl font-semibold !text-white">Websites op maat</h3>
+                            <p className="mb-4 !text-white">Websites die passen bij jouw behoefte, van een eenvoudige landingspagina tot een complexe webshop.</p>
                         </div>
                         {/* Top-Tier Branding */}
                         <div className="flex flex-col items-center">
-                            <h3 className="text-xl font-semibold text-white">Apps hybrid & native</h3>
-                            <p className="mb-4 text-white">Breng je app tot leven met onze expertise in native en hybrid apps. Voor IOS, Android of beide. Webapps zijn ook mogelijk.</p>
+                            <h3 className="text-xl font-semibold !text-white">Apps hybrid & native</h3>
+                            <p className="mb-4 !text-white">Breng je app tot leven met onze expertise in native en hybrid apps. Voor IOS, Android of beide. Webapps zijn ook mogelijk.</p>
                         </div>
                         {/* Conversion-Oriented Design */}
                         <div className="flex flex-col items-center">
-                            <h3 className="text-xl font-semibold text-white">Versterk je team</h3>
-                            <p className="mb-4 text-white">Margin-Top helpt je team met UX, UI en Development uitdagingen. Met meer dan 25 jaar ervaring. zijn we experts in ons vak.</p>
+                            <h3 className="text-xl font-semibold !text-white">Versterk je team</h3>
+                            <p className="mb-4 !text-white">Margin-Top helpt je team met UX, UI en Development uitdagingen. Met meer dan 25 jaar ervaring. zijn we experts in ons vak.</p>
                         </div>
                     </div>
                 </div>
