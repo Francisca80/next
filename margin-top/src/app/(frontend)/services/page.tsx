@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { FaArrowRight } from "react-icons/fa";
 import { getPayload } from 'payload';
 import config from '@/payload.config';
-import { Service } from '@/payload-types';
+import { Service, Media } from '@/payload-types';
 
 export default async function Services() {
   const payloadConfig = await config;
@@ -26,7 +26,7 @@ export default async function Services() {
     }
   });
 
-  const servicesImage = servicesImageResponse?.docs?.[0]?.url || '/images/services.jpg';
+  const servicesImage = servicesImageResponse?.docs?.[0]?.url;
 
   return (
     <div className="bg-white">
@@ -45,29 +45,28 @@ export default async function Services() {
         {/* Services List Section */}
         <div className="space-y-16">
           {services.map((service) => {
-            const imageUrl = typeof service.images === 'string' 
-              ? service.images 
-              : service.images?.url || '/services.jpg';
+            const mediaImage = service.image as Media | undefined;
             
             return (
               <Link 
-                href={`/services/${encodeURIComponent(service.title.toLowerCase().replace(/\s+/g, '-'))}`} 
+                href={`/services/${service.slug}`} 
                 key={service.id} 
                 className="block group"
               >
                 <div className="flex flex-col md:flex-row items-start gap-12">
-                  <div className="relative w-full md:w-1/2 aspect-[4/3]">
-                    <Image 
-                      src={imageUrl}
-                      alt={service.title} 
-                      fill
-                      style={{ objectFit: 'cover' }}
-                      className="rounded-lg transition-transform duration-500 group-hover:scale-105" 
-                      loading="lazy"
-                      unoptimized
-                    />
-                  </div>
-                  <div className="flex-1 text-left">
+                  {mediaImage?.url && (
+                    <div className="relative w-full md:w-1/2 aspect-[4/3]">
+                      <Image 
+                        src={mediaImage.url}
+                        alt={service.title} 
+                        fill
+                        className="object-cover rounded-lg transition-transform duration-500 group-hover:scale-105" 
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  )}
+                  <div className={`flex-1 text-left ${!mediaImage?.url ? 'md:w-full' : ''}`}>
                     <h3 className="text-3xl mb-6">
                       {service.title}
                     </h3>
@@ -89,18 +88,19 @@ export default async function Services() {
       <div className="w-full bg-[#340066] py-12 my-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center">
-            <div className="md:w-1/2 relative h-[300px] w-full mb-8 md:mb-0">
-              <Image
-                src={servicesImage}
-                alt="Contact us"
-                fill
-                style={{ objectFit: 'cover' }}
-                className="rounded-lg"
-                loading="lazy"
-                unoptimized
-              />
-            </div>
-            <div className="md:w-1/2 md:pl-12 text-center md:text-left">
+            {servicesImage && (
+              <div className="md:w-1/2 relative h-[300px] w-full mb-8 md:mb-0">
+                <Image
+                  src={servicesImage}
+                  alt="Contact us"
+                  fill
+                  className="object-cover rounded-lg"
+                  loading="lazy"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            )}
+            <div className={`md:pl-12 text-center md:text-left ${!servicesImage ? 'md:w-full' : 'md:w-1/2'}`}>
               <h2 className="text-2xl md:text-3xl font-bold !text-white mb-4">
                 Hoe werkt het?
               </h2>

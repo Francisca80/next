@@ -12,6 +12,11 @@ export const Services: CollectionConfig = {
             },
         },
         {
+            name: 'slug',
+            type: 'text',
+            required: true,
+        },
+        {
             name: 'title',
             type: 'text',
             required: true,
@@ -21,17 +26,13 @@ export const Services: CollectionConfig = {
             type: 'text',       
         },
         {
-          
-                    name: 'image',
-                    type: 'upload',
-                    relationTo: 'media',
-                    required: false,
-          
+            name: 'image',
+            type: 'upload',
+            relationTo: 'media',
         },
         {
             name: 'link',
             type: 'text',
         },
-       
     ]
 }

@@ -52,9 +52,10 @@ export interface Service {
   id: string;
   title: string;
   description: string;
-  images?: Media | string | null;
+  image: Media | string | null;
   link?: string;
-  icon?: Media | string | null;
+  icon?: Media | string | null; 
+  slug: string;
 }
 
 export interface Case {   

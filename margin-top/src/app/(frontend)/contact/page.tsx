@@ -6,13 +6,24 @@ import * as gtag from '@/lib/gtag';
 
 export default function Contact() {
   useEffect(() => {
+    // Remove any existing Calendly script
+    const existingScript = document.querySelector('script[src*="calendly"]');
+    if (existingScript) {
+      document.body.removeChild(existingScript);
+    }
+
+    // Create and append new script
     const script = document.createElement('script');
     script.src = 'https://assets.calendly.com/assets/external/widget.js';
     script.async = true;
+    script.defer = true;
     document.body.appendChild(script);
 
     return () => {
-      document.body.removeChild(script);
+      const scriptToRemove = document.querySelector('script[src*="calendly"]');
+      if (scriptToRemove) {
+        document.body.removeChild(scriptToRemove);
+      }
     };
   }, []);
 
@@ -80,21 +91,22 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white pt-32 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] text-transparent bg-clip-text">
+    <div className="bg-white">
+      <section className="w-11/12 max-w-5xl mx-auto py-24">
+        <div className="inline-block mb-16 mt-32">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             Plan een afspraak
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl">
-           Stel een vraag of maak vrijblijvend een afspraak om te zien wat we voor jou kunnen betekenen.
-          </p>
+          <hr className="border-gray-600 mb-4 border-t-2" />
         </div>
+        <p className="text-xl text-gray-600 max-w-3xl mb-24">
+          Stel een vraag of maak vrijblijvend een afspraak om te zien wat we voor jou kunnen betekenen.
+        </p>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
+        <div className="grid md:grid-cols-3 gap-8">
           {/* Contact Details */}
           <div className="md:col-span-1 space-y-8">
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="bg-white rounded-lg shadow-lg p-6">
               <h2 className="text-2xl font-semibold mb-6 text-gray-800">Contact Details</h2>
               <div className="space-y-4">
                 {contactDetails.map((detail, index) => (
@@ -113,7 +125,7 @@ export default function Contact() {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="bg-white rounded-lg shadow-lg p-6">
               <h2 className="text-2xl font-semibold mb-6 text-gray-800">Social Media</h2>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -135,19 +147,21 @@ export default function Contact() {
 
           {/* Calendly Widget */}
           <div className="md:col-span-2">
-            <div className="bg-white rounded-xl shadow-lg p-4 h-full">
+            <div className="bg-white rounded-lg shadow-lg p-4 h-full">
               <div 
                 className="calendly-inline-widget" 
                 data-url="https://calendly.com/francisca-margin-top"
                 style={{ 
                   minWidth: '320px',
-                  height: '700px',
+                  height: '600px',
+                  width: '100%',
+                  overflow: 'hidden'
                 }}
               />
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
