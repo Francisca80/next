@@ -30,7 +30,44 @@ export const Pages: CollectionConfig = {
     {
       name: 'heroTagline',
       type: 'text',
-      required: true,
+    },
+    {
+      name: 'buttons',
+      type: 'group',
+      fields: [
+        {
+          name: 'primary',
+          type: 'group',
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+            }
+          ]
+        },
+        {
+          name: 'secondary',
+          type: 'group',
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              required: true,
+            },
+            {
+              name: 'url',
+              type: 'text',
+              required: true,
+            }
+          ]
+        }
+      ]
     },
     {
       name: 'content',

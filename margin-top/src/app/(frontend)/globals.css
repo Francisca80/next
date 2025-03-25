@@ -80,11 +80,13 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
 }
 
-h2 {
-  color: #340066; /* Set the text color */
-  font-size: 1.8rem; /* Set the font size */
-  font-weight: bold;
+h3-white {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
 }
+
+
 
 button {
   padding: 0.5rem 1.25rem; /* Adjust padding */
@@ -215,4 +217,14 @@ button:hover {
   body {
     @apply bg-background text-foreground;
   }
+
 }
+ .hide-scrollbar {
+   scrollbar-width: none;
+   -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+

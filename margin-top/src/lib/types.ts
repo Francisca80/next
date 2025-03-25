@@ -1,7 +1,7 @@
 export interface ICaseData {
     id: number;
     title: string;
-    description: string;
+    introduction: string;
     image: string;
     url: string;
     about: string;

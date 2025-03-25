@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
     <footer className="!text-white bg-black py-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start px-4 mb-8 text-center md:text-left">
         <div className="mb-8 md:mb-0">
-          <h3 className="text-lg font-bold !text-white">Address</h3>
+          <h3 className="text-lg font-bold !text-white">Adres</h3>
           <p className="text-sm !text-white">Bergfluiter 7, Nieuwegein, NL</p>
           <p className="text-sm !text-white">
             Email: <a href="mailto:francisca@margin-top.com" className="underline">francisca@margin-top.com</a>
@@ -27,6 +27,7 @@ const Footer: React.FC = () => {
           <div className="flex flex-col space-y-2 items-center md:items-start">
             <Link href={`/cases`} className="underline !text-white">Cases</Link>
             <Link href={`/services`} className="underline !text-white">Services</Link>
+            <Link href={`/journal`} className="underline !text-white">Journal</Link>
             <Link href={`/about`} className="underline !text-white">About</Link>
             <Link href={`/contact`} className="underline !text-white">Contact</Link>
           </div>

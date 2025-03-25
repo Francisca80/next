@@ -13,8 +13,10 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    cases: Case;
+    services: Service;
     journal: Journal;
+    case: Case;
+    about: About; 
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
 
@@ -29,31 +31,7 @@ export interface Config {
   };
 }
 
-export interface Case {
-  id: string;
-  title: string;
-  description: string;
-  image: Media | string | null;
-  url: string;
-  about: string;
-  services: string;
-  headingProject: string;
-  descriptionProject: string;
-  caseScreens: Media | string | null;
-  backgroundImage: Media | string | null;
-  procesDescription: string;
-  procesImage: Media | string | null;
-  procesImageCaption: string;
-  resultText: string;
-  resultImage: Media | string | null;
-  resultImageCaption: string;
-  resultImage2: Media | string | null;
-  resultImageCaption2: string;
-  usedTechniques: string;
-  status: 'draft' | 'published';
-  updatedAt: string;
-  createdAt: string;
-}
+
 
 export interface Journal {
   id: number;
@@ -77,6 +55,41 @@ export interface Service {
   images?: Media | string | null;
   link?: string;
   icon?: Media | string | null;
+}
+
+export interface Case {   
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+  url: string;
+  slug: string;
+  about: string;
+  services: string;
+  headingProject: string;
+  descriptionProject: string;
+  caseScreens: Media | string | null;
+  backgroundImage: Media | string | null;
+  procesDescription: string;
+  procesImage: Media | string | null;
+  procesImageCaption: string;
+  resultText: string;
+  resultImage: Media | string | null;
+  resultImageCaption: string;
+  resultImage2: Media | string | null;
+  resultImageCaption2: string;
+  usedTechniques: string;
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;  
+}
+
+export interface About {
+  id: string;
+  title: string;
+  content: any;
+  image: Media | string | null;
+  link?: string;
 }
 
 export interface UserAuthOperations {

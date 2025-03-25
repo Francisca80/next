@@ -12,6 +12,44 @@ export const Hero: CollectionConfig = {
             type: 'text',       
         },
         {
+            name: 'buttons',
+            type: 'group',
+            fields: [
+                {
+                    name: 'primary',
+                    type: 'group',
+                    fields: [
+                        {
+                            name: 'text',
+                            type: 'text',
+                            required: true,
+                        },
+                        {
+                            name: 'url',
+                            type: 'text',
+                            required: true,
+                        }
+                    ]
+                },
+                {
+                    name: 'secondary',
+                    type: 'group',
+                    fields: [
+                        {
+                            name: 'text',
+                            type: 'text',
+                            required: true,
+                        },
+                        {
+                            name: 'url',
+                            type: 'text',
+                            required: true,
+                        }
+                    ]
+                }
+            ]
+        },
+        {
             name: 'images',
             type: 'array',
             fields: [

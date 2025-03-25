@@ -1,127 +1,172 @@
+import React from 'react';
 import { notFound } from 'next/navigation';
-import { caseData } from '../../../../lib/case-data';
-import CaseDetailClient from '@/components/CaseDetailClient';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getPayload } from 'payload';
+import config from '@/payload.config';
 import { FaArrowRight } from 'react-icons/fa';
+import MoreCases from '@/components/MoreCases';
 
 interface CaseDetailProps {
-  params: Promise<{
+  params: {
     id: string;
-  }>;
+  };
 }
 
 export async function generateStaticParams() {
-  return caseData.map((caseItem) => ({
-    id: caseItem.id.toString(),
+  const payloadConfig = await config;
+  const payload = await getPayload({config: payloadConfig});
+  
+  const response = await (payload.find as any)({
+    collection: 'case',
+    where: {
+      status: {
+        equals: 'published'
+      }
+    }
+  });
+
+  return response.docs.map((caseItem: any) => ({
+    id: caseItem.slug,
   }));
 }
 
-const CaseDetail = async ({ params }: CaseDetailProps) => {
+export default async function CaseDetail({ params }: CaseDetailProps) {
   const { id } = await params;
-  const caseId = parseInt(id, 10);
-  const caseItem = caseData.find((c) => c.id === caseId);
+  
+  const payloadConfig = await config;
+  const payload = await getPayload({config: payloadConfig});
+  
+  // Get all published cases for the MoreCases component
+  const allCasesResponse = await (payload.find as any)({
+    collection: 'case',
+    where: {
+      status: {
+        equals: 'published'
+      }
+    },
+    depth: 2
+  });
+
+  // Get the current case
+  const response = await (payload.find as any)({
+    collection: 'case',
+    where: {
+      status: {
+        equals: 'published'
+      },
+      slug: {
+        equals: id
+      }
+    },
+    depth: 2
+  });
+
+  const caseItem = response.docs[0];
 
   if (!caseItem) {
     notFound();
   }
 
   return (
-    <div className="max-w-full">
-      <section className="relative h-screen">
-        <Image
-          src={caseItem.backgroundImage}
-          alt={caseItem.title}
-          fill
-          priority
-          className="object-cover"
-          quality={85}
-        />
-        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-          <h1 className="text-4xl md:text-6xl !text-white font-bold text-center">
+    <div className="bg-white">
+      <section className="w-11/12 max-w-5xl mx-auto py-24">
+        {/* Title and Introduction */}
+        <div className="inline-block mb-16 mt-32">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             {caseItem.title}
           </h1>
+          <hr className="border-gray-600 mb-4 border-t-2" />
+        </div>
+        <p className="text-xl text-gray-600 max-w-3xl mb-16 leading-relaxed">{caseItem.introduction}</p>
+
+        {/* Hero Image */}
+        <div className="relative w-full aspect-[16/9] mb-24">
+          <Image
+            src={caseItem.image.url}
+            alt={caseItem.image.alt || caseItem.title}
+            fill
+            className="object-cover rounded-2xl shadow-xl"
+            priority
+          />
+        </div>
+
+        {/* About and Services Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+          {/* Services */}
+          <div>
+            <h2 className="text-2xl font-bold mb-8">Gebruikte diensten</h2>
+            <div className="flex flex-wrap gap-3">
+              {caseItem.services?.map((serviceObj: { service: string, id: string }, idx: number) => (
+                <span key={idx} className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
+                  {serviceObj.service}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* About and Website */}
+          <div>
+            <h2 className="text-2xl font-bold mb-8">Over het project</h2>
+            <p className="text-gray-600 text-lg leading-relaxed mb-8">{caseItem.about}</p>
+            {caseItem.url && (
+              <Link 
+                href={caseItem.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-black font-medium hover:gap-3 transition-all duration-300 group"
+              >
+                Bezoek website <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            )}
+          </div>
+        </div>
+
+        {/* Project Section */}
+        <div className="mb-24">
+          <h2 className="text-3xl font-bold mb-8">{caseItem.headingProject}</h2>
+          <p className="text-gray-600 text-lg leading-relaxed">{caseItem.descriptionProject}</p>
+        </div>
+
+        {/* Process Section */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+          <div>
+            <h2 className="text-2xl font-bold mb-8">Het proces</h2>
+            <p className="text-gray-600 text-lg leading-relaxed">{caseItem.procesDescription}</p>
+          </div>
+          <div className="relative aspect-[4/3]">
+            <Image
+              src={caseItem.procesImage.url}
+              alt={caseItem.procesImage.alt || "Proces"}
+              fill
+              className="object-cover rounded-2xl shadow-xl"
+            />
+          </div>
+        </div>
+
+        {/* Results Section */}
+        <div className="bg-gray-50 py-20 rounded-2xl">
+          <div className="px-12">
+            <h2 className="text-3xl font-bold mb-12">Het resultaat</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+              {caseItem.resultaImages?.map((image: any, idx: number) => (
+                <div key={idx} className="relative aspect-[4/3]">
+                  <Image
+                    src={image.url}
+                    alt={image.alt || `Resultaat ${idx + 1}`}
+                    fill
+                    className="object-cover rounded-2xl shadow-xl"
+                  />
+                </div>
+              ))}
+            </div>
+            <p className="text-gray-600 text-lg leading-relaxed">{caseItem.resultaDescription}</p>
+          </div>
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto my-16 flex flex-col md:flex-row p-4">
-        <div className="md:w-1/2 mb-8 md:mb-0">
-          <h2 className="text-2xl font-bold mb-4">Over</h2>
-          <p className="text-lg mb-4">{caseItem.about}</p>
-          <button className="bg-black !text-white px-4 py-2 rounded-md">
-            <Link href={caseItem.url} target="_blank" rel="noopener noreferrer">Bekijk de website</Link>
-          </button>
-        </div>
-        <div className="md:w-1/2 flex flex-col pl-0 md:pl-8">
-          <h2 className="text-2xl font-bold mb-4">Services</h2>
-          <div className="flex flex-wrap mb-4">
-            {caseItem.services.split(',').map((service, index) => (
-              <span key={index} className="inline-block bg-transparent border border-[#340066] text-[#340066] rounded-full px-4 py-2 mr-2 mb-2 hover:bg-[#340066] hover:!text-white transition">
-                {service.trim()}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-blue-50 py-10">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row p-4">
-          <div className="md:w-1/2">
-            <h2 className="text-xl font-bold text-gray-800">{caseItem.headingProject}</h2>
-          </div>
-          <p className="text-gray-600 max-w-md pl-0 md:pl-8 mt-4">
-            {caseItem.descriptionProject}
-          </p>
-        </div>
-      </div>
-
-      <div>
-        <Link href={`/cases/${caseItem.id}`} className="group relative w-full h-64">
-          <div className="relative w-full h-80 overflow-hidden">
-            <Image 
-              src={caseItem.caseScreens} 
-              alt="Description" 
-              width={1920} 
-              height={1080} 
-              className="object-cover w-full h-full"
-              loading="lazy"  
-            />
-            <div className="absolute bottom-0 right-0 p-6 text-right">
-              <span className="text-lg !text-white group-hover:underline transition-all duration-300">
-                Lees meer <FaArrowRight className="inline transform group-hover:translate-x-2 transition-transform duration-300" />
-              </span>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-          </div>
-        </Link>
-      </div>
-
-      <div className="py-16 bg-black">
-        <div className="max-w-6xl mx-auto p-4">
-          <h2 className="text-2xl font-bold mb-4 text-center md:text-left !text-white">Proces Beschrijving</h2>
-          <div className="flex flex-col md:flex-row items-center py-10">
-            <div className="md:w-1/2 pr-8 text-center md:text-left">
-              <p className="text-lg !text-white">
-                {caseItem.procesDescription}
-              </p>
-            </div>
-            <div className="md:w-1/2 flex flex-col items-center justify-center bg-white py-16 mt-4 md:mt-0 rounded-lg">
-              <Image 
-                src={caseItem.procesImage}
-                alt="Techniques Image"
-                width={1200}
-                height={675}
-                className="w-full h-auto object-contain"
-                loading="lazy"
-              />
-              <p className="text-center text-black mt-2">{caseItem.procesImageCaption}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <CaseDetailClient caseItem={caseItem} />
+      {/* More Cases Section */}
+      <MoreCases cases={allCasesResponse.docs} currentCaseId={caseItem.id} />
     </div>
   );
-};
-
-export default CaseDetail;
+}

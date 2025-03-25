@@ -50,8 +50,8 @@ const ClientLogoBanner = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center py-10 bg-[#340066] p-8">
-      <h2 className="text-xl font-bold mb-10 text-center !text-white">
+    <div className="flex flex-col items-center py-10 bg-white p-8">
+      <h2 className="text-xl  mb-10 text-center text-white">
         Margin-Top heeft bijgedragen aan projecten voor
       </h2>
       <div className="w-full max-w-5xl">

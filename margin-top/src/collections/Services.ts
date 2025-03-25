@@ -21,24 +21,17 @@ export const Services: CollectionConfig = {
             type: 'text',       
         },
         {
-            name: 'images',
-            type: 'array',
-            fields: [
-                {
+          
                     name: 'image',
                     type: 'upload',
                     relationTo: 'media',
-                }
-            ]
+                    required: false,
+          
         },
         {
             name: 'link',
             type: 'text',
         },
-        {
-            name: 'icon',
-            type: 'upload',
-            relationTo: 'media',
-        },
+       
     ]
 }

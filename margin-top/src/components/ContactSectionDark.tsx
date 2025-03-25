@@ -6,7 +6,7 @@ import Image from 'next/image';
 const ContactSectionDark = () => {
     return (
         <div className="relative bg-black p-10">
-            <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-sm">
+            <div className="w-11/12 max-w-5xl mx-auto backdrop-blur-sm">
                 <div className="flex flex-col md:flex-row items-center justify-between p-10">
                     <div className="flex items-center mb-4 md:mb-0">
                         <Image 
@@ -18,8 +18,8 @@ const ContactSectionDark = () => {
                             loading="lazy"
                         />
                         <div className="text-left">
-                            <h2 className="text-3xl font-bold text-[#6EC1E4]">Neem contact op</h2>
-                            <p className="text-lg !text-white">Neem contact op om te bespreken hoe we jou kunnen helpen.</p>
+                            <h2 className="text-3lg !text-white">Een gedurfd idee?</h2>
+                            <p className="text-2xl !text-white">Wij maken er ruimte voor. </p>
                         </div>
                     </div>
                     <div className="flex flex-col items-end">

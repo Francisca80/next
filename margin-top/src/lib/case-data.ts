@@ -3,8 +3,9 @@ import { ICaseData } from './types';
 export const caseData: ICaseData[] = [
     {
         id: 1, // Numeric ID
-        title: 'JodaroGym',
-        description: 'JodaroGym is een kickboksschool biedt een omgeving waarin zowel beginners als gevorderden zich kunnen ontwikkelen en hun doelen kunnen bereiken.',
+        title: 'JodaroGym',        
+        introduction: 'JodaroGym is een kickboksschool biedt een omgeving waarin zowel beginners als gevorderden zich kunnen ontwikkelen en hun doelen kunnen bereiken.',
+
         image: '/cases/jodaro/jodarohero.png',     
         url: 'https://www.jodarogym.nl',        
         about: 'Bij Jodaro Gym geloven we dat vechtsporten meer zijn dan alleen een fysieke uitdaging; het is een levensstijl die discipline, zelfvertrouwen en een sterk gemeenschapsgevoel bevordert. Onze boks- en kickboksschool biedt een omgeving waarin zowel beginners als gevorderden zich kunnen ontwikkelen en hun doelen kunnen bereiken.',
@@ -26,7 +27,7 @@ export const caseData: ICaseData[] = [
     {
         id: 2, // Numeric ID
         title: 'Broeders Leefstijl',                        
-        description: 'Live trainingen en workshops om je reis naar vitaliteit starten.',
+        introduction: 'Live trainingen en workshops om je reis naar vitaliteit starten.',
         image: '/cases/broeders/broederslogo.png',
         url: 'https://www.broedersleefstijl.nl',
         about: `De Broeders Leefstijl Academy biedt een breed scala aan diensten gericht op het verbeteren van de fysieke en mentale gezondheid van individuen en teams. De academy richt zich zowel op persoonlijke als zakelijke begeleiding en biedt op maat gemaakte programma's en workshops aan.`,
@@ -49,7 +50,7 @@ export const caseData: ICaseData[] = [
     {
         id: 3, // Numeric ID
         title: 'Red Flower Temple',
-        description: 'Red Flower Temple, your ultimate destination for premium Japanese art supplies.',         
+        introduction: 'Red Flower Temple, your ultimate destination for premium Japanese art supplies.',         
         image: '/cases/redflowertemple/rftsmallweb.png',
         url: 'https://www.redflowertemple.com',
         about: 'RedFlowerTemple is the store for premium Japanese art supplies.',

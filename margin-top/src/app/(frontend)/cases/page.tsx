@@ -1,60 +1,151 @@
 import React from 'react';
-import Link from 'next/link'; // Import Link from Next.js
-import Image from 'next/image'; // Import Image from Next.js
-import { caseData } from '@/lib/case-data';
+import Link from 'next/link';
+import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
+import { getPayload } from 'payload';
+import config from '@/payload.config';
+import { Case, Media } from '@/payload-types';
 
-const backgroundColors = [
-  'bg-red-500',
-  'bg-teal-500',
-  'bg-black',
-  'bg-blue-800',
-  'bg-purple-500',
-  'bg-pink-500',
-  'bg-indigo-500',
-  'bg-teal-500',
-]; 
+interface CaseGridItem {
+  colSpan: number;
+  rowSpan: number;
+  titleSize: string;
+  descriptionSize: string;
+}
 
-const Cases: React.FC = () => {
-    return (
-      <div className="py-24 bg-blue-50">
-        <section className="max-w-6xl mx-auto text-left !text-white mt-12 mb-12 p-4">
-        <h2 className="text-4xl font-bold mb-8 text-left">Cases</h2>
-        <p className="text-xl text-left text-gray-700 mb-8">Met trots werken we aan projecten van onze klanten! We helpen graag merken te laten groeien door slimme, digitale oplossingen</p>
+const getGridItemConfig = (index: number): CaseGridItem => {
+  // Create an interesting modular pattern that repeats every 8 items
+  switch (index % 8) {
+    case 0: // Hero case - large rectangle
+      return { colSpan: 2, rowSpan: 2, titleSize: 'text-3xl', descriptionSize: 'text-lg' };
+    case 1: // Tall rectangle
+      return { colSpan: 1, rowSpan: 2, titleSize: 'text-2xl', descriptionSize: 'text-base' };
+    case 2: // Wide rectangle
+      return { colSpan: 1, rowSpan: 1, titleSize: 'text-2xl', descriptionSize: 'text-base' };
+    case 3: // Square
+      return { colSpan: 1, rowSpan: 1, titleSize: 'text-xl', descriptionSize: 'text-base' };
+    case 4: // Wide rectangle
+      return { colSpan: 1, rowSpan: 1, titleSize: 'text-2xl', descriptionSize: 'text-base' };
+    case 5: // Square
+      return { colSpan: 1, rowSpan: 1, titleSize: 'text-xl', descriptionSize: 'text-base' };
+    case 6: // Tall rectangle
+      return { colSpan: 1, rowSpan: 2, titleSize: 'text-2xl', descriptionSize: 'text-base' };
+    case 7: // Wide rectangle
+      return { colSpan: 2, rowSpan: 1, titleSize: 'text-2xl', descriptionSize: 'text-base' };
+    default:
+      return { colSpan: 1, rowSpan: 1, titleSize: 'text-xl', descriptionSize: 'text-base' };
+  }
+};
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {caseData.map((caseItem, index) => (
-            <Link href={`/cases/${caseItem.id}`} key={caseItem.id} className="block">
-              <div 
-                className={`border border-gray-200 rounded-lg overflow-hidden transition-transform transform hover:scale-105 cursor-pointer ${backgroundColors[index % backgroundColors.length]}`} 
+export default async function Cases() {
+  const payloadConfig = await config;
+  const payload = await getPayload({config: payloadConfig});
+  
+  const response = await (payload.find as any)({
+    collection: 'case',
+    where: {
+      status: {
+        equals: 'published'
+      }
+    },
+    sort: 'order',
+    depth: 2,
+    limit: 50
+  });
+
+  const cases = response.docs as Case[];
+
+  return (
+    <div className="bg-white">
+      <section className="w-11/12 max-w-5xl mx-auto py-24">
+        <div className="inline-block mb-16 mt-32">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
+            Cases 
+          </h1>
+          <hr className="border-gray-600 mb-4 border-t-2" />
+        </div>
+        <p className="text-xl text-gray-600 max-w-3xl mb-24">
+          Met trots werken we aan projecten van onze klanten! We helpen graag merken te laten groeien door slimme, digitale oplossingen
+        </p>
+       
+        <div className="grid grid-cols-3 auto-rows-[200px] gap-4">
+          {cases.map((caseItem: Case, index: number) => {
+            const gridConfig = getGridItemConfig(index);
+            let imageUrl = '/placeholder-case.jpg';
+
+            if (caseItem.image && typeof caseItem.image === 'object') {
+              const mediaImage = caseItem.image as Media;
+              if (mediaImage.url) {
+                imageUrl = mediaImage.url;
+              }
+            }
+            
+            const itemClasses = `
+              group 
+              relative
+              overflow-hidden
+              rounded-lg
+              transition-all
+              duration-300
+              transform
+              hover:scale-[1.02]
+              hover:shadow-xl
+              ${gridConfig.colSpan === 2 ? 'col-span-2' : 'col-span-1'}
+              ${gridConfig.rowSpan === 2 ? 'row-span-2' : 'row-span-1'}
+            `;
+            
+            return (
+              <Link 
+                href={`/cases/${caseItem.slug}`}
+                key={caseItem.id} 
+                className={itemClasses}
               >
-                <div className="bg-white">
-                  <Image 
-                    src={caseItem.image} 
-                    alt={`Image for ${caseItem.title}`} 
-                    width={500} 
-                    height={300} 
-                    className="w-full h-48 object-cover" 
-                    loading="lazy"
-                  />
-                </div>
-                <div className="p-6 flex flex-col justify-between" style={{ height: '250px' }}> 
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2 !text-white">{caseItem.title}</h3>
-                    <p className="!text-white line-clamp-5">{caseItem.description}</p> 
+                <div className="h-full rounded-lg overflow-hidden">
+                  <div className="relative w-full h-full">
+                    <Image 
+                      src={imageUrl}
+                      alt={caseItem.title || 'Case study'} 
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors duration-300">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
+                        <h3 className={`mb-2 ${gridConfig.titleSize} !text-white`}>
+                          {caseItem.title}
+                        </h3>
+                        <p className={`text-white/90 line-clamp-3 mb-2 ${gridConfig.descriptionSize}`}>
+                          {caseItem.description}
+                        </p>
+                        {caseItem.services && (
+                          <div className="flex flex-wrap gap-1.5 mb-2">
+                            {Array.isArray(caseItem.services) ? (
+                              caseItem.services.map((service: { service: string }, idx: number) => (
+                                <span key={idx} className="text-white/80 text-xs bg-white/10 px-2 py-0.5">
+                                  {service.service}
+                                </span>
+                              ))
+                            ) : (
+                              <span className="text-white/80 text-xs bg-white/10 px-2 py-0.5">
+                                {caseItem.services}
+                              </span>
+                            )}
+                          </div>
+                        )}
+                        <span className="text-white text-sm font-medium group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center gap-1">
+                          Lees meer <FaArrowRight className="inline" />
+                        </span>
+                      </div>
+                    </div>
                   </div>
-                  <span className="!text-white text-xl hover:underline mt-4 inline-block self-end">Lees meer <FaArrowRight className="inline" /></span> 
                 </div>
-              </div>
-            </Link>
-          ))} 
+              </Link>
+            );
+          })} 
         </div>
       </section>
     </div>
-          
   );
-};
-      
-  
-  export default Cases;
+}
   

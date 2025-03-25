@@ -41,7 +41,7 @@ export const Media: CollectionConfig = {
       },
     ],
     adminThumbnail: 'thumbnail',
-    staticDir: '../public/media',
+    staticDir: './media',
     mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml'],
   },
   fields: [

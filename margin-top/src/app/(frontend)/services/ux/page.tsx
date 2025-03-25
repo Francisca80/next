@@ -15,6 +15,8 @@ const UXPage: React.FC = () => {
             </h1>
             <p className="text-lg md:text-xl mb-8 max-w-2xl !text-white">
               Gebruiksvriendelijke en waardevolle oplossingen in digitale producten
+
+              UX Design, UI Design, Wireframing & Prototyping, Digitale toegankelijkheid, Design Systems
             </p>
           </div>
         </section>

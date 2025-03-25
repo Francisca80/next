@@ -1,11 +1,11 @@
 import Hero from "@/components/hero";
 import CaseSection from "@/components/CaseSection";
 import ServicesSection from "@/components/ServicesSection";
-import SectionBanner from "@/components/SectionBanner";
 import ClientLogoBanner from "@/components/ClientLogoBanner"; 
 import { getPayload } from "payload";
 import { headers as GetHeaders } from 'next/headers';
 import config from "@/payload.config";
+import AboutSection from "@/components/AboutSection";
 
 interface PageData {
   heroImage: {
@@ -14,6 +14,16 @@ interface PageData {
   } | null;
   heroTitle: string;
   heroTagline: string;
+  buttons: {
+    primary: {
+      text: string;
+      url: string;
+    };
+    secondary: {
+      text: string;
+      url: string;
+    };
+  };
 }
 
 export default async function Home() {
@@ -62,15 +72,15 @@ export default async function Home() {
           title={homepage.heroTitle} 
           tagline={homepage.heroTagline}
           images={heroImages}
+          buttons={homepage.buttons}
         />
       </div>
       
       {/* Content that scrolls over the hero */}
       <div className="relative z-10 bg-white">
+      <AboutSection />
+       <CaseSection />
         <ServicesSection initialServices={services} />
-        <SectionBanner />
-        <CaseSection />
-     
         <ClientLogoBanner />  
       </div>
     </div>

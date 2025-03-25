@@ -17,13 +17,32 @@ interface HeroProps {
   } | null;
   title: string;
   tagline: string;
+  buttons: {
+    primary: {
+      text: string;
+      url: string;
+    };
+    secondary: {
+      text: string;
+      url: string;
+    };
+  };
   images?: Array<{
     url: string;
     filename: string;
   }>;
 }
 
-const Hero: React.FC<HeroProps> = ({ image, title, tagline, images = [] }) => {
+const Hero: React.FC<HeroProps> = ({ image, title, tagline, buttons = {
+  primary: {
+    text: 'Bekijk ons werk',
+    url: 'https://calendly.com/francisca-margin-top'
+  },
+  secondary: {
+    text: 'Laten we iets bouwen',
+    url: '/cases'
+  }
+}, images = [] }) => {
   const [scope, animate] = useAnimate();
 
   useEffect(() => {
@@ -80,21 +99,21 @@ const Hero: React.FC<HeroProps> = ({ image, title, tagline, images = [] }) => {
             <p className="text-base sm:text-lg md:text-xl font-['Montserrat'] my-1 md:my-2 max-w-xl mx-auto px-4 pb-4">{tagline}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
               <Link 
-                href="https://calendly.com/francisca-margin-top" 
+                href={buttons.primary.url}
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block"
               >
                 <button className="header-button">
-                  Plan een afspraak
+                  {buttons.primary.text}
                 </button>
               </Link>
               <Link 
-                href="/cases"
+                href={buttons.secondary.url}
                 className="inline-block"
               >
                 <button className="header-button">
-                  Bekijk Cases
+                  {buttons.secondary.text}
                 </button>
               </Link>
             </div>
