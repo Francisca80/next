@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-export default function DesignPage() {
+export default function BrandingPage() {
   return (
     <div className="bg-white">
       <section className="w-11/12 max-w-5xl mx-auto py-24">

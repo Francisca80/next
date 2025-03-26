@@ -56,7 +56,7 @@ export default async function Home() {
 
   // Fetch services data
   const servicesResponse = await (payload.find as any)({
-    collection: 'services',
+    collection: 'service',
     limit: 20,
     depth: 2
   });

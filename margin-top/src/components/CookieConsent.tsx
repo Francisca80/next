@@ -108,117 +108,111 @@ export default function CookieConsent() {
   return (
     <>
       {showBanner && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
-          <div className="max-w-6xl mx-auto flex flex-col gap-4">
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg z-50">
+          <div className="w-11/12 max-w-5xl mx-auto py-8">
             <form 
               id="cookie-consent-form" 
               role="form"
               onSubmit={(e) => e.preventDefault()}
+              className="space-y-6"
             >
-              <div className="text-sm text-gray-600">
-                We use essential first-party cookies and similar technologies to improve your experience. 
-                Some features require cookies to function properly. You can choose which optional cookies to allow.
-                <a href="/privacy" className="text-blue-500 hover:text-blue-600 ml-1">
-                  Privacy Policy
-                </a>
+              <div>
+                <h2 className="text-2xl mb-2">Cookie voorkeuren</h2>
+                <p className="text-gray-600">
+                  We gebruiken cookies om je ervaring te verbeteren. Sommige functies vereisen cookies om goed te werken. Je kunt kiezen welke optionele cookies je wilt toestaan.
+                  <a href="/privacy" className="text-[#4F8BD2] hover:text-[#6EC1E4] ml-1 underline">
+                    Privacy Policy
+                  </a>
+                </p>
               </div>
 
-              <div className="flex flex-col gap-2">
-                <label className="flex items-center gap-2">
+              <div className="space-y-4">
+                <label className="flex items-start gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
                     id="cookie-functionality"
-                    name="cookie-functionality"
-                    form="cookie-consent-form"
                     checked={localSettings.functionality}
                     onChange={() => handleToggle('functionality' as keyof ConsentSettings)}
-                    className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
-                    autoComplete="off"
+                    className="mt-1 rounded border-gray-300 text-[#4F8BD2] focus:ring-[#4F8BD2]"
                   />
-                  <span className="text-sm text-gray-600">
-                    Functional cookies enable basic website functionality and are always necessary
-                  </span>
+                  <div>
+                    <div className="font-medium mb-1">Functionele cookies</div>
+                    <div className="text-sm text-gray-600">
+                      Deze cookies zijn noodzakelijk voor de basisfunctionaliteit van de website
+                    </div>
+                  </div>
                 </label>
 
-                <label className="flex items-center gap-2">
+                <label className="flex items-start gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
                     id="cookie-analytics"
-                    name="cookie-analytics"
-                    form="cookie-consent-form"
                     checked={localSettings.analytics}
                     onChange={() => handleToggle('analytics')}
-                    className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
-                    autoComplete="off"
+                    className="mt-1 rounded border-gray-300 text-[#4F8BD2] focus:ring-[#4F8BD2]"
                   />
-                  <span className="text-sm text-gray-600">
-                    Analytics cookies help us understand how visitors use our website
-                  </span>
+                  <div>
+                    <div className="font-medium mb-1">Analytics cookies</div>
+                    <div className="text-sm text-gray-600">
+                      Helpen ons te begrijpen hoe bezoekers onze website gebruiken
+                    </div>
+                  </div>
                 </label>
 
-                <label className="flex items-center gap-2">
+                <label className="flex items-start gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
                     id="cookie-marketing"
-                    name="cookie-marketing"
-                    form="cookie-consent-form"
                     checked={localSettings.marketing}
                     onChange={() => handleToggle('marketing')}
-                    className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
-                    autoComplete="off"
+                    className="mt-1 rounded border-gray-300 text-[#4F8BD2] focus:ring-[#4F8BD2]"
                   />
-                  <span className="text-sm text-gray-600">
-                    Marketing cookies are used to deliver relevant advertisements
-                  </span>
+                  <div>
+                    <div className="font-medium mb-1">Marketing cookies</div>
+                    <div className="text-sm text-gray-600">
+                      Worden gebruikt om relevante advertenties te tonen
+                    </div>
+                  </div>
                 </label>
 
-                <label className="flex items-center gap-2">
+                <label className="flex items-start gap-3 cursor-pointer group">
                   <input
                     type="checkbox"
                     id="cookie-personalization"
-                    name="cookie-personalization"
-                    form="cookie-consent-form"
                     checked={localSettings.personalization}
                     onChange={() => handleToggle('personalization' as keyof ConsentSettings)}
-                    className="rounded border-gray-300 text-blue-500 focus:ring-blue-500"
-                    autoComplete="off"
+                    className="mt-1 rounded border-gray-300 text-[#4F8BD2] focus:ring-[#4F8BD2]"
                   />
-                  <span className="text-sm text-gray-600">
-                    Personalization cookies enable customized features and content
-                  </span>
+                  <div>
+                    <div className="font-medium mb-1">Personalisatie cookies</div>
+                    <div className="text-sm text-gray-600">
+                      Maken aangepaste functies en content mogelijk
+                    </div>
+                  </div>
                 </label>
               </div>
 
-              <div className="flex justify-end gap-4">
+              <div className="flex justify-end gap-4 pt-4 border-t border-gray-200">
                 <button
                   type="button"
-                  id="reject-cookies"
-                  name="reject-cookies"
-                  form="cookie-consent-form"
                   onClick={handleRejectAll}
-                  className="px-4 py-2 text-sm text-blue-500 border border-blue-500 rounded bg-transparent hover:bg-blue-50 transition-colors"
+                  className="px-6 py-3 text-sm font-medium text-gray-600 hover:text-gray-800 transition-colors"
                 >
-                  Reject All
+                  Alles weigeren
                 </button>
                 <button
                   type="button"
-                  id="save-cookie-settings"
-                  name="save-cookie-settings"
-                  form="cookie-consent-form"
                   onClick={handleCustomSave}
-                  className="px-4 py-2 text-sm text-blue-500 border border-blue-500 rounded bg-transparent hover:bg-blue-50 transition-colors"
+                  className="px-6 py-3 text-sm font-medium text-[#4F8BD2] hover:text-[#6EC1E4] transition-colors"
                 >
-                  Save Settings
+                  Voorkeuren opslaan
                 </button>
                 <button
                   type="button"
-                  id="accept-cookies"
-                  name="accept-cookies"
-                  form="cookie-consent-form"
                   onClick={handleAcceptAll}
-                  className="px-4 py-2 text-sm bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] !text-white rounded hover:opacity-90 transition-colors"
+                  className="px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] rounded hover:opacity-90 transition-colors"
                 >
-                  Accept All
+                  Alles accepteren
                 </button>
               </div>
             </form>

@@ -11,7 +11,7 @@ export default async function Services() {
   const payload = await getPayload({config: payloadConfig});
   
   const response = await (payload.find as any)({
-    collection: 'services',
+    collection: 'service',
     sort: 'order',
     depth: 2
   });

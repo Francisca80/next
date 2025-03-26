@@ -13,10 +13,12 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    services: Service;
+    service: Service;
     journal: Journal;
     case: Case;
     about: About; 
+    hosting: Hosting;
+    development: Development;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
 
@@ -30,6 +32,15 @@ export interface Config {
     collection: 'users';
   };
 }
+
+export interface Development {
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+  content: any;
+}
+
 
 
 
@@ -57,6 +68,14 @@ export interface Service {
   icon?: Media | string | null; 
   slug: string;
 }
+
+export interface Branding {
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+  content: any;
+} 
 
 export interface Case {   
   id: string;
@@ -93,6 +112,13 @@ export interface About {
   link?: string;
 }
 
+export interface Ai {
+  id: string;
+  title: string;
+  content: any;
+  image: Media | string | null; 
+}
+
 export interface UserAuthOperations {
   forgotPassword: {
     email: string;
@@ -112,6 +138,12 @@ export interface UserAuthOperations {
   };
 }
 
+export interface Hosting {
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+}
 /**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".

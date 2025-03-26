@@ -14,11 +14,12 @@ import  { Hero } from './collections/Hero'
 import { About } from './collections/About'
 import { en } from '@payloadcms/translations/languages/en'
 import { nl } from '@payloadcms/translations/languages/nl'
-import { Services } from './collections/Services'
-import { Design } from './collections/Design'
+import { Service } from './collections/Services'
+import { Branding } from './collections/Branding'
 import { Development } from './collections/Development'
 import { Ux } from './collections/Ux'
 import { Hosting } from './collections/Hosting'
+import { Ai } from './collections/Ai'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -29,7 +30,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Journal, Pages, Hero, Services, Case, About, Design, Development, Ux, Hosting],
+  collections: [Users, Media, Journal, Pages, Hero, Service, Case, About, Branding, Development, Ux, Hosting, Ai],
   i18n: {
     fallbackLanguage: 'en',
     supportedLanguages: {en, nl},

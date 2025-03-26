@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
-export const Ux: CollectionConfig = {
-    slug: 'ux',
+export const Branding: CollectionConfig = {
+    slug: 'branding',
     fields: [
         {
             name: 'title',

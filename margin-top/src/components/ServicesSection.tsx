@@ -8,10 +8,15 @@ import * as gtag from '@/lib/gtag';
 
 interface ServiceProps {
   title: string;
-  description: string;
+  description: string;    
   link: string;
   id: string;
   order: number;
+  slug: string;
+  image?: {
+    url: string;
+    alt: string;
+  };
 }
 
 interface ServicesSectionProps {
@@ -25,11 +30,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ initialServices = [] 
 
   useEffect(() => {
     if (initialServices.length > 0) {
-      const sortedInitialServices = [...initialServices].sort((a, b) => {
-        if (a.order === undefined) return 1;
-        if (b.order === undefined) return -1;
-        return a.order - b.order;
-      });
+      const sortedInitialServices = [...initialServices].sort((a, b) => a.order - b.order);
       setServices(sortedInitialServices);
       setIsLoading(false);
       return;
@@ -37,13 +38,9 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ initialServices = [] 
 
     const fetchServices = async () => {
       try {
-        const response = await fetch('/api/services');
+        const response = await fetch('/api/services?depth=1');
         const data = await response.json();
-        const sortedServices = [...(data.docs || [])].sort((a: ServiceProps, b: ServiceProps) => {
-          if (a.order === undefined) return 1;
-          if (b.order === undefined) return -1;
-          return a.order - b.order;
-        });
+        const sortedServices = [...(data.docs || [])].sort((a: ServiceProps, b: ServiceProps) => a.order - b.order);
         setServices(sortedServices);
       } catch (error) {
         console.error('Error fetching services:', error);
@@ -84,7 +81,7 @@ const ServicesSection: React.FC<ServicesSectionProps> = ({ initialServices = [] 
           <div className="space-y-2 w-full">
             {services.map((service, index) => (
               <Link 
-                href={service.link || '/'} 
+                href={`/services/${service.slug}`} 
                 key={service.id || index}
                 className="block group relative border-b border-gray-800 hover:border-[#4F8BD2] transition-colors"
                 onClick={() => handleServiceClick(service.title)}

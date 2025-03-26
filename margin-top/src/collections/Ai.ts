@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
-export const Ux: CollectionConfig = {
-    slug: 'ux',
+export const Ai: CollectionConfig = {
+    slug: 'ai',
     fields: [
         {
             name: 'title',
@@ -36,11 +36,6 @@ export const Ux: CollectionConfig = {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
-            required: true,
-        },  
-        {
-            name: 'link',
-            type: 'text',
             required: true,
         },  
         {
