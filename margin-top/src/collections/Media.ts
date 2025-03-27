@@ -26,12 +26,6 @@ export const Media: CollectionConfig = {
         position: 'centre',
       },
       {
-        name: 'hero',
-        width: 1920,
-        height: 1080,
-        position: 'centre',
-      },
-      {
         name: 'medium',
         width: 300,
       },

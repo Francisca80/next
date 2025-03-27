@@ -19,7 +19,6 @@ export interface Config {
     about: About; 
     hosting: Hosting;
     development: Development;
-    ai: Ai;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
 
@@ -111,13 +110,6 @@ export interface About {
   content: any;
   image: Media | string | null;
   link?: string;
-}
-
-export interface Ai {
-  id: string;
-  title: string;
-  content: any;
-  image: Media | string | null; 
 }
 
 export interface UserAuthOperations {
