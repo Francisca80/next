@@ -116,6 +116,7 @@ button:hover {
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
   transition: background-color 0.3s ease !important;
+  color: white !important;
 }
 
 .header-button:hover {
@@ -226,5 +227,14 @@ button:hover {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
 }
 

@@ -19,6 +19,7 @@ export interface Config {
     about: About; 
     hosting: Hosting;
     development: Development;
+    ai: Ai;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
 

@@ -49,16 +49,18 @@ async function JournalPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      <div className="relative h-[50vh] bg-black/50 flex items-center justify-center">
-        <div className="text-center !text-white z-10">
-          <h1 className="text-5xl font-bold mb-4">Journal</h1>
-          <p className="text-xl max-w-2xl mx-auto px-4">
-            Thoughts, stories and ideas about design, development and digital experiences.
-          </p>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/20"></div>
+    <div className="bg-white">
+    <section className="w-11/12 max-w-5xl mx-auto py-24">
+      <div className="inline-block mb-16 mt-24">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
+        Journal
+        </h1>
+        <hr className="border-gray-600 mb-4 border-t-2" />
       </div>
+      <p className="text-xl text-gray-600 max-w-3xl mb-24">
+      Thoughts, stories and ideas about design, development and digital experiences.
+      </p>
+  
 
       <div className="max-w-7xl mx-auto py-16 px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post: Journal) => {
@@ -109,6 +111,7 @@ async function JournalPage() {
           );
         })}
       </div>
+    </section>
     </div>
   );
 }

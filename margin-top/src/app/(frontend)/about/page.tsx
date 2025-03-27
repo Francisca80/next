@@ -29,7 +29,7 @@ const About: React.FC = () => {
     <main className="bg-white">
       {/* Hero Section */}
       <section className="min-h-[70vh] flex items-center py-24">
-        <div className="w-11/12 max-w-5xl mx-auto">
+        <div className="w-11/12 max-w-5xl mx-auto mt-24">
           <div 
             ref={ref}
             className={`flex flex-col md:flex-row items-center gap-12 transform transition-all duration-1000 ${

@@ -4,7 +4,7 @@ import Image from 'next/image';
 export default function BrandingPage() {
   return (
     <div className="bg-white">
-      <section className="w-11/12 max-w-5xl mx-auto py-24">
+      <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
         <div className="inline-block mb-16">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             Design
@@ -57,7 +57,7 @@ export default function BrandingPage() {
 
           <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
             <Image
-              src="/design-service.jpg"
+              src="/banner.png"
               alt="Design service"
               fill
               className="object-cover"
