@@ -17,9 +17,19 @@ const getGridItemConfig = (index: number): CaseGridItem => {
   // Create an interesting modular pattern that repeats every 8 items
   switch (index % 8) {
     case 0: // Hero case - large rectangle
-      return { colSpan: 2, rowSpan: 2, titleSize: 'text-3xl', descriptionSize: 'text-lg' };
+      return { 
+        colSpan: 2, 
+        rowSpan: 2, 
+        titleSize: 'text-2xl sm:text-3xl', 
+        descriptionSize: 'text-base sm:text-lg' 
+      };
     case 1: // Tall rectangle
-      return { colSpan: 1, rowSpan: 2, titleSize: 'text-2xl', descriptionSize: 'text-base' };
+      return { 
+        colSpan: 1, 
+        rowSpan: 2, 
+        titleSize: 'text-xl sm:text-2xl', 
+        descriptionSize: 'text-sm sm:text-base' 
+      };
     case 2: // Wide rectangle
       return { colSpan: 1, rowSpan: 1, titleSize: 'text-2xl', descriptionSize: 'text-base' };
     case 3: // Square
@@ -33,7 +43,12 @@ const getGridItemConfig = (index: number): CaseGridItem => {
     case 7: // Wide rectangle
       return { colSpan: 2, rowSpan: 1, titleSize: 'text-2xl', descriptionSize: 'text-base' };
     default:
-      return { colSpan: 1, rowSpan: 1, titleSize: 'text-xl', descriptionSize: 'text-base' };
+      return { 
+        colSpan: 1, 
+        rowSpan: 1, 
+        titleSize: 'text-lg sm:text-xl', 
+        descriptionSize: 'text-sm sm:text-base' 
+      };
   }
 };
 
@@ -57,18 +72,18 @@ export default async function Cases() {
 
   return (
     <div className="bg-white">
-      <section className="w-11/12 max-w-5xl mx-auto py-24">
-        <div className="inline-block mb-16 mt-24">
+      <section className="w-11/12 max-w-5xl mx-auto py-12 sm:py-24">
+        <div className="inline-block mb-8 sm:mb-16 mt-12 sm:mt-24">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             Cases 
           </h1>
-          <hr className="border-gray-600 mb-4 border-t-2" />
+          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
         </div>
-        <p className="text-xl text-gray-600 max-w-3xl mb-24">
+        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mb-12 sm:mb-24">
           Met trots werken we aan projecten van onze klanten! We helpen graag merken te laten groeien door slimme, digitale oplossingen
         </p>
        
-        <div className="grid grid-cols-3 auto-rows-[200px] gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[250px] sm:auto-rows-[200px] gap-4">
           {cases.map((caseItem: Case, index: number) => {
             const gridConfig = getGridItemConfig(index);
             let imageUrl = '/placeholder-case.jpg';
@@ -90,7 +105,7 @@ export default async function Cases() {
               transform
               hover:scale-[1.02]
               hover:shadow-xl
-              ${gridConfig.colSpan === 2 ? 'col-span-2' : 'col-span-1'}
+              ${gridConfig.colSpan === 2 ? 'sm:col-span-2' : 'col-span-1'}
               ${gridConfig.rowSpan === 2 ? 'row-span-2' : 'row-span-1'}
             `;
             
@@ -108,18 +123,18 @@ export default async function Cases() {
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105" 
                       loading="lazy"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors duration-300">
                       <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6">
                         <h3 className={`mb-2 ${gridConfig.titleSize} !text-white`}>
                           {caseItem.title}
                         </h3>
-                        <p className={`text-white/90 line-clamp-3 mb-2 ${gridConfig.descriptionSize}`}>
+                        <p className={`text-white/90 line-clamp-2 sm:line-clamp-3 mb-2 ${gridConfig.descriptionSize}`}>
                           {caseItem.description}
                         </p>
                         {caseItem.services && (
-                          <div className="flex flex-wrap gap-1.5 mb-2">
+                          <div className="hidden sm:flex flex-wrap gap-1.5 mb-2">
                             {Array.isArray(caseItem.services) ? (
                               caseItem.services.map((service: { service: string }, idx: number) => (
                                 <span key={idx} className="text-white/80 text-xs bg-white/10 px-2 py-0.5">
