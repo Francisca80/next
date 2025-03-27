@@ -1,3 +1,4 @@
+import { link } from "fs";
 import { CollectionConfig } from "payload";
 
 export const Case: CollectionConfig = {
@@ -96,39 +97,34 @@ export const Case: CollectionConfig = {
       relationTo: 'media',
     },
     {
-      name: 'procesImageCaption',
+      name: 'figmalink',
       type: 'text',
-    },  
+      admin: {
+          description: 'Optional external link for the design',
+      },
+  },
+
+    {
+      name: 'resultHeading',
+      type: 'text',
+    },
     {
       name: 'resultText',
       type: 'textarea',
     },
+
     {
       name: 'resultImage',
       type: 'upload',
       relationTo: 'media',
     },  
-    {
-      name: 'resultImageCaption',
-      type: 'text',
-      required: false,
-    },      
+   
     {
       name: 'resultImage2',
       type: 'upload',
       relationTo: 'media',
       required: false,
     },          
-    {
-      name: 'usedTechniques',
-      type: 'array',
-      fields: [
-        {
-          name: 'technique',
-          type: 'text',
-        }
-      ],
-    },
     {
       name: 'status',
       type: 'select', 

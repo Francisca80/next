@@ -68,6 +68,9 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
     notFound();
   }
 
+  console.log('Result Image 1:', caseItem.resultImage);
+  console.log('Result Image 2:', caseItem.resultImage2);
+
   return (
     <div className="bg-white">
       <section className="w-11/12 max-w-5xl mx-auto py-24">
@@ -132,35 +135,60 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           <div>
             <h2 className="text-2xl font-bold mb-8">Het proces</h2>
-            <p className="text-gray-600 text-lg leading-relaxed">{caseItem.procesDescription}</p>
+            <p className="text-gray-600 text-lg leading-relaxed mb-8">{caseItem.procesDescription}</p>
+            {caseItem.figmalink && (
+              <Link 
+                href={caseItem.figmalink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-black font-medium hover:gap-3 transition-all duration-300 group"
+              >
+                Bekijk Ontwerp <FaArrowRight className="group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            )}
           </div>
+          
+            
           <div className="relative aspect-[4/3]">
             <Image
               src={caseItem.procesImage.url}
               alt={caseItem.procesImage.alt || "Proces"}
-              fill
-              className="object-cover rounded-2xl shadow-xl"
+              width={800}
+              height={600}
+              className="object-contain rounded-2xl shadow-xl"
             />
           </div>
         </div>
 
         {/* Results Section */}
-        <div className="bg-gray-50 py-20 rounded-2xl">
-          <div className="px-12">
-            <h2 className="text-3xl font-bold mb-12">Het resultaat</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-              {caseItem.resultaImages?.map((image: any, idx: number) => (
-                <div key={idx} className="relative aspect-[4/3]">
+        <div className="bg-gray-50 py-24 rounded-2xl my-24">
+          <div className="px-8 sm:px-16">
+            <h2 className="text-3xl font-bold mb-12">{caseItem.resultHeading}</h2>
+            <p className="text-gray-600 text-lg leading-relaxed max-w-3xl">{caseItem.resultText}</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 mb-8 max-w-4xl mx-auto">
+              {caseItem.resultImage && (
+                <div className="relative aspect-[9/16] max-w-sm mx-auto">
                   <Image
-                    src={image.url}
-                    alt={image.alt || `Resultaat ${idx + 1}`}
-                    fill
-                    className="object-cover rounded-2xl shadow-xl"
+                    src={caseItem.resultImage.url}
+                    alt={caseItem.resultImage.alt || "Resultaat 1"}
+                    width={384}
+                    height={682}
+                    className="object-contain rounded-2xl shadow-xl"
                   />
                 </div>
-              ))}
+              )}
+              {caseItem.resultImage2 && (
+                <div className="relative aspect-[9/16] max-w-sm mx-auto">
+                  <Image
+                    src={caseItem.resultImage2.url}
+                    alt={caseItem.resultImage2.alt || "Resultaat 2"}
+                    width={384}
+                    height={682}
+                    className="object-contain rounded-2xl shadow-xl"
+                  />
+                </div>
+              )}
             </div>
-            <p className="text-gray-600 text-lg leading-relaxed">{caseItem.resultaDescription}</p>
           </div>
         </div>
       </section>
