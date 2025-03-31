@@ -4,7 +4,7 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
 import config from '@/payload.config'
-import type { Journal, Media } from '@/payload-types'
+import type { Journal } from '@/payload-types'
 import { Metadata } from 'next'
 import React from 'react'
 

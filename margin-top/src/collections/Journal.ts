@@ -4,27 +4,30 @@ export const Journal: CollectionConfig = {
     slug: 'journal',
     admin: {
         useAsTitle: 'title',
+        defaultColumns: ['title', 'slug', 'status', 'publishedDate'],
+       
     },
     access: {
         read: () => true,
+
     },
     fields: [
         {
             name: 'id',
             type: 'number',
-            required: true,
+            required: false,
             unique: true,
         },
         {
             name: 'title',
             type: 'text',
-            required: true,
+            required: false,
         },
         {
             name: 'slug',
             type: 'text',
-            required: true,
-            unique: true,
+            required: false,
+            unique: false,
             admin: {
                 position: 'sidebar',
             },
@@ -33,22 +36,22 @@ export const Journal: CollectionConfig = {
             name: 'featuredImage',
             type: 'upload',
             relationTo: 'media',
-            required: true,
+            required: false,
         },
         {
             name: 'excerpt',
             type: 'textarea',
-            required: true,
+            required: false,
         },
         {
             name: 'content',
             type: 'richText',
-            required: true,
+            required: false,
         },
         {
             name: 'author',
             type: 'text',
-            required: true,
+            required: false,
         },
         {
             name: 'publishedDate',
@@ -87,5 +90,5 @@ export const Journal: CollectionConfig = {
             },
         },
     ],
-    timestamps: true,
+    timestamps:         false,       
 }

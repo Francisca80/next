@@ -20,6 +20,7 @@ import { Development } from './collections/Development'
 import { Ux } from './collections/Ux'
 import { Hosting } from './collections/Hosting'
 import { Ai } from './collections/Ai'
+import { Cookies } from './collections/Cookies'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -30,7 +31,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Journal, Pages, Hero, Service, Case, About, Branding, Development, Ux, Hosting, Ai],
+  collections: [Users, Media, Journal, Pages, Hero, Service, Case, About, Branding, Development, Ux, Hosting, Ai, Cookies],
   i18n: {
     fallbackLanguage: 'en',
     supportedLanguages: {en, nl},

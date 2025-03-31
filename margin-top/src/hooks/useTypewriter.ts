@@ -5,10 +5,7 @@ const useTypewriter = (text: string, speed: number = 50, delay: number = 0) => {
   const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-    
-    // Initial delay before starting
-    timeout = setTimeout(() => {
+    const timeout: NodeJS.Timeout = setTimeout(() => {
       setIsTyping(true);
       let currentIndex = 0;
       
@@ -31,4 +28,4 @@ const useTypewriter = (text: string, speed: number = 50, delay: number = 0) => {
   return { displayText, isTyping };
 };
 
-export default useTypewriter; 
+  export default useTypewriter; 

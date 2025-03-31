@@ -1,9 +1,13 @@
 export default function PrivacyPolicy() {
   return (
-    <div className="max-w-4xl mx-auto py-16 px-4">
-      <h1 className="text-4xl font-bold mb-8">Privacy Policy</h1>
-      
-      <section className="mb-8">
+    <div className="bg-white">
+    <section className="w-11/12 max-w-5xl mx-auto py-24">
+      <div className="inline-block mb-16 mt-24">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
+          Privacy Policy
+        </h1>
+        <hr className="border-gray-600 mb-4 border-t-2" />
+      </div>
         <h2 className="text-2xl font-semibold mb-4">Cookie Policy</h2>
         <p className="mb-4">
           We primarily use first-party cookies and similar technologies to provide essential functionality 

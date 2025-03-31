@@ -18,6 +18,9 @@ export interface Config {
     case: Case;
     about: About; 
     hosting: Hosting;
+    branding: Branding;
+    ux: Ux;
+    ai: Ai;
     development: Development;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -41,22 +44,57 @@ export interface Development {
   content: any;
 }
 
+export interface Ux {
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+  content: any;
+}
 
+export interface Ai {
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+  content: any;
+}
+
+export interface Cookies {  
+  id: string;
+  title: string;
+  description: string;
+  content: any;
+}
+export interface Branding {
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+  content: any;
+}
+
+export interface Hosting {
+  id: string;
+  title: string;
+  description: string;
+  image: Media | string | null;
+} 
 
 
 export interface Journal {
-  id: number;
+  id: string;
   title: string;
   slug: string;
   featuredImage: Media;
   excerpt: string;
   content: any;
-  author: string;
-  publishedDate: string;
-  categories?: Array<{ category: string }>;
+  author: string;  
+  categories: Array<{ category: string }>;
   status: 'draft' | 'published';
   createdAt: string;
   updatedAt: string;  
+  publishedDate: string;
 }
 
 export interface Service {

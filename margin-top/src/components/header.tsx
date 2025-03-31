@@ -4,7 +4,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { IoClose, IoMenu } from 'react-icons/io5';
-import * as gtag from '@/lib/gtag';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,14 +24,6 @@ const Header: React.FC = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isMenuOpen]);
-
-  const handleAppointmentClick = () => {
-    gtag.event({
-      action: 'appointment_click',
-      category: 'conversion',
-      label: 'header_calendly',
-    });
-  };
 
   const handleNavigation = () => {
     setIsMenuOpen(false);

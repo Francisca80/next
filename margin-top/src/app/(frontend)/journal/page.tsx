@@ -1,5 +1,4 @@
 import { CollectionSlug, getPayload } from 'payload';
-import { headers as GetHeaders } from 'next/headers';
 import config from '@/payload.config';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,7 +22,6 @@ const getImageUrl = (featuredImage: any) => {
 };
 
 async function JournalPage() {
-  const headers = await GetHeaders();
   const payloadConfig = await config;
   const payload = await getPayload({ config: payloadConfig });
 
@@ -32,9 +30,7 @@ async function JournalPage() {
     depth: 1,
   });
 
-  console.log('Journal response:', response); // Debug log
   const posts = response.docs as Journal[];
-  console.log('Posts:', posts); // Debug log
 
   const formatDate = (dateString: string) => {
     try {

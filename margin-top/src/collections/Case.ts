@@ -1,4 +1,3 @@
-import { link } from "fs";
 import { CollectionConfig } from "payload";
 
 export const Case: CollectionConfig = {
