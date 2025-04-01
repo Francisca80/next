@@ -4,9 +4,20 @@ import { format } from 'date-fns'
 import Image from 'next/image'
 import Link from 'next/link'
 import config from '@/payload.config'
-import type { Journal } from '@/payload-types'
+import type { Journal, Media } from '@/payload-types'
 import { Metadata } from 'next'
 import React from 'react'
+
+// Lexical Node Types
+interface LexicalNode {
+  type: string;
+  children?: LexicalNode[];
+  text?: string;
+  format?: number;
+  tag?: string;
+  listType?: 'number' | 'bullet';
+  url?: string;
+}
 
 type Params = {
   params: {
@@ -60,13 +71,13 @@ function formatDate(date: string) {
 }
 
 // Helper function to render Lexical nodes recursively
-function renderNode(node: any): React.ReactNode {
+function renderNode(node: LexicalNode): React.ReactNode {
   if (!node) return null;
 
   switch (node.type) {
     case 'root':
       return (
-        <>{node.children?.map((child: any, index: number) => (
+        <>{node.children?.map((child: LexicalNode, index: number) => (
           <React.Fragment key={index}>
             {renderNode(child)}
           </React.Fragment>
@@ -76,7 +87,7 @@ function renderNode(node: any): React.ReactNode {
     case 'paragraph':
       return (
         <p className="mb-4">
-          {node.children?.map((child: any, index: number) => (
+          {node.children?.map((child: LexicalNode, index: number) => (
             <React.Fragment key={index}>
               {renderNode(child)}
             </React.Fragment>
@@ -85,22 +96,24 @@ function renderNode(node: any): React.ReactNode {
       );
 
     case 'text':
-      let content = node.text;
-      if (node.format & 1) content = <strong>{content}</strong>;
-      if (node.format & 2) content = <em>{content}</em>;
-      if (node.format & 4) content = <u>{content}</u>;
-      if (node.format & 8) content = <del>{content}</del>;
-      if (node.format & 16) content = <code>{content}</code>;
+      if (!node.text) return null;
+      let content: React.ReactNode = node.text;
+      const format = node.format || 0;
+      if (format & 1) content = <strong>{content}</strong>;
+      if (format & 2) content = <em>{content}</em>;
+      if (format & 4) content = <u>{content}</u>;
+      if (format & 8) content = <del>{content}</del>;
+      if (format & 16) content = <code>{content}</code>;
       return content;
 
     case 'heading':
       switch (node.tag) {
-        case '1': return <h1 className="mb-4">{node.children?.map((child: any, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h1>;
-        case '2': return <h2 className="mb-4">{node.children?.map((child: any, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h2>;
-        case '3': return <h3 className="mb-4">{node.children?.map((child: any, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h3>;
-        case '4': return <h4 className="mb-4">{node.children?.map((child: any, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h4>;
-        case '5': return <h5 className="mb-4">{node.children?.map((child: any, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h5>;
-        case '6': return <h6 className="mb-4">{node.children?.map((child: any, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h6>;
+        case '1': return <h1 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h1>;
+        case '2': return <h2 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h2>;
+        case '3': return <h3 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h3>;
+        case '4': return <h4 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h4>;
+        case '5': return <h5 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h5>;
+        case '6': return <h6 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h6>;
         default: return null;
       }
 
@@ -109,7 +122,7 @@ function renderNode(node: any): React.ReactNode {
       return React.createElement(
         ListTag,
         { className: "mb-4" },
-        node.children?.map((child: any, index: number) => (
+        node.children?.map((child: LexicalNode, index: number) => (
           <React.Fragment key={index}>
             {renderNode(child)}
           </React.Fragment>
@@ -119,7 +132,7 @@ function renderNode(node: any): React.ReactNode {
     case 'listitem':
       return (
         <li>
-          {node.children?.map((child: any, index: number) => (
+          {node.children?.map((child: LexicalNode, index: number) => (
             <React.Fragment key={index}>
               {renderNode(child)}
             </React.Fragment>
@@ -130,7 +143,7 @@ function renderNode(node: any): React.ReactNode {
     case 'quote':
       return (
         <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
-          {node.children?.map((child: any, index: number) => (
+          {node.children?.map((child: LexicalNode, index: number) => (
             <React.Fragment key={index}>
               {renderNode(child)}
             </React.Fragment>
@@ -141,7 +154,7 @@ function renderNode(node: any): React.ReactNode {
     case 'link':
       return (
         <a href={node.url} className="text-blue-600 hover:underline">
-          {node.children?.map((child: any, index: number) => (
+          {node.children?.map((child: LexicalNode, index: number) => (
             <React.Fragment key={index}>
               {renderNode(child)}
             </React.Fragment>
@@ -155,18 +168,18 @@ function renderNode(node: any): React.ReactNode {
 }
 
 // Helper function to get image URL
-function getImageUrl(image: any): string {
+function getImageUrl(image: Media | string | null): string {
   if (typeof image === 'string') return image;
   return image?.url ? `${process.env.NEXT_PUBLIC_SERVER_URL}${image.url}` : '';
 }
 
-export default async function JournalPost({ params: { slug } }: Params) {
+export default async function JournalPost({ params }: Params) {
   const payload = await getPayload({ config });
   const post = await payload.find({
     collection: 'journal',
     where: {
       slug: {
-        equals: slug,
+        equals: params.slug,
       },
     },
     depth: 2,

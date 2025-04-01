@@ -15,7 +15,7 @@ export const Case: CollectionConfig = {
         position: 'sidebar',
       },
       defaultValue: 999,
-    },
+    },  
     {
       name: 'title',
       type: 'text',

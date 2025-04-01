@@ -112,7 +112,7 @@ export default async function Cases() {
             return (
               <Link 
                 href={`/cases/${caseItem.slug}`}
-                key={caseItem.id} 
+                key={index} 
                 className={itemClasses}
               >
                 <div className="h-full rounded-lg overflow-hidden">

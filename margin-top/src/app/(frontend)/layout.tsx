@@ -8,10 +8,15 @@ import LenisProvider from '@/components/LenisProvider';
 import Script from 'next/script';
 import { GA_TRACKING_ID } from '@/lib/gtag';
 import { Analytics } from '@/components/Analytics';
-
+import { Outfit } from 'next/font/google';
 interface Props {
   children: React.ReactNode;
 }
+
+const font = Outfit({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+});
 
 export const metadata = {
   title: 'Margin-Top',
@@ -22,11 +27,11 @@ export default async function RootLayout({
   children,
 }: Props) {
   return (
-    <html lang="en" suppressHydrationWarning style={{ fontFamily: 'Montserrat, sans-serif' }}>
+    <html lang="en" suppressHydrationWarning style={{ fontFamily: 'Outfit, sans-serif' }}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
           strategy="afterInteractive"
@@ -42,7 +47,7 @@ export default async function RootLayout({
           `}
         </Script>
       </head>
-      <body suppressHydrationWarning style={{ fontFamily: 'Montserrat, sans-serif' }}>
+      <body suppressHydrationWarning style={{ fontFamily: 'Outfit, sans-serif' }}>
         <LenisProvider>
           <CookieConsentProvider>
             <Header />

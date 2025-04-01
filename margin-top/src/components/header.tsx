@@ -42,7 +42,7 @@ const Header: React.FC = () => {
               className="w-auto h-auto"
               priority
             />
-            <span className="font-medium ml-2 text-lg font-['Montserrat'] tracking-wider uppercase">Margin-Top</span>
+            <span className="font-medium ml-2 text-lg font-['Outfit'] tracking-wider uppercase">Margin-Top</span>
           </Link>
           <div className="md:hidden">
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu" className="header-button">

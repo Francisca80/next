@@ -53,7 +53,7 @@ export default function PrivacyPolicy() {
         </div>
 
         <p className="mt-4">
-          You can adjust your cookie preferences at any time by clicking the "Cookie Settings" link in the footer.
+          You can adjust your cookie preferences at any time by clicking the Cookie Settings link in the footer.
         </p>
       </section>
 

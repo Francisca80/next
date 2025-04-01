@@ -1,5 +1,4 @@
 import React from "react";
-import { Development } from "@/collections/Development";
 import { FaCogs, FaPalette, FaRocket } from "react-icons/fa";
 
 export default function DevelopmentPage() {
@@ -178,7 +177,7 @@ export default function DevelopmentPage() {
 
                 {/* Optional Extras Section */}
                 <section className="mb-24">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Optionele Extra's</h2>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Optionele Extra&apos;s</h2>
                     <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
                     <p className="text-xl text-gray-700 mb-12">
                         Extra diensten om uw WordPress website nog completer te maken.
@@ -295,7 +294,7 @@ export default function DevelopmentPage() {
                     <br />
                     * Exacte prijs afhankelijk van specifieke wensen en functionaliteiten
                     <br />
-                    * De teksten, foto's en andere content/branding worden op tijd aangeleverd.
+                    * De teksten, foto&apos;s en andere content/branding worden op tijd aangeleverd.
                 </div>
             </div>
         </div>

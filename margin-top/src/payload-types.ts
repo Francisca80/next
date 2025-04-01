@@ -116,27 +116,26 @@ export interface Branding {
 } 
 
 export interface Case {   
-  id: string;
-  title: string;
+  title: string;  
+  introduction: string;
   description: string;
   image: Media | string | null;
-  url: string;
+  url?: string;
   slug: string;
   about: string;
-  services: string;
+  services: Array<{ service: string; id: string }>;
   headingProject: string;
   descriptionProject: string;
-  caseScreens: Media | string | null;
-  backgroundImage: Media | string | null;
   procesDescription: string;
   procesImage: Media | string | null;
   procesImageCaption: string;
+  figmalink?: string;
+  resultHeading: string;
   resultText: string;
   resultImage: Media | string | null;
   resultImageCaption: string;
   resultImage2: Media | string | null;
   resultImageCaption2: string;
-  usedTechniques: string;
   status: 'draft' | 'published';
   updatedAt: string;
   createdAt: string;  

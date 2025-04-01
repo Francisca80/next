@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
 @import 'tailwindcss';
 @import "tw-animate-css";
 
@@ -9,7 +10,7 @@
   --bg-secondary: #f0f0f0; /* Light mode secondary background */
   --text-primary: #333333; /* Light mode primary text color */
   --text-secondary: #666666; /* Light mode secondary text color */
-  --font-family: 'Montserrat', sans-serif;
+  --font-family: 'Outfit', sans-serif;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -54,7 +55,7 @@
 body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Outfit', sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
   margin: 0;
   padding: 0;
@@ -64,15 +65,15 @@ body {
 
 /* Global font styles */
 *, *::before, *::after {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
 html, body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, p, span, a, button, input, textarea, select, li {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {

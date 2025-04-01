@@ -105,7 +105,7 @@ const DevelopmentPage: React.FC = () => {
                             <ul className="space-y-4 text-gray-700">
                                 <li className="flex items-start">
                                     <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">1</span>
-                                    <span className="pt-1"><strong>API's:</strong> RESTful en GraphQL endpoints.</span>
+                                    <span className="pt-1"><strong>API&apos;s:</strong> RESTful en GraphQL endpoints.</span>
                                 </li>
                                 <li className="flex items-start">
                                     <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">2</span>
@@ -169,7 +169,7 @@ const DevelopmentPage: React.FC = () => {
                                 </li>
                                 <li className="flex items-start">
                                     <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">3</span>
-                                    <span className="pt-1"><strong>PWA's:</strong> Progressive Web Applications.</span>
+                                    <span className="pt-1"><strong>PWA&apos;s:</strong> Progressive Web Applications.</span>
                                 </li>
                             </ul>
                         </div>

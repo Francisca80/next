@@ -13,7 +13,7 @@ const AboutSection: React.FC = () => {
     threshold: 0.1,
   });
 
-  const quote = "Margin-top is de plek waar creativiteit, technologie en strategie samenkomen om merken te laten groeien. Wij creëren digitale oplossingen die het verschil maken.";
+  const quote = "Margin-top is de plek waar design, technologie en strategie samenkomen om merken te laten groeien. Wij creëren digitale oplossingen die het verschil maken.";
   const { displayText, isTyping } = useTypewriter(quote, 40, 500);
 
   return (
@@ -27,7 +27,7 @@ const AboutSection: React.FC = () => {
           {/* Left side - Quote */}
           <div className="relative flex items-center">
             <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-gray-800">
-              "{displayText}"
+            &quot;{displayText}&quot;
               <span className={`inline-block w-0.5 h-6 bg-gray-800 ml-1 ${isTyping ? 'animate-blink' : 'opacity-0'}`} />
             </blockquote>
           </div>
@@ -37,17 +37,17 @@ const AboutSection: React.FC = () => {
             <div>
               <p className="text-lg text-gray-700 mb-6">
                 Bij Margin-Top geloven we dat design niet alleen mooi moet zijn, maar ook impactvol en innovatief.
-                Met onze slogan "Creating space for BOLD Design" maken we duidelijk waar we voor staan: wij creëren 
+                Met onze slogan &quot;Creating space for BOLD Design&quot; maken we duidelijk waar we voor staan: wij creëren 
                 de ruimte – technisch, visueel en strategisch – voor gedurfd, vernieuwend design dat opvalt en werkt.
               </p>
               <p className="text-lg text-gray-700 mb-6">
               Of het nu gaat om het bouwen van slimme websites, het ontwikkelen van digitale producten of het inzetten 
-              van nieuwe technologieën zoals AI of wearables – wij zorgen voor de basis waarop jouw sterke ideeën tot leven komen. 
+              van nieuwe technologieën zoals AI  – wij zorgen voor de basis waarop jouw sterke ideeën tot leven komen. 
               Van standaardoplossingen tot maatwerk met lef en visie, gebruiksvriendelijk en innovatief.
               </p>
 
               <p className="text-lg text-gray-700">
-              Onze visie is duidelijk: wij creëren digitale oplossingen die het verschil maken.
+              Onze visie is duidelijk: we ontwerpen en ontwikkelen scherpe, design-first digitale ervaringen, technisch passend, altijd met een creatieve hoed op.
               </p>
             </div>
             

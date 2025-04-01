@@ -5,11 +5,8 @@ export const Journal: CollectionConfig = {
     admin: {
         useAsTitle: 'title',
         defaultColumns: ['title', 'slug', 'status', 'publishedDate'],
-       
-    },
-    access: {
-        read: () => true,
-
+        group: 'Content',
+        description: 'Blog posts and articles',
     },
     fields: [
         {
@@ -21,15 +18,18 @@ export const Journal: CollectionConfig = {
         {
             name: 'title',
             type: 'text',
-            required: false,
+            required: true,
+            admin: {
+                description: 'The title of the journal post',
+            },
         },
         {
             name: 'slug',
             type: 'text',
-            required: false,
-            unique: false,
+            required: true,
+            unique: true,
             admin: {
-                position: 'sidebar',
+                description: 'The URL-friendly version of the title',
             },
         },
         {
@@ -41,24 +41,34 @@ export const Journal: CollectionConfig = {
         {
             name: 'excerpt',
             type: 'textarea',
-            required: false,
+            required: true,
+            admin: {
+                description: 'A brief summary of the post',
+            },
         },
         {
             name: 'content',
             type: 'richText',
-            required: false,
+            required: true,
+            admin: {
+                description: 'The main content of the post',
+            },
         },
         {
             name: 'author',
-            type: 'text',
-            required: false,
+            type: 'relationship',
+            relationTo: 'users',
+            required: true,
+            admin: {
+                description: 'The author of the journal post',
+            },
         },
         {
             name: 'publishedDate',
             type: 'date',
             required: true,
             admin: {
-                position: 'sidebar',
+                description: 'When the post should be published',
             },
         },
         {
@@ -74,6 +84,8 @@ export const Journal: CollectionConfig = {
         {
             name: 'status',
             type: 'select',
+            required: true,
+            defaultValue: 'draft',
             options: [
                 {
                     label: 'Draft',
@@ -84,11 +96,10 @@ export const Journal: CollectionConfig = {
                     value: 'published',
                 },
             ],
-            defaultValue: 'draft',
             admin: {
-                position: 'sidebar',
+                description: 'The current status of the post',
             },
         },
     ],
-    timestamps:         false,       
+    timestamps: false,
 }

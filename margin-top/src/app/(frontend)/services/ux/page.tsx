@@ -83,7 +83,7 @@ const UXPage: React.FC = () => {
                                 </li>
                                 <li className="flex items-start">
                                     <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">2</span>
-                                    <span className="pt-1"><strong>Gebruikersonderzoek:</strong> Interviews, persona's en data-analyse.</span>
+                                    <span className="pt-1"><strong>Gebruikersonderzoek:</strong> Interviews, persona&apos;s en data-analyse.</span>
                                 </li>
                                 <li className="flex items-start">
                                     <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">3</span>

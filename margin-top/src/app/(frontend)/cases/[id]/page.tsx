@@ -6,39 +6,34 @@ import { getPayload } from 'payload';
 import config from '@/payload.config';
 import { FaArrowRight } from 'react-icons/fa';
 import MoreCases from '@/components/MoreCases';
+import { Case, Media } from '@/payload-types';
 
 interface CaseDetailProps {
   params: {
-    id: string;
+    id: string;  // Keep this as id since it's the route parameter
   };
-}
+} 
 
 export async function generateStaticParams() {
   const payloadConfig = await config;
-  const payload = await getPayload({config: payloadConfig});
-  
-  const response = await (payload.find as any)({
-    collection: 'case',
-    where: {
-      status: {
-        equals: 'published'
-      }
-    }
+  const payload = await getPayload({ config: payloadConfig });
+
+  const response = await payload.find({
+    collection: "case",
+    where: { status: { equals: "published" } },
   });
 
-  return response.docs.map((caseItem: any) => ({
-    id: caseItem.slug,
-  }));
+  return response.docs.map((caseItem: Case) => ({ id: caseItem.slug }));
 }
 
 export default async function CaseDetail({ params }: CaseDetailProps) {
-  const { id } = await params;
-  
+  const { id: slug } = params;
+
   const payloadConfig = await config;
-  const payload = await getPayload({config: payloadConfig});
-  
+  const payload = await getPayload({ config: payloadConfig });
+
   // Get all published cases for the MoreCases component
-  const allCasesResponse = await (payload.find as any)({
+  const allCasesResponse = await payload.find({
     collection: 'case',
     where: {
       status: {
@@ -49,27 +44,34 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
   });
 
   // Get the current case
-  const response = await (payload.find as any)({
+  const response = await payload.find({
     collection: 'case',
     where: {
       status: {
         equals: 'published'
       },
       slug: {
-        equals: id
+        equals: slug
       }
     },
     depth: 2
   });
 
-  const caseItem = response.docs[0];
+  const caseItem = response.docs[0] as Case;
 
   if (!caseItem) {
     notFound();
   }
 
-  console.log('Result Image 1:', caseItem.resultImage);
-  console.log('Result Image 2:', caseItem.resultImage2);
+  const getImageUrl = (image: Media | string | null): string => {
+    if (!image) return '/placeholder-case.jpg';
+    return typeof image === 'string' ? image : image.url || '/placeholder-case.jpg';
+  };
+
+  const getImageAlt = (image: Media | string | null, fallback: string): string => {
+    if (!image) return fallback;
+    return typeof image === 'string' ? fallback : image.alt || fallback;
+  };
 
   return (
     <div className="bg-white">
@@ -86,8 +88,8 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
         {/* Hero Image */}
         <div className="relative w-full aspect-[16/9] mb-24">
           <Image
-            src={caseItem.image.url}
-            alt={caseItem.image.alt || caseItem.title}
+            src={getImageUrl(caseItem.image)}
+            alt={getImageAlt(caseItem.image, caseItem.title)}
             fill
             className="object-cover rounded-2xl shadow-xl"
             priority
@@ -100,7 +102,7 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
           <div>
             <h2 className="text-2xl font-bold mb-8">Gebruikte diensten</h2>
             <div className="flex flex-wrap gap-3">
-              {caseItem.services?.map((serviceObj: { service: string, id: string }, idx: number) => (
+              {caseItem.services?.map((serviceObj, idx) => (
                 <span key={idx} className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
                   {serviceObj.service}
                 </span>
@@ -148,11 +150,10 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
             )}
           </div>
           
-            
           <div className="relative aspect-[4/3]">
             <Image
-              src={caseItem.procesImage.url}
-              alt={caseItem.procesImage.alt || "Proces"}
+              src={getImageUrl(caseItem.procesImage)}
+              alt={getImageAlt(caseItem.procesImage, "Proces")}
               width={800}
               height={600}
               className="object-contain rounded-2xl shadow-xl"
@@ -169,8 +170,8 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
               {caseItem.resultImage && (
                 <div className="relative aspect-[9/16] max-w-sm mx-auto">
                   <Image
-                    src={caseItem.resultImage.url}
-                    alt={caseItem.resultImage.alt || "Resultaat 1"}
+                    src={getImageUrl(caseItem.resultImage)}
+                    alt={getImageAlt(caseItem.resultImage, "Resultaat 1")}
                     width={384}
                     height={682}
                     className="object-contain rounded-2xl shadow-xl"
@@ -180,8 +181,8 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
               {caseItem.resultImage2 && (
                 <div className="relative aspect-[9/16] max-w-sm mx-auto">
                   <Image
-                    src={caseItem.resultImage2.url}
-                    alt={caseItem.resultImage2.alt || "Resultaat 2"}
+                    src={getImageUrl(caseItem.resultImage2)}
+                    alt={getImageAlt(caseItem.resultImage2, "Resultaat 2")}
                     width={384}
                     height={682}
                     className="object-contain rounded-2xl shadow-xl"
@@ -194,7 +195,7 @@ export default async function CaseDetail({ params }: CaseDetailProps) {
       </section>
 
       {/* More Cases Section */}
-      <MoreCases cases={allCasesResponse.docs} currentCaseId={caseItem.id} />
+      <MoreCases cases={allCasesResponse.docs as Case[]} currentCaseId={caseItem.slug} />
     </div>
   );
 }

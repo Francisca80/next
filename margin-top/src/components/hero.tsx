@@ -93,10 +93,10 @@ const Hero: React.FC<HeroProps> = ({ image, title, tagline, buttons = {
             transition={{ duration: 0.88, delay: 1.5 }}
           >
             <div className="relative inline-block">
-              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-['Montserrat'] tracking-tight px-2 md:px-4 py-2 pb-4">{title}</h1>
+              <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-['Outfit'] tracking-tight px-2 md:px-4 py-2 pb-4">{title}</h1>
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2]"></div>
             </div>
-            <p className="text-base sm:text-lg md:text-xl font-['Montserrat'] my-1 md:my-2 max-w-xl mx-auto px-4 pb-4">{tagline}</p>
+            <p className="text-base sm:text-lg md:text-xl font-['Outfit'] my-1 md:my-2 max-w-xl mx-auto px-4 pb-4">{tagline}</p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto">
               <Link 
                 href={buttons.primary.url}

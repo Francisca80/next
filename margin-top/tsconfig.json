@@ -5,7 +5,7 @@
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": false, // Set to false if you're not using JS files to enforce type safety
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -35,12 +35,12 @@
     "target": "ES2017"
   },
   "include": [
-    "next-env.d.ts", // Next.js auto-generated types
-    "**/*.ts", // TypeScript files
-    "**/*.tsx", // TypeScript React files
-    ".next/types/**/*.ts" // Next.js types
-, "../src/components/AnimatedStats.tsx"],
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
-  ] // Excludes node_modules from compilation
+  ]
 }
