@@ -1,4 +1,4 @@
-export const GA_TRACKING_ID = 'G-ZG4Q00ZZY5';
+export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID || '';
 
 // Initialize consent mode
 export const initializeConsent = () => {
@@ -27,31 +27,20 @@ export const initializeConsent = () => {
   }
 };
 
-type ConsentSettings = {
+export const updateConsent = (settings: {
+  functionality: boolean;
   analytics: boolean;
   marketing: boolean;
   personalization: boolean;
-  functionality: boolean;
-};
+}) => {
+  if (typeof window === 'undefined' || !window.gtag) return;
 
-// Update consent state with first-party data handling
-export const updateConsent = (settings: ConsentSettings) => {
-  if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('consent', 'update', {
-      'analytics_storage': settings.analytics ? 'granted' : 'denied',
-      'ad_storage': settings.marketing ? 'granted' : 'denied',
-      'functionality_storage': settings.functionality ? 'granted' : 'denied',
-      'personalization_storage': settings.personalization ? 'granted' : 'denied',
-      'security_storage': 'granted',
-      'restricted_data_processing': settings.marketing ? 'false' : 'true',
-      'allow_google_signals': settings.marketing ? 'true' : 'false',
-      'allow_ad_personalization_signals': settings.marketing ? 'true' : 'false',
-      'attribution_reporting': settings.marketing ? 'granted' : 'denied',
-      'ads_data_redaction': settings.marketing ? 'false' : 'true',
-      'first_party_collection': '1',
-      'url_passthrough': '1'
-    });
-  }
+  window.gtag('consent', 'update', {
+    'analytics_storage': settings.analytics ? 'granted' : 'denied',
+    'functionality_storage': settings.functionality ? 'granted' : 'denied',
+    'personalization_storage': settings.personalization ? 'granted' : 'denied',
+    'ad_storage': settings.marketing ? 'granted' : 'denied',
+  });
 };
 
 export const pageview = (url: string) => {
@@ -81,7 +70,7 @@ export const event = ({ action, category, label, value }: GTagEvent): void => {
 
 export const isAnalyticsAllowed = () => {
   if (typeof window !== 'undefined') {
-    const consent = localStorage.getItem('cookie-consent-settings');
+    const consent = localStorage.getItem('cookieConsent');
     if (consent) {
       const settings = JSON.parse(consent);
       return settings.analytics === true;
@@ -128,3 +117,13 @@ export const loadGoogleAnalytics = () => {
     cleanupAnalytics();
   }
 };
+
+declare global {
+  interface Window {
+    gtag: (
+      command: 'consent' | 'config' | 'event',
+      action: string,
+      params?: Record<string, any>
+    ) => void;
+  }
+}

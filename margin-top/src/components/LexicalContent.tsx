@@ -15,7 +15,8 @@ export default function LexicalContent({ content }: LexicalContentProps) {
       editor.setEditorState(editor.parseEditorState(content));
       let htmlString = '';
       editor.update(() => {
-        htmlString = $generateHtmlFromNodes(editor);
+        // Cast the editor to any to bypass the type checking issue
+        htmlString = $generateHtmlFromNodes(editor as any);
       });
       return htmlString;
     } catch (error) {

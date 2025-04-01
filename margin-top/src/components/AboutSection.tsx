@@ -1,33 +1,23 @@
 'use client';
 
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
 import { FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 import useTypewriter from '@/hooks/useTypewriter';
 import LogoSlider from './LogoSlider';
 
 const AboutSection: React.FC = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
-
   const quote = "Margin-top is de plek waar design, technologie en strategie samenkomen om merken te laten groeien. Wij creëren digitale oplossingen die het verschil maken.";
   const { displayText, isTyping } = useTypewriter(quote, 40, 500);
 
   return (
-    <section ref={ref} className="w-11/12 max-w-5xl mx-auto min-h-screen flex flex-col relative">
+    <section className="w-11/12 max-w-5xl mx-auto min-h-screen flex flex-col relative">
       <div className="flex-1 flex items-center">
-        <div 
-          className={`grid grid-cols-1 md:grid-cols-2 gap-12 transform transition-all duration-1000 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Left side - Quote */}
           <div className="relative flex items-center">
             <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-gray-800">
-            &quot;{displayText}&quot;
+              &quot;{displayText}&quot;
               <span className={`inline-block w-0.5 h-6 bg-gray-800 ml-1 ${isTyping ? 'animate-blink' : 'opacity-0'}`} />
             </blockquote>
           </div>

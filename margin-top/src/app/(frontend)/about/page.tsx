@@ -37,9 +37,9 @@ const About: React.FC = () => {
             }`}
           >
             <div className="md:w-1/2">
-              <div className="inline-block">
+              <div className="inline-block relative mb-8">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl mb-4">About Margin-Top</h1>
-                <hr className="border-gray-600 mb-8 border-t-2" />
+                <hr className="absolute bottom-0 left-0 w-full border-gray-600 border-t-2" />
               </div>
               <p className="text-base sm:text-lg md:text-xl text-gray-700">
                 Bij Margin-Top geven we jouw visie de ruimte die het verdient. 

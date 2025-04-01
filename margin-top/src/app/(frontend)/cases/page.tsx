@@ -73,11 +73,11 @@ export default async function Cases() {
   return (
     <div className="bg-white">
       <section className="w-11/12 max-w-5xl mx-auto py-12 sm:py-24">
-        <div className="inline-block mb-8 sm:mb-16 mt-12 sm:mt-24">
+        <div className="inline-block relative mb-8 mt-24">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             Cases 
           </h1>
-          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
+          <hr className="absolute bottom-0 left-0 w-full border-gray-600 border-t-2" />
         </div>
         <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mb-12 sm:mb-24">
           Met trots werken we aan projecten van onze klanten! We helpen graag merken te laten groeien door slimme, digitale oplossingen

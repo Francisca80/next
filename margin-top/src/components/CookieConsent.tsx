@@ -1,20 +1,11 @@
 'use client';
-import { useState, useEffect } from 'react';
-import { GA_TRACKING_ID, initializeConsent, updateConsent as updateGtagConsent } from '@/lib/gtag';
+import { useState } from 'react';
 import { useCookieConsent, type ConsentSettings } from '@/context/CookieConsentContext';
-import Link from 'next/link';
 
 export default function CookieConsent() {
-  const { showBanner, setShowBanner, consentSettings, updateConsentSettings } = useCookieConsent();
+  const { consentSettings, updateConsentSettings, showBanner, setShowBanner } = useCookieConsent();
   const [showPreferences, setShowPreferences] = useState(false);
   const [localSettings, setLocalSettings] = useState(consentSettings);
-
-  useEffect(() => {
-    setLocalSettings(consentSettings);
-  }, [consentSettings]);
-
-  // Don't render anything if banner should be hidden
-  if (!showBanner) return null;
 
   const handleAcceptAll = () => {
     const newSettings = {
@@ -24,6 +15,7 @@ export default function CookieConsent() {
       personalization: true
     };
     updateConsentSettings(newSettings);
+    setShowBanner(false);
   };
 
   const handleRejectAll = () => {
@@ -34,10 +26,12 @@ export default function CookieConsent() {
       personalization: false
     };
     updateConsentSettings(newSettings);
+    setShowBanner(false);
   };
 
   const handleSavePreferences = () => {
     updateConsentSettings(localSettings);
+    setShowBanner(false);
   };
 
   const handleToggle = (type: keyof typeof localSettings) => {
@@ -47,37 +41,7 @@ export default function CookieConsent() {
     }));
   };
 
-  const loadGoogleAnalytics = () => {
-    if (!document.getElementById('ga-script')) {
-      const script1 = document.createElement('script');
-      script1.id = 'ga-script';
-      script1.src = `https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`;
-      script1.async = true;
-      document.head.appendChild(script1);
-
-      const script2 = document.createElement('script');
-      script2.id = 'ga-config';
-      script2.innerHTML = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GA_TRACKING_ID}', {
-          page_path: window.location.pathname,
-        });
-      `;
-      document.head.appendChild(script2);
-    }
-  };
-
-  const removeGoogleAnalytics = () => {
-    ['ga-script', 'ga-config'].forEach(id => {
-      const script = document.getElementById(id);
-      if (script) {
-        script.remove();
-      }
-    });
-    window.dataLayer = [];
-  };
+  if (!showBanner) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-xl">
@@ -85,7 +49,7 @@ export default function CookieConsent() {
         {!showPreferences ? (
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <p className="text-gray-700 text-sm leading-relaxed">
-              We gebruiken cookies om je ervaring te verbeteren. Alle cookies zijn standaard ingeschakeld.{' '}
+              We gebruiken cookies om je ervaring te verbeteren. Standaard zijn alle cookies ingeschakeld.{' '}
               <button
                 onClick={() => setShowPreferences(true)}
                 className="header-button"
@@ -98,23 +62,20 @@ export default function CookieConsent() {
                 onClick={handleRejectAll}
                 className="header-button"
               >
-                Alles weigeren
+                Weiger alles
               </button>
               <button
                 onClick={handleAcceptAll}
                 className="header-button"
               >
-                Alles accepteren
+                Accepteer alles
               </button>
             </div>
           </div>
         ) : (
           <div className="space-y-6">
             <div className="flex items-center justify-between">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900">Cookie voorkeuren</h3>
-                <p className="text-sm text-gray-600 mt-1">Alle cookies zijn standaard ingeschakeld. Je kunt je voorkeuren hier aanpassen.</p>
-              </div>
+              <h3 className="text-lg font-semibold">Cookie voorkeuren</h3>
               <button
                 onClick={() => setShowPreferences(false)}
                 className="header-button"
@@ -125,72 +86,66 @@ export default function CookieConsent() {
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-gray-900">Essentiële cookies</p>
-                  <p className="text-sm text-gray-600">Noodzakelijk voor de basisfunctionaliteit van de website.</p>
+                  <h4 className="font-medium">Functionele cookies</h4>
+                  <p className="text-sm text-gray-600">Essentiële cookies voor de werking van de website</p>
                 </div>
-                <input 
-                  type="checkbox" 
-                  checked 
-                  disabled 
-                  className="h-4 w-4 text-black border-gray-300 rounded focus:ring-black cursor-not-allowed" 
-                />
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={localSettings.functionality}
+                    onChange={() => handleToggle('functionality')}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-gray-900">Functionaliteit cookies</p>
-                  <p className="text-sm text-gray-600">Voor verbeterde functionaliteit en personalisatie.</p>
+                  <h4 className="font-medium">Analytische cookies</h4>
+                  <p className="text-sm text-gray-600">Cookies die helpen bij het begrijpen van hoe bezoekers de website gebruiken</p>
                 </div>
-                <input
-                  type="checkbox"
-                  checked={localSettings.functionality}
-                  onChange={() => handleToggle('functionality')}
-                  className="h-4 w-4 text-black border-gray-300 rounded focus:ring-black cursor-pointer"
-                />
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={localSettings.analytics}
+                    onChange={() => handleToggle('analytics')}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-gray-900">Analytics cookies</p>
-                  <p className="text-sm text-gray-600">Helpen ons te begrijpen hoe bezoekers de website gebruiken.</p>
+                  <h4 className="font-medium">Marketing cookies</h4>
+                  <p className="text-sm text-gray-600">Cookies die worden gebruikt om advertenties te personaliseren</p>
                 </div>
-                <input
-                  type="checkbox"
-                  checked={localSettings.analytics}
-                  onChange={() => handleToggle('analytics')}
-                  className="h-4 w-4 text-black border-gray-300 rounded focus:ring-black cursor-pointer"
-                />
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={localSettings.marketing}
+                    onChange={() => handleToggle('marketing')}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="font-medium text-gray-900">Marketing cookies</p>
-                  <p className="text-sm text-gray-600">Voor het tonen van relevante advertenties.</p>
+                  <h4 className="font-medium">Personaliseringscookies</h4>
+                  <p className="text-sm text-gray-600">Cookies die de website aanpassen aan jouw voorkeuren</p>
                 </div>
-                <input
-                  type="checkbox"
-                  checked={localSettings.marketing}
-                  onChange={() => handleToggle('marketing')}
-                  className="h-4 w-4 text-black border-gray-300 rounded focus:ring-black cursor-pointer"
-                />
-              </div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium text-gray-900">Personalisatie cookies</p>
-                  <p className="text-sm text-gray-600">Voor het onthouden van je voorkeuren.</p>
-                </div>
-                <input
-                  type="checkbox"
-                  checked={localSettings.personalization}
-                  onChange={() => handleToggle('personalization')}
-                  className="h-4 w-4 text-black border-gray-300 rounded focus:ring-black cursor-pointer"
-                />
+                <label className="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={localSettings.personalization}
+                    onChange={() => handleToggle('personalization')}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
               </div>
             </div>
-            <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
-              <button
-                onClick={handleRejectAll}
-                className="header-button"
-              >
-                Alles weigeren
-              </button>
+            <div className="flex justify-end">
               <button
                 onClick={handleSavePreferences}
                 className="header-button"
@@ -198,13 +153,6 @@ export default function CookieConsent() {
                 Voorkeuren opslaan
               </button>
             </div>
-            <p className="text-xs text-gray-600">
-              Voor meer informatie over ons cookiebeleid, zie onze{' '}
-              <Link href="/privacy" className="text-black hover:text-gray-800 underline">
-                Privacy Policy
-              </Link>
-              .
-            </p>
           </div>
         )}
       </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { updateConsent } from '@/lib/gtag';
 
 export interface ConsentSettings {
@@ -11,16 +11,16 @@ export interface ConsentSettings {
 }
 
 interface CookieConsentContextType {
-  showBanner: boolean;
-  setShowBanner: (show: boolean) => void;
   consentSettings: ConsentSettings;
   updateConsentSettings: (settings: ConsentSettings) => void;
+  showBanner: boolean;
+  setShowBanner: (show: boolean) => void;
 }
 
-const CookieConsentContext = createContext<CookieConsentContextType | undefined>(undefined);
+const CookieConsentContext = createContext<CookieConsentContextType | null>(null);
 
-export function CookieConsentProvider({ children }: { children: React.ReactNode }) {
-  const [showBanner, setShowBanner] = useState(false); // Start hidden
+export function CookieConsentProvider({ children }: { children: ReactNode }) {
+  const [showBanner, setShowBanner] = useState(true);
   const [consentSettings, setConsentSettings] = useState<ConsentSettings>({
     functionality: true,
     analytics: true,
@@ -29,43 +29,28 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
   });
 
   useEffect(() => {
-    // Check if user has already made a choice
     const hasChosen = localStorage.getItem('cookieConsentChosen');
     const savedSettings = localStorage.getItem('cookieConsent');
-    
-    if (savedSettings) {
-      try {
-        const parsedSettings = JSON.parse(savedSettings);
-        setConsentSettings(parsedSettings);
-      } catch (error) {
-        console.error('Error parsing cookie consent settings:', error);
-      }
-    }
 
-    // Only show banner if user hasn't made a choice yet
-    if (!hasChosen) {
-      // Small delay to ensure page is fully loaded
-      setTimeout(() => {
-        setShowBanner(true);
-      }, 1000);
+    if (hasChosen === 'true' && savedSettings) {
+      setConsentSettings(JSON.parse(savedSettings));
+      setShowBanner(false);
     }
   }, []);
 
-  const updateConsentSettings = (newSettings: ConsentSettings) => {
-    setConsentSettings(newSettings);
-    localStorage.setItem('cookieConsent', JSON.stringify(newSettings));
-    localStorage.setItem('cookieConsentChosen', 'true'); // Mark that user has made a choice
-    updateConsent(newSettings);
-    setShowBanner(false);
+  const updateConsentSettings = (settings: ConsentSettings) => {
+    setConsentSettings(settings);
+    localStorage.setItem('cookieConsent', JSON.stringify(settings));
+    localStorage.setItem('cookieConsentChosen', 'true');
   };
 
   return (
     <CookieConsentContext.Provider
       value={{
-        showBanner,
-        setShowBanner,
         consentSettings,
         updateConsentSettings,
+        showBanner,
+        setShowBanner,
       }}
     >
       {children}
@@ -75,7 +60,7 @@ export function CookieConsentProvider({ children }: { children: React.ReactNode 
 
 export function useCookieConsent() {
   const context = useContext(CookieConsentContext);
-  if (context === undefined) {
+  if (!context) {
     throw new Error('useCookieConsent must be used within a CookieConsentProvider');
   }
   return context;

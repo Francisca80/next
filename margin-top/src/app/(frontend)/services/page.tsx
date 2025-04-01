@@ -31,11 +31,11 @@ export default async function Services() {
   return (
     <div className="bg-white">
       <section className="w-11/12 max-w-5xl mx-auto py-24">
-        <div className="inline-block mb-16 mt-24">
+        <div className="inline-block relative mb-8 mt-24">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             Services 
           </h1>
-          <hr className="border-gray-600 mb-4 border-t-2" />
+          <hr className="absolute bottom-0 left-0 w-full border-gray-600 border-t-2" />
         </div>
 
         <p className="text-xl text-gray-600 max-w-3xl mb-24">

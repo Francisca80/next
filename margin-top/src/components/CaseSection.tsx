@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import * as gtag from '@/lib/gtag';
+import Lenis from 'lenis';
 
 interface Media {
   url: string;
@@ -28,6 +29,7 @@ const CasesSection: React.FC = () => {
   const [cases, setCases] = useState<Case[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const lenisRef = useRef<Lenis | null>(null);
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1
@@ -47,6 +49,30 @@ const CasesSection: React.FC = () => {
     };
 
     fetchCases();
+  }, []);
+
+  useEffect(() => {
+    // Initialize Lenis
+    lenisRef.current = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenisRef.current?.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenisRef.current?.destroy();
+    };
   }, []);
 
   useEffect(() => {
@@ -72,10 +98,10 @@ const CasesSection: React.FC = () => {
         // Map vertical scroll to horizontal scroll with easing
         const horizontalScroll = Math.min(totalScroll, scrollPastSticky * 1.5);
         
-        // Apply smooth scrolling
+        // Apply smooth scrolling with easing
         scrollContainer.scrollTo({
           left: horizontalScroll,
-          behavior: 'auto'
+          behavior: 'smooth'
         });
       }
     };
@@ -99,9 +125,9 @@ const CasesSection: React.FC = () => {
           <div className={`transform transition-all duration-1000 mb-12 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <div className="inline-block">
+            <div className="inline-block relative mb-8">
               <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">Recent Werk</h1>
-              <hr className="border-gray-600 mb-4 border-t-2" />
+              <hr className="absolute bottom-0 left-0 w-full border-gray-600 border-t-2" />
             </div>
             <p className="text-left text-gray-700 text-lg max-w-3xl">
             Bij Margin-top werken we aan digitale oplossingen die ondernemersverder helpen. 
