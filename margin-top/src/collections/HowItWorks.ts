@@ -1,7 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
-export const Development: CollectionConfig = {
-  slug: 'development',
+export const HowItWorks: CollectionConfig = {
+  slug: 'how-it-works',
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'order', 'status', 'updatedAt'],
@@ -29,36 +29,13 @@ export const Development: CollectionConfig = {
       label: 'Beschrijving',
     },
     {
-      name: 'image',
-      type: 'upload',
-      relationTo: 'media',
+      name: 'icon',
+      type: 'text',
       required: true,
-      label: 'Afbeelding',
-    },
-    {
-      name: 'features',
-      type: 'array',
-      label: 'Features',
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-          label: 'Titel',
-        },
-        {
-          name: 'description',
-          type: 'textarea',
-          required: true,
-          label: 'Beschrijving',
-        },
-        {
-          name: 'icon',
-          type: 'text',
-          required: true,
-          label: 'Icon (emoji)',
-        }
-      ]
+      label: 'Icon (emoji)',
+      admin: {
+        description: 'Voer een emoji in als icon',
+      },
     },
     {
       name: 'status',
@@ -93,4 +70,4 @@ export const Development: CollectionConfig = {
       },
     },
   ],
-}
+} 

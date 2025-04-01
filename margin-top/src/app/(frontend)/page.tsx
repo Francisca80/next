@@ -3,7 +3,6 @@ import CaseSection from "@/components/CaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import ClientLogoBanner from "@/components/ClientLogoBanner"; 
 import { getPayload } from "payload";
-import { headers as GetHeaders} from 'next/headers';
 import config from "@/payload.config";
 import AboutSection from "@/components/AboutSection";
 
@@ -27,7 +26,6 @@ interface PageData {
 }
 
 export default async function Home() {
-  const headers = await GetHeaders();
   const payloadConfig = await config;
   const payload = await getPayload({config: payloadConfig});
   
@@ -78,8 +76,8 @@ export default async function Home() {
       
       {/* Content that scrolls over the hero */}
       <div className="relative z-10 bg-white">
-      <AboutSection />
-       <CaseSection />
+        <AboutSection />
+        <CaseSection />
         <ServicesSection initialServices={services} />
         <ClientLogoBanner />  
       </div>

@@ -21,6 +21,7 @@ import { Ux } from './collections/Ux'
 import { Hosting } from './collections/Hosting'
 import { Ai } from './collections/Ai'
 import { Cookies } from './collections/Cookies'
+import { HowItWorks } from './collections/HowItWorks'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -31,7 +32,23 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Journal, Pages, Hero, Service, Case, About, Branding, Development, Ux, Hosting, Ai, Cookies],
+  collections: [
+    Users,
+    Media,
+    Journal,
+    Pages,
+    Hero,
+    Service,
+    Case,
+    About,
+    Branding,
+    Development,
+    Ux,
+    Hosting,
+    Ai,
+    Cookies,
+    HowItWorks,
+  ],
   i18n: {
     fallbackLanguage: 'en',
     supportedLanguages: {en, nl},
@@ -40,6 +57,9 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
+  },
+  graphQL: {
+    schemaOutputFile: path.resolve(dirname, 'generated-schema.graphql'),
   },
   // database-adapter-config-start
   db: mongooseAdapter({

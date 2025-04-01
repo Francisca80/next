@@ -8,7 +8,6 @@ const config: Config = {
   ],
   theme: {
     extend: {
-     
       animation: {
         'bounce-in': 'bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55)',
         'scroll': 'scroll 30s linear infinite',
@@ -40,8 +39,6 @@ const config: Config = {
       },
     },
   },
-
- 
   plugins: [],
 };
 export default config;

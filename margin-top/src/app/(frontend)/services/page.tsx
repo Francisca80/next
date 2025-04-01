@@ -5,6 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { getPayload } from 'payload';
 import config from '@/payload.config';
 import { Service, Media } from '@/payload-types';
+import HowItWorksSection from '@/components/HowItWorksSection';
 
 export default async function Services() {
   const payloadConfig = await config;
@@ -85,39 +86,7 @@ export default async function Services() {
       </section>
 
       {/* How it works Section */}
-      <div className="w-full bg-[#340066] py-12 my-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center">
-            {servicesImage && (
-              <div className="md:w-1/2 relative h-[300px] w-full mb-8 md:mb-0">
-                <Image
-                  src={servicesImage}
-                  alt="Contact us"
-                  fill
-                  className="object-cover rounded-lg"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-            )}
-            <div className={`md:pl-12 text-center md:text-left ${!servicesImage ? 'md:w-full' : 'md:w-1/2'}`}>
-              <h2 className="text-2xl md:text-3xl font-bold !text-white mb-4">
-                Hoe werkt het?
-              </h2>
-              <p className="!text-white/90 mb-6">
-                Om jouw website te maken, gaan we in een aantal stappen te werk. Ieder project is uniek, het proces kan daarom afwijken.
-                De onderstaande stappen zijn een goed begin. <br/><br/>Jouw visie is belangrijk voor ons om een unieke website te maken. We bepalen samen wat de beste oplossing is.
-                Neem contact op voor een vrijblijvend gesprek
-              </p>
-              <a href="mailto:francisca@margin-top.com?subject=Vraag over services">
-                <button className="bg-[#4F8BD2] !text-white font-semibold py-3 px-8 rounded-lg hover:bg-[#3A6BA3] transition">
-                  Mail ons
-                </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <HowItWorksSection />
     </div>
   );
 }

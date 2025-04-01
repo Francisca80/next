@@ -13,9 +13,10 @@ interface Props {
   children: React.ReactNode;
 }
 
-const font = Outfit({
+const outfit = Outfit({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
 });
 
 export const metadata = {
@@ -27,14 +28,11 @@ export default async function RootLayout({
   children,
 }: Props) {
   return (
-    <html lang="en" suppressHydrationWarning style={{ fontFamily: 'Outfit, sans-serif' }}>
+    <html lang="en" suppressHydrationWarning className={outfit.className}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
         <GoogleAnalytics />
       </head>
-      <body suppressHydrationWarning style={{ fontFamily: 'Outfit, sans-serif' }}>
+      <body suppressHydrationWarning>
         <LenisProvider>
           <CookieConsentProvider>
             <Header />
