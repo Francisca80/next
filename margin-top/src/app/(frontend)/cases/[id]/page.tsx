@@ -9,9 +9,9 @@ import MoreCases from '@/components/MoreCases';
 import { Case, Media } from '@/payload-types';
 
 interface CaseDetailProps {
-  params: {
+  params: Promise<{
     id: string;  // Keep this as id since it's the route parameter
-  };
+  }>;
 } 
 
 export async function generateStaticParams() {
@@ -26,7 +26,8 @@ export async function generateStaticParams() {
   return response.docs.map((caseItem: Case) => ({ id: caseItem.slug }));
 }
 
-export default async function CaseDetail({ params }: CaseDetailProps) {
+export default async function CaseDetail(props: CaseDetailProps) {
+  const params = await props.params;
   const { id: slug } = params;
 
   const payloadConfig = await config;

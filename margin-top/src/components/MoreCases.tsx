@@ -24,7 +24,7 @@ const getImageAlt = (image: Media | string | null, fallback: string): string => 
 export default function MoreCases({ cases, currentCaseId }: MoreCasesProps) {
   // Filter out the current case and get 3 other cases
   const otherCases = cases
-    .filter(caseItem => caseItem.id !== currentCaseId)
+    .filter(caseItem => caseItem.slug !== currentCaseId)
     .slice(0, 3);
 
   return (
@@ -35,7 +35,7 @@ export default function MoreCases({ cases, currentCaseId }: MoreCasesProps) {
           {otherCases.map((caseItem) => (
             <Link 
               href={`/cases/${caseItem.slug}`}
-              key={caseItem.id}
+              key={caseItem.slug}
               className="group"
             >
               <div className="overflow-hidden rounded-2xl">

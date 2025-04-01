@@ -20,13 +20,14 @@ interface LexicalNode {
 }
 
 type Params = {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 // Generate metadata for SEO
-export async function generateMetadata({ params }: Params): Promise<Metadata> {
+export async function generateMetadata(props: Params): Promise<Metadata> {
+  const params = await props.params;
   const payload = await getPayload({ config });
   const post = await payload.find({
     collection: 'journal',
@@ -173,7 +174,8 @@ function getImageUrl(image: Media | string | null): string {
   return image?.url ? `${process.env.NEXT_PUBLIC_SERVER_URL}${image.url}` : '';
 }
 
-export default async function JournalPost({ params }: Params) {
+export default async function JournalPost(props: Params) {
+  const params = await props.params;
   const payload = await getPayload({ config });
   const post = await payload.find({
     collection: 'journal',

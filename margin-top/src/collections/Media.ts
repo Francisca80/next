@@ -1,4 +1,5 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig } from 'payload';
+import path from 'path';
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -35,7 +36,7 @@ export const Media: CollectionConfig = {
       },
     ],
     adminThumbnail: 'thumbnail',
-    staticDir: './media',
+    staticDir: path.join(process.cwd(), 'media'),
     mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml'],
   },
   fields: [
@@ -51,4 +52,4 @@ export const Media: CollectionConfig = {
       label: 'Caption',
     },
   ],
-}
+};
