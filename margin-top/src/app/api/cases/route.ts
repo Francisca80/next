@@ -9,7 +9,7 @@ export async function GET() {
 
     // Fetch cases data from Payload CMS
     const response = await (payload.find as any)({
-      collection: 'case',
+      collection: 'portfolio',
       where: {
         status: {
           equals: 'published'

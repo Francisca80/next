@@ -4,14 +4,14 @@ import { FaCode, FaServer, FaDatabase, FaMobile, FaCloud } from 'react-icons/fa'
 
 const DevelopmentPage: React.FC = () => {
   return (
-    <div className="bg-white">
+    <div className="min-h-screen bg-white">
       {/* Main Content */}
-      <div className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
+      <div className="container mx-auto px-4 py-24 mt-24 max-w-5xl">
         {/* Introduction Section */}
         <section className="mb-24">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Development</h2>
-          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
-          <p className="text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Development</h2>
+          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24" />
+          <p className="text-lg sm:text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
             Development is het hart van digitale innovatie. Het is het proces waarbij we ideeën omzetten in werkende, gebruiksvriendelijke digitale oplossingen. Of het nu gaat om een website, app of complex systeem: goede development zorgt ervoor dat alles soepel werkt en er professioneel uitziet.
 
             Bij Margin-Top combineren we technische expertise met creativiteit om digitale oplossingen te bouwen die niet alleen functioneel zijn, maar ook een indruk maken. We gebruiken de nieuwste technologieën en best practices om ervoor te zorgen dat jouw digitale product snel, veilig en schaalbaar is.
@@ -24,9 +24,9 @@ const DevelopmentPage: React.FC = () => {
         <section className="mb-24">
           <div className="flex flex-col md:flex-row items-start gap-12">
             <div className="md:w-2/3">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Hoe wordt Development toegepast?</h2>
-              <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
-              <p className="text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Hoe wordt Development toegepast?</h2>
+              <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24" />
+              <p className="text-lg sm:text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
                 Development is een complex proces dat bestaat uit verschillende onderdelen. 
                 Het begint met het analyseren van de behoeften en het opstellen van een technisch plan. 
                 Daarna volgen het ontwerpen van de architectuur, het schrijven van code, het testen en het implementeren.
@@ -39,7 +39,7 @@ const DevelopmentPage: React.FC = () => {
               </p>
             </div>
             <div className="md:w-1/3 sticky top-8">
-              <div className="relative h-[500px] w-full rounded-lg overflow-hidden shadow-lg">
+              <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden shadow-lg">
                 <Image
                   src="/wordpress/wordpressdev.jpg"
                   alt="Development Process"
@@ -55,17 +55,17 @@ const DevelopmentPage: React.FC = () => {
 
         {/* Approach Section */}
         <section className="mb-24">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Onze aanpak voor Development</h2>
-          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
-          <p className="text-xl text-gray-700 mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Onze aanpak voor Development</h2>
+          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24" />
+          <p className="text-lg sm:text-xl text-gray-700 mb-12">
             Het development-proces van Margin-Top is ontworpen om robuuste, schaalbare en gebruiksvriendelijke digitale oplossingen te creëren die perfect aansluiten bij jouw zakelijke doelen.
           </p>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {/* Front-end Development */}
             <div className="group border-b border-gray-200 pb-8">
               <div className="flex items-center mb-6">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] text-white mr-4">
                   <FaCode className="w-6 h-6" />
                 </div>
                 <div>
@@ -93,7 +93,7 @@ const DevelopmentPage: React.FC = () => {
             {/* Back-end Development */}
             <div className="group border-b border-gray-200 pb-8">
               <div className="flex items-center mb-6">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] text-white mr-4">
                   <FaServer className="w-6 h-6" />
                 </div>
                 <div>
@@ -121,7 +121,7 @@ const DevelopmentPage: React.FC = () => {
             {/* Database & Storage */}
             <div className="group border-b border-gray-200 pb-8">
               <div className="flex items-center mb-6">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] text-white mr-4">
                   <FaDatabase className="w-6 h-6" />
                 </div>
                 <div>
@@ -149,7 +149,7 @@ const DevelopmentPage: React.FC = () => {
             {/* Mobile Development */}
             <div className="group border-b border-gray-200 pb-8">
               <div className="flex items-center mb-6">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] text-white mr-4">
                   <FaMobile className="w-6 h-6" />
                 </div>
                 <div>
@@ -177,7 +177,7 @@ const DevelopmentPage: React.FC = () => {
             {/* Cloud & DevOps */}
             <div className="group border-b border-gray-200 pb-8">
               <div className="flex items-center mb-6">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
+                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] text-white mr-4">
                   <FaCloud className="w-6 h-6" />
                 </div>
                 <div>

@@ -1,13 +1,14 @@
 import './globals.css';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import ContactSectionDark from '@/components/ContactSectionDark';
+import ContactSectionDark from '@/components/ContactSection';
 import CookieConsent from '@/components/CookieConsent';
 import { CookieConsentProvider } from '@/context/CookieConsentContext';
 import LenisProvider from '@/components/LenisProvider';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import { Analytics } from '@/components/Analytics';
 import { Outfit } from 'next/font/google';
+import ContactSection from '@/components/ContactSection';
 
 interface Props {
   children: React.ReactNode;
@@ -37,7 +38,7 @@ export default async function RootLayout({
           <CookieConsentProvider>
             <Header />
             <main className="flex-grow">{children}</main>
-            <ContactSectionDark />    
+            <ContactSection />    
             <Footer />
             <CookieConsent />
             <Analytics />

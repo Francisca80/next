@@ -6,24 +6,24 @@ import { getPayload } from 'payload';
 import config from '@/payload.config';
 import { FaArrowRight } from 'react-icons/fa';
 import MoreCases from '@/components/MoreCases';
-import { Case, Media } from '@/payload-types';
+import { Portfolio, Media } from '@/payload-types';
+import LexicalContent from '@/components/LexicalContent';
 
 interface CaseDetailProps {
   params: Promise<{
-    id: string;  // Keep this as id since it's the route parameter
+    id: string;
   }>;
 } 
 
 export async function generateStaticParams() {
   const payloadConfig = await config;
   const payload = await getPayload({ config: payloadConfig });
-
-  const response = await payload.find({
-    collection: "case",
+  const response = await payload.find({ 
+    collection: 'portfolio',
     where: { status: { equals: "published" } },
   });
 
-  return response.docs.map((caseItem: Case) => ({ id: caseItem.slug }));
+  return response.docs.map((caseItem: Portfolio) => ({ id: caseItem.slug }));
 }
 
 export default async function CaseDetail(props: CaseDetailProps) {
@@ -35,7 +35,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
 
   // Get all published cases for the MoreCases component
   const allCasesResponse = await payload.find({
-    collection: 'case',
+    collection: 'portfolio',
     where: {
       status: {
         equals: 'published'
@@ -46,7 +46,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
 
   // Get the current case
   const response = await payload.find({
-    collection: 'case',
+    collection: 'portfolio',
     where: {
       status: {
         equals: 'published'
@@ -58,7 +58,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
     depth: 2
   });
 
-  const caseItem = response.docs[0] as Case;
+  const caseItem = response.docs[0] as Portfolio;
 
   if (!caseItem) {
     notFound();
@@ -114,7 +114,9 @@ export default async function CaseDetail(props: CaseDetailProps) {
           {/* About and Website */}
           <div>
             <h2 className="text-2xl font-bold mb-8">Over het project</h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">{caseItem.about}</p>
+            <div className="text-gray-600 text-lg leading-relaxed mb-8">
+              <LexicalContent content={caseItem.about} />
+            </div>
             {caseItem.url && (
               <Link 
                 href={caseItem.url}
@@ -131,14 +133,18 @@ export default async function CaseDetail(props: CaseDetailProps) {
         {/* Project Section */}
         <div className="mb-24">
           <h2 className="text-3xl font-bold mb-8">{caseItem.headingProject}</h2>
-          <p className="text-gray-600 text-lg leading-relaxed">{caseItem.descriptionProject}</p>
+          <div className="text-gray-600 text-lg leading-relaxed">
+            <LexicalContent content={caseItem.descriptionProject} />
+          </div>
         </div>
 
         {/* Process Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           <div>
             <h2 className="text-2xl font-bold mb-8">Het proces</h2>
-            <p className="text-gray-600 text-lg leading-relaxed mb-8">{caseItem.procesDescription}</p>
+            <div className="text-gray-600 text-lg leading-relaxed mb-8">
+              <LexicalContent content={caseItem.procesDescription} />
+            </div>
             {caseItem.figmalink && (
               <Link 
                 href={caseItem.figmalink}
@@ -166,7 +172,9 @@ export default async function CaseDetail(props: CaseDetailProps) {
         <div className="bg-gray-50 py-24 rounded-2xl my-24">
           <div className="px-8 sm:px-16">
             <h2 className="text-3xl font-bold mb-12">{caseItem.resultHeading}</h2>
-            <p className="text-gray-600 text-lg leading-relaxed max-w-3xl">{caseItem.resultText}</p>
+            <div className="text-gray-600 text-lg leading-relaxed max-w-3xl">
+              <LexicalContent content={caseItem.resultText} />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 mb-8 max-w-4xl mx-auto">
               {caseItem.resultImage && (
                 <div className="relative aspect-[9/16] max-w-sm mx-auto">
@@ -196,7 +204,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
       </section>
 
       {/* More Cases Section */}
-      <MoreCases cases={allCasesResponse.docs as Case[]} currentCaseId={caseItem.slug} />
+      <MoreCases cases={allCasesResponse.docs as Portfolio[]} currentCaseId={caseItem.slug} />
     </div>
   );
 }

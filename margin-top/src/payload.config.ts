@@ -22,6 +22,7 @@ import { Hosting } from './collections/Hosting'
 import { Ai } from './collections/Ai'
 import { Cookies } from './collections/Cookies'
 import { HowItWorks } from './collections/HowItWorks'
+import { Portfolio } from './collections/Portfolio'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -39,7 +40,6 @@ export default buildConfig({
     Pages,
     Hero,
     Service,
-    Case,
     About,
     Branding,
     Development,
@@ -48,6 +48,7 @@ export default buildConfig({
     Ai,
     Cookies,
     HowItWorks,
+Portfolio
   ],
   i18n: {
     fallbackLanguage: 'en',

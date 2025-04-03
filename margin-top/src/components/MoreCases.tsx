@@ -4,16 +4,16 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
-import { Case, Media } from '@/payload-types';
+import { Portfolio, Media } from '@/payload-types';
 
 interface MoreCasesProps {
-  cases: Case[];
+  cases: Portfolio[];
   currentCaseId: string;
 }
 
 const getImageUrl = (image: Media | string | null): string => {
-  if (!image) return '/placeholder-case.jpg';
-  return typeof image === 'string' ? image : image.url || '/placeholder-case.jpg';
+  if (!image) return '/home-1.jpg';
+  return typeof image === 'string' ? image : image.url || '/home-1.jpg';
 };
 
 const getImageAlt = (image: Media | string | null, fallback: string): string => {

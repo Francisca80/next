@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
-import { Case, Media } from '@/payload-types';
+import { Portfolio, Media } from '@/payload-types';
 
 interface CaseGridItem {
   colSpan: number;
@@ -57,7 +57,7 @@ export default async function Cases() {
   const payload = await getPayload({config: payloadConfig});
   
   const response = await (payload.find as any)({
-    collection: 'case',
+    collection: 'portfolio',
     where: {
       status: {
         equals: 'published'
@@ -68,7 +68,7 @@ export default async function Cases() {
     limit: 50
   });
 
-  const cases = response.docs as Case[];
+  const cases = response.docs as Portfolio[];
 
   return (
     <div className="bg-white">
@@ -84,7 +84,7 @@ export default async function Cases() {
         </p>
        
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[250px] sm:auto-rows-[200px] gap-4">
-          {cases.map((caseItem: Case, index: number) => {
+          {cases.map((caseItem: Portfolio, index: number) => {
             const gridConfig = getGridItemConfig(index);
             let imageUrl = '/placeholder-case.jpg';
 
@@ -131,7 +131,7 @@ export default async function Cases() {
                           {caseItem.title}
                         </h3>
                         <p className={`text-white/90 line-clamp-2 sm:line-clamp-3 mb-2 ${gridConfig.descriptionSize}`}>
-                          {caseItem.description}
+                          {caseItem.introduction}
                         </p>
                         {caseItem.services && (
                           <div className="hidden sm:flex flex-wrap gap-1.5 mb-2">

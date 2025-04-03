@@ -15,7 +15,7 @@ export interface Config {
     media: Media;
     service: Service;
     journal: Journal;
-    case: Case;
+    portfolio: Portfolio;
     about: About; 
     hosting: Hosting;
     branding: Branding;
@@ -115,30 +115,31 @@ export interface Branding {
   content: any;
 } 
 
-export interface Case {   
-  title: string;  
+
+export interface Portfolio {
+  
+  title: string;
   introduction: string;
-  description: string;
+  order: number;
   image: Media | string | null;
-  url?: string;
+  url: string;
   slug: string;
-  about: string;
+  about: any; 
   services: Array<{ service: string; id: string }>;
   headingProject: string;
-  descriptionProject: string;
-  procesDescription: string;
+  descriptionProject: any;
+  procesDescription: any;
   procesImage: Media | string | null;
-  procesImageCaption: string;
-  figmalink?: string;
+  figmalink: string;
   resultHeading: string;
-  resultText: string;
+  resultText: any;
   resultImage: Media | string | null;
-  resultImageCaption: string;
-  resultImage2: Media | string | null;
-  resultImageCaption2: string;
+  resultImage2: Media | string | null; 
   status: 'draft' | 'published';
   updatedAt: string;
-  createdAt: string;  
+  createdAt: string;
+  publishedDate: string;
+
 }
 
 export interface About {

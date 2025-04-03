@@ -7,26 +7,10 @@ import { FaArrowRight } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
 import * as gtag from '@/lib/gtag';
 import Lenis from 'lenis';
-
-interface Media {
-  url: string;
-  alt?: string;
-  filename: string;
-}
-
-interface Case {
-  id: string;
-  title: string;
-  introduction: string;
-  image: Media;
-  url: string;
-  slug: string;
-  order: number;
-  status: 'draft' | 'published';
-}
+import { Portfolio, Media } from '@/payload-types';
 
 const CasesSection: React.FC = () => {
-  const [cases, setCases] = useState<Case[]>([]);
+  const [cases, setCases] = useState<Portfolio[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const lenisRef = useRef<Lenis | null>(null);
@@ -118,6 +102,16 @@ const CasesSection: React.FC = () => {
     });
   };
 
+  const getImageUrl = (image: Media | string | null): string => {
+    if (!image) return '/home.jpg';
+    return typeof image === 'string' ? image : image.url || '/home.jpg';
+  };
+
+  const getImageAlt = (image: Media | string | null, fallback: string): string => {
+    if (!image) return fallback;
+    return typeof image === 'string' ? fallback : image.alt || fallback;
+  };
+
   return (
     <div ref={containerRef} className="min-h-[200vh] relative">
       <div className="h-screen sticky top-0 flex flex-col justify-center bg-white">
@@ -143,7 +137,7 @@ const CasesSection: React.FC = () => {
               {cases.map((caseItem, index) => (
                 <Link 
                   href={`/cases/${caseItem.slug}`} 
-                  key={caseItem.id}
+                  key={caseItem.slug}
                   onClick={(e) => handleCaseClick(e, caseItem.title)}
                   className={`group relative flex-none w-[85vw] sm:w-[45vw] lg:w-[30vw] snap-start ${
                     inView 
@@ -156,9 +150,12 @@ const CasesSection: React.FC = () => {
                 >
                   <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
                     <Image 
-                      src={caseItem.image.url} 
-                      alt={caseItem.image.alt || caseItem.title}
+                      src={getImageUrl(caseItem.image)} 
+                      alt={getImageAlt(caseItem.image, caseItem.title)}
                       fill
+                      priority={index === 0}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 30vw"
                       className="object-cover transform transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
