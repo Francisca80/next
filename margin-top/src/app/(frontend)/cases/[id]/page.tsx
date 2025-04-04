@@ -65,8 +65,8 @@ export default async function CaseDetail(props: CaseDetailProps) {
   }
 
   const getImageUrl = (image: Media | string | null): string => {
-    if (!image) return '/placeholder-case.jpg';
-    return typeof image === 'string' ? image : image.url || '/placeholder-case.jpg';
+    if (!image) return '/home.jpg';
+    return typeof image === 'string' ? image : image.url || '/home.jpg';
   };
 
   const getImageAlt = (image: Media | string | null, fallback: string): string => {

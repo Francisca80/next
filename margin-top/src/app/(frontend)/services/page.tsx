@@ -19,16 +19,6 @@ export default async function Services() {
 
   const services = response.docs as Service[];
 
-  // Fetch the services image from Payload
-  const servicesImageResponse = await (payload.find as any)({
-    collection: 'media',
-    where: {
-      filename: { equals: 'services.jpg' }
-    }
-  });
-
-  const servicesImage = servicesImageResponse?.docs?.[0]?.url;
-
   return (
     <div className="bg-white">
       <section className="w-11/12 max-w-5xl mx-auto py-24">

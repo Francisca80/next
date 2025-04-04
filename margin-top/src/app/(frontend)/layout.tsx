@@ -1,7 +1,6 @@
 import './globals.css';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import ContactSectionDark from '@/components/ContactSection';
 import CookieConsent from '@/components/CookieConsent';
 import { CookieConsentProvider } from '@/context/CookieConsentContext';
 import LenisProvider from '@/components/LenisProvider';
