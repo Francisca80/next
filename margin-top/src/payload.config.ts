@@ -44,10 +44,10 @@ export default buildConfig({
     Development,
     Ux,
     Hosting,
-    Ai,
     Cookies,
     HowItWorks,
-Portfolio
+    Portfolio,
+    Ai
   ],
   i18n: {
     fallbackLanguage: 'en',

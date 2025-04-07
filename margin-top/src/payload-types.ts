@@ -36,12 +36,29 @@ export interface Config {
   };
 }
 
-export interface Development {
+export interface Development {    
   id: string;
   title: string;
-  description: string;
-  image: Media | string | null;
-  content: any;
+  slug: string;
+  introduction: string;
+  processTitle: string;
+  processDescription: string;
+  processImage: Media | string;
+  approachTitle: string;
+  approachDescription: string;
+  phases: Array<{
+    phaseNumber: string;
+    title: string;
+    icon: string;
+    steps: Array<{
+      number: string;
+      title: string;
+      description: string;
+    }>;
+  }>; 
+  status: 'draft' | 'published';
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface Ux {
@@ -55,10 +72,31 @@ export interface Ux {
 export interface Ai {
   id: string;
   title: string;
-  description: string;
-  image: Media | string | null;
-  content: any;
+  slug: string;
+  introduction: string;
+  innovationTitle: string;
+  innovationDescription: string;
+  innovationFeatures: Array<{
+    title: string;
+    description: string;
+  }>;
+  solutionsTitle: string;
+  solutionsDescription: string;
+  solutions: Array<{
+    title: string;
+    description: string;
+  }>;
+  faqTitle: string;
+  faqDescription: string;
+  faqs: Array<{
+    question: string;
+    answer: string;
+  }>;
+  status: 'draft' | 'published';
+  createdAt: string;
+  updatedAt: string;  
 }
+  
 
 export interface Cookies {  
   id: string;
