@@ -1,6 +1,7 @@
 import { getPayload } from 'payload'
 import config from '@/payload.config'
 import ServiceFaqSection from '@/components/ServiceFaqSection'
+import ServiceCTA from '@/components/ServiceCTA'
 
 interface AIContent {
     id: string
@@ -95,14 +96,24 @@ export default async function AIPage() {
                         ))}
                     </div>
                 </section>
-
+              
                 {/* FAQ Section */}
                 <ServiceFaqSection 
                     title={content.faqTitle}
                     description={content.faqDescription}
                     faqs={content.faqs || []}
                 />
-            </div>
+ 
+                {/* CTA Section */}
+                        
+                <section className="mb-24"> 
+                <ServiceCTA 
+                    serviceType="ai"
+                    title="Klaar om AI te integreren in je project?"
+                    subtitle="Laat ons je helpen met het implementeren van AI-oplossingen"
+                />
+                </section>
+                </div>
         </div>
     )
 }

@@ -1,0 +1,355 @@
+'use client';
+import React, { useState, useEffect } from 'react';
+import { motion, useAnimation } from 'framer-motion';
+import { FaRocket,FaCode, FaServer, FaPalette, FaChartLine, FaArrowRight } from 'react-icons/fa';
+import Link from 'next/link';
+import * as gtag from '@/lib/gtag';
+
+interface ServiceCTAProps {
+  title?: string;
+  subtitle?: string;
+  ctaText?: string;
+  ctaLink?: string;
+  serviceType?: 'hosting' | 'development' | 'ux' | 'branding' | 'ai' | 'services' | 'margin-top';
+}
+
+const ServiceCTA: React.FC<ServiceCTAProps> = ({
+  title = "Klaar om je project te starten?",
+  subtitle = "Wij helpen je met het realiseren van je digitale ambities",
+  ctaText = "Neem contact op",
+  ctaLink = "/contact",
+  serviceType = "hosting"
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const controls = useAnimation();
+
+  useEffect(() => {
+    // Trigger animation when component mounts
+    controls.start("visible");
+  }, [controls]);
+
+  const handleCTAClick = () => {
+    gtag.event({
+      action: 'service_cta_click',
+      category: 'conversion',
+      label: serviceType,
+    });
+  };
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 100 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 1,
+        ease: [0.22, 1, 0.36, 1],
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
+  const buttonVariants = {
+    rest: { 
+      scale: 1,
+      x: 0
+    },
+    hover: { 
+      scale: 1.1,
+      x: 10,
+      transition: {
+        duration: 0.3,
+        ease: [0.22, 1, 0.36, 1]
+      }
+    }
+  };
+
+  // Get icon based on service type
+  const getServiceIcon = () => {
+    switch (serviceType) {
+      case 'hosting':
+        return <FaServer className="w-12 h-12 text-white" />;
+      case 'development':
+        return <FaCode className="w-12 h-12 text-white" />;
+      case 'ux':
+        return <FaChartLine className="w-12 h-12 text-white" />;
+      case 'branding':
+        return <FaPalette className="w-12 h-12 text-white" />;
+      case 'ai':
+        return <FaRocket className="w-12 h-12 text-white" />;
+      case 'services':
+        return <FaRocket className="w-12 h-12 text-white" />;
+      case 'margin-top':
+        return <FaRocket className="w-12 h-12 text-white" />;
+      default:
+        return <FaRocket className="w-12 h-12 text-white" />;
+    }
+  };
+
+  // Get service-specific features
+  const getServiceFeatures = () => {
+    switch (serviceType) {
+      case 'hosting':
+        return [
+          "Betrouwbare en snelle servers",
+          "Dagelijks back-ups",
+          "Domein registratie"
+        ];
+      case 'development':
+        return [
+          "Custom webapplicaties",
+          "Responsive design",
+          "API integraties",
+          "Performance optimalisatie"
+        ];
+      case 'ux':
+        return [
+          "Gebruikersonderzoek",
+          "Wireframing & prototyping",
+          "Usability testing",
+          "Conversie optimalisatie"
+        ];
+      case 'branding':
+        return [
+          "Logo & huisstijl ontwikkeling",
+          "Visuele identiteit",
+          "Brand guidelines",
+          "Marketing materiaal"
+        ];
+      case 'ai':
+        return [
+          "AI-integratie in applicaties",
+          "Data analyse",
+          "Automatisering",
+          "Generatieve AI"
+        ];      
+      case 'services':
+        return [
+          "Professionele dienstverlening",
+          "Op maat gemaakte oplossingen",
+          "Expertise & ervaring",
+          "Persoonlijke aanpak"
+        ];
+      case 'margin-top':
+        return [
+          "Alle diensten onder één hoed",
+          "Professionele dienstverlening",
+          "Op maat gemaakte oplossingen",
+          "Expertise & ervaring",
+          "Persoonlijke aanpak"
+        ];
+      default:
+        return [
+          "Professionele dienstverlening",
+          "Op maat gemaakte oplossingen",
+          "Expertise & ervaring",
+          "Persoonlijke aanpak"
+        ];
+    }
+  };
+
+  return (
+    <motion.div 
+      className="bg-gray-100 text-black py-24 px-4  overflow-hidden relative"
+      initial="hidden"
+      animate={controls}
+      variants={containerVariants}
+    >
+      {/* Background animated elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div 
+          className="absolute -top-20 -right-20 w-64 h-64 bg-[#4F8BD2] rounded-full opacity-20"
+          animate={{ 
+            scale: [1, 1.5, 1],
+            rotate: [0, 180, 0]
+          }}
+          transition={{ 
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div 
+          className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#4F8BD2] rounded-full opacity-20"
+          animate={{ 
+            scale: [1.5, 1, 1.5],
+            rotate: [180, 0, 180]
+          }}
+          transition={{ 
+            duration: 15,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+      </div>
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          <motion.div 
+            className="md:w-1/2 mb-8 md:mb-0 md:ml-16"
+            variants={itemVariants}
+          >
+            <motion.h2 
+              className="sm:text-3xl md:text-4xl mb-4 relative inline-block"
+              variants={itemVariants}
+            >
+              {title}
+           
+            </motion.h2>
+            <motion.p 
+              className="text-lg mb-6 text-gray-700"
+              variants={itemVariants}
+            >
+              {subtitle}
+            </motion.p>
+            
+            <motion.div 
+              className="flex items-center mb-6"
+              variants={itemVariants}
+            >
+              <motion.div 
+                className="bg-[#4F8BD2] p-3 rounded-full mr-4"
+                whileHover={{ rotate: 15, scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {getServiceIcon()}
+              </motion.div>
+              <div>
+                <h3 className="text-xl font-semibold capitalize">{serviceType} </h3>
+                <p className="text-gray-600">Professionele oplossingen op maat</p>
+              </div>
+            </motion.div>
+
+            <motion.ul 
+              className="space-y-2 mb-8"
+              variants={itemVariants}
+            >
+              {getServiceFeatures().map((feature, index) => (
+                <motion.li 
+                  key={index}
+                  className="flex items-center"
+                  variants={itemVariants}
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <span className="w-2 h-2 bg-[#4F8BD2] rounded-full mr-3"></span>
+                  <span className="text-gray-700">{feature}</span>
+                </motion.li>
+              ))}
+            </motion.ul>
+
+            <motion.div
+              variants={itemVariants}
+            >
+              <Link href={ctaLink}>
+                <motion.button
+                  className="header-button inline-flex items-center"
+                  variants={buttonVariants}
+                  initial="rest"
+                  whileHover="hover"
+                  onClick={handleCTAClick}
+                  onHoverStart={() => setIsHovered(true)}
+                  onHoverEnd={() => setIsHovered(false)}
+                >
+                  {ctaText}
+                  <motion.span 
+                    className="inline-block ml-2"
+                    animate={{ x: isHovered ? 10 : 0 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <FaArrowRight />
+                  </motion.span>
+                </motion.button>
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          <motion.div 
+            className="md:w-1/2 flex justify-center"
+            variants={itemVariants}
+          >
+            <motion.div 
+              className="relative w-64 h-64"
+              animate={{ 
+                rotate: [0, 15, 0, -15, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ 
+                duration: 10,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/50 rounded-full opacity-30"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.3, 0.5, 0.3]
+                }}
+                transition={{ 
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div 
+                className="absolute inset-4 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/30 rounded-full opacity-40"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  opacity: [0.4, 0.6, 0.4]
+                }}
+                transition={{ 
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div 
+                className="absolute inset-8 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/20 rounded-full opacity-50 flex items-center justify-center"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  opacity: [0.5, 0.7, 0.5]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <motion.div 
+                  className="text-6xl text-white opacity-90"
+                  animate={{ 
+                    rotate: [0, 10, 0, -10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  {getServiceIcon()}
+                </motion.div>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+export default ServiceCTA; 

@@ -24,15 +24,53 @@ export const Hosting: CollectionConfig = {
             required: true,
         },  
         {
+            name: 'sections',
+            type: 'array',
+            fields: [
+                {
+                    name: 'title',
+                    type: 'text',
+                    required: true,
+                },
+                {
+                    name: 'description',
+                    type: 'textarea',
+                    required: true,
+                },
+                {
+                    name: 'features',
+                    type: 'array',
+                    fields: [
+                        {
+                            name: 'feature',
+                            type: 'text',
+                            required: true,
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             name: 'status',
             type: 'select',
             options: ['draft', 'published'],
             required: true,
+            defaultValue: 'draft',
         },  
         {
             name: 'createdAt',
             type: 'date',
-            required: true,
+            admin: {
+                position: 'sidebar',
+            },
         },  
-    ]
+        {
+            name: 'updatedAt',
+            type: 'date',
+            admin: {
+                position: 'sidebar',
+            },
+        },
+    ],
+    timestamps: true,
 }

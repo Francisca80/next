@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { FaSearch, FaSitemap, FaPencilRuler, FaCode, FaChartLine } from 'react-icons/fa';
+import ServiceCTA from '@/components/ServiceCTA';
 
 const UXPage: React.FC = () => {
     return (
@@ -205,7 +206,16 @@ const UXPage: React.FC = () => {
                         </div>
                     </div>
                 </section>
+
             </div>
+            <section> 
+      <ServiceCTA
+          serviceType="ux"
+          title="Klaar om je project te starten?"
+          subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"
+          ctaText="Vraag een offerte aan"
+        />
+        </section>
         </div>
     );
 };

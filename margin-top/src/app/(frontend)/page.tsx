@@ -5,7 +5,7 @@ import ClientLogoBanner from "@/components/ClientLogoBanner";
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import AboutSection from "@/components/AboutSection";
-
+import ServiceCTA from "@/components/ServiceCTA";
 interface PageData {
   heroImage: {
     url: string;
@@ -79,6 +79,12 @@ export default async function Home() {
         <AboutSection />
         <CaseSection />
         <ServicesSection initialServices={services} />
+        <ServiceCTA
+          serviceType="margin-top"
+          title="Klaar om je project te starten?"
+          subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"
+          ctaText="Vraag een offerte aan"
+        />
         <ClientLogoBanner />  
       </div>
     </div>

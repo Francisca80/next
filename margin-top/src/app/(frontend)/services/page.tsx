@@ -6,6 +6,7 @@ import { getPayload } from 'payload';
 import config from '@/payload.config';
 import { Service, Media } from '@/payload-types';
 import HowItWorksSection from '@/components/HowItWorksSection';
+import ServiceCTA from '@/components/ServiceCTA';
 
 export default async function Services() {
   const payloadConfig = await config;
@@ -77,6 +78,16 @@ export default async function Services() {
 
       {/* How it works Section */}
       <HowItWorksSection />
+
+      {/* Global CTA Section */}
+      <section className="w-11/12 max-w-6xl mx-auto pb-24">
+        <ServiceCTA 
+          title="Klaar om je project te starten?"
+          subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"
+          ctaText="Vraag een offerte aan"
+          serviceType="services"
+        />
+      </section>
     </div>
   );
 }

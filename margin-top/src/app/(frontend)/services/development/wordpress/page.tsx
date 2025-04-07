@@ -191,7 +191,7 @@ export default function DevelopmentPage() {
                         </div>
 
                         <div className="p-6 border border-gray-200 rounded-lg">
-                            <h3 className="text-xl font-bold mb-4 text-[#4F8BD2]">Onderhoud</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#4F8BD2]">Hosting</h3>
                             <p className="text-gray-700 mb-4">Updates & security</p>
                             <p className="text-2xl font-bold text-[#4F8BD2]">Vanaf €75,- /maand</p>
                         </div>

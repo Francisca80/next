@@ -1,6 +1,7 @@
-import React from 'react';
-import Image from 'next/image';
-import { FaCode, FaServer, FaDatabase, FaMobile, FaCloud } from 'react-icons/fa';
+import React from "react";
+import { FaCloud, FaCode, FaCogs, FaDatabase, FaMobile, FaPalette, FaRocket, FaServer } from "react-icons/fa";
+import ServiceCTA from '@/components/ServiceCTA';
+
 import { getPayload } from 'payload';
 import config from '@/payload.config';
 import { Development as DevelopmentType, Media } from '@/payload-types';
@@ -105,14 +106,14 @@ export default async function DevelopmentPage() {
             </div>
             <div className="md:w-1/3 sticky top-8">
               <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden shadow-lg">
-                <Image
+                {/* <Image
                   src={getImageUrl(developmentContent?.processImage)}
                   alt="Development Process"
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"
                   priority
-                />
+                /> */}
               </div>
             </div>
           </div>
@@ -159,14 +160,24 @@ export default async function DevelopmentPage() {
             ))}
           </div>
         </section>
+        </div>
+        <section className="mb-24"> 
+      <ServiceCTA
+          serviceType="development"
+          title="Klaar om je project te starten?"
+          subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"
+          ctaText="Vraag een offerte aan"
+        />
+      </section>
 
-        {/* FAQ Section */}
+      <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">   {/* FAQ Section */}
         <ServiceFaqSection 
           title={developmentContent?.faqTitle}
           description={developmentContent?.faqDescription}
           faqs={developmentContent?.faqs || []}
-        />
-      </div>
+            />
+      </section>
+  
     </div>
   );
 } 

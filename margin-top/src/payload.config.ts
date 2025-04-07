@@ -18,10 +18,10 @@ import { Branding } from './collections/Branding'
 import { Development } from './collections/Development'
 import { Ux } from './collections/Ux'
 import { Hosting } from './collections/Hosting'
-import { Ai } from './collections/Ai'
 import { Cookies } from './collections/Cookies'
 import { HowItWorks } from './collections/HowItWorks'
 import { Portfolio } from './collections/Portfolio'
+import { Ai } from './collections/Ai'
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
@@ -47,7 +47,7 @@ export default buildConfig({
     Cookies,
     HowItWorks,
     Portfolio,
-    Ai
+        Ai
   ],
   i18n: {
     fallbackLanguage: 'en',

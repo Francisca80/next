@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload'
+import ServiceCTA from '@/components/ServiceCTA'
 
 export const Ai: CollectionConfig = {
     slug: 'ai',

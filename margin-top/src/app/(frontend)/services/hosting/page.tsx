@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
-import { Branding as BrandingType, Media } from '@/payload-types';
+import { Hosting as HostingType, Media } from '@/payload-types';
 import ServiceCTA from '@/components/ServiceCTA';
 
 interface Section {
@@ -13,16 +13,15 @@ interface Section {
   }>;
 }
 
-interface BrandingContent extends BrandingType {
+interface HostingContent extends HostingType {
   sections?: Section[];
 }
 
-export default async function BrandingPage() {
-  const payloadConfig = await config;
-  const payload = await getPayload({config: payloadConfig});
+export default async function HostingPage() {
+  const payload = await getPayload({ config });
   
-  const response = await (payload.find as any)({
-    collection: 'branding',
+  const { docs: [hostingContent] } = await payload.find({
+    collection: 'hosting',
     where: {
       status: {
         equals: 'published',
@@ -30,7 +29,7 @@ export default async function BrandingPage() {
     },
   });
 
-  const brandingContent = response.docs[0] as BrandingContent;
+  const content = hostingContent as HostingContent;
 
   const getImageUrl = (image: Media | string | null): string => {
     if (!image) return '/banner.png';
@@ -42,16 +41,16 @@ export default async function BrandingPage() {
       <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
         <div className="inline-block mb-16">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
-            {brandingContent?.title || 'Design'}
+            {content?.title || 'Hosting'}
           </h1>
           <hr className="border-gray-600 mb-4 border-t-2" />
         </div>
         <p className="text-xl text-gray-600 max-w-3xl mb-24">
-          {brandingContent?.description || 'Branding, copy en visual design — allemaal onder één hoed.'}
+          {content?.description || 'Betrouwbare en snelle hosting oplossingen voor jouw website.'}
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {brandingContent?.sections?.map((section: Section, index: number) => (
+          {content?.sections?.map((section: Section, index: number) => (
             <div key={index}>
               <h2 className="text-2xl font-bold mb-6">{section.title}</h2>
               <p className="text-gray-600 mb-8">
@@ -69,22 +68,23 @@ export default async function BrandingPage() {
 
           <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
             <Image
-              src={getImageUrl(brandingContent?.image)}
-              alt={brandingContent?.title || "Design service"}
+              src={getImageUrl(content?.image)}
+              alt={content?.title || "Hosting service"}
               fill
               className="object-cover"
             />
           </div>
-        </div>
+                </div>
+  
       </section>
-
       <section>
-        <ServiceCTA 
-          serviceType="branding"
-          title="Klaar om je merk te versterken?"
-          subtitle="Laat ons je helpen met het ontwikkelen van een sterke visuele identiteit"
+      <ServiceCTA
+          serviceType="hosting"
+          title="Klaar om je project te starten?"
+          subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"
+          ctaText="Vraag een offerte aan"
         />
       </section>
     </div>
   );
-}           
+} 
