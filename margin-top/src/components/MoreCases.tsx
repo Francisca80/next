@@ -48,7 +48,7 @@ export default function MoreCases({ cases, currentCaseId }: MoreCasesProps) {
                   />
                   <div className="absolute inset-0 bg-black/50 group-hover:bg-black/60 transition-colors duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <h3 className="text-xl font-bold text-white mb-2">
+                      <h3 className="text-xl font-bold !text-white mb-2">
                         {caseItem.title}
                       </h3>
                       <p className="text-white/90 line-clamp-2 mb-4">

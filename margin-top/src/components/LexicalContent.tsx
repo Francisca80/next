@@ -10,6 +10,9 @@ interface LexicalNode {
   tag?: string;
   listType?: 'number' | 'bullet';
   url?: string;
+  direction?: string;
+  indent?: number;
+  version?: number;
 }
 
 type LexicalContentProps = {
@@ -109,20 +112,30 @@ function renderNode(node: LexicalNode): React.ReactNode {
       );
 
     default:
+      console.log('Unknown node type:', node.type, node);
       return null;
   }
 }
 
 export default function LexicalContent({ content }: LexicalContentProps) {
-  try {
-    const parsedContent = typeof content === 'string' ? JSON.parse(content) : content;
+  if (!content) return null;
+  
+  // If content is a string, try to parse it as JSON
+  const parsedContent = typeof content === 'string' ? JSON.parse(content) : content;
+  
+  // Handle the case where content is an object with a root property
+  if (parsedContent.root) {
     return (
       <div className="prose prose-lg max-w-none">
-        {renderNode(parsedContent)}
+        {renderNode(parsedContent.root)}
       </div>
     );
-  } catch (error) {
-    console.error('Error parsing Lexical content:', error);
-    return null;
   }
+  
+  // If content is a direct node, wrap it in a root
+  return (
+    <div className="prose prose-lg max-w-none">
+      {renderNode({ type: 'root', children: [parsedContent] })}
+    </div>
+  );
 } 

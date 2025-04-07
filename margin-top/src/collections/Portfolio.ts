@@ -1,4 +1,10 @@
 import { CollectionConfig } from "payload";
+import { lexicalEditor } from '@payloadcms/richtext-lexical';
+import {
+  BlocksFeature,
+  LinkFeature,
+  HeadingFeature,
+} from '@payloadcms/richtext-lexical';
 
 export const Portfolio: CollectionConfig = {
   slug: 'portfolio',
@@ -53,8 +59,16 @@ export const Portfolio: CollectionConfig = {
       type: 'richText',
       required: true,
       admin: {
-          description: 'The main content of the post',
+        description: 'The main content of the post',
       },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({}),
+          LinkFeature({}),
+          HeadingFeature({}),
+        ],
+      }),
     },
     {
       name: 'services',
@@ -80,16 +94,32 @@ export const Portfolio: CollectionConfig = {
       type: 'richText',
       required: true,
       admin: {
-          description: 'The main content of the post',
+        description: 'The main content of the post',
       },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({}),
+          LinkFeature({}),
+          HeadingFeature({}),
+        ],
+      }),
     },
     {
       name: 'procesDescription',  
       type: 'richText',
       required: true,
       admin: {
-          description: 'The main content of the post',
+        description: 'The main content of the post',
       },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({}),
+          LinkFeature({}),
+          HeadingFeature({}),
+        ],
+      }),
     },
     {
       name: 'procesImage',
@@ -113,8 +143,16 @@ export const Portfolio: CollectionConfig = {
       type: 'richText',
       required: true,
       admin: {
-          description: 'The main content of the post',
+        description: 'The main content of the post',
       },
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({}),
+          LinkFeature({}),
+          HeadingFeature({}),
+        ],
+      }),
     },
 
     {

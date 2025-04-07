@@ -1,6 +1,12 @@
 import type { CollectionConfig } from 'payload'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, LinkFeature, HeadingFeature } from '@payloadcms/richtext-lexical'
+
 export const Branding: CollectionConfig = {
     slug: 'branding',
+    admin: {
+        useAsTitle: 'title',
+    },
     fields: [
         {
             name: 'title',
@@ -11,6 +17,7 @@ export const Branding: CollectionConfig = {
             name: 'slug',
             type: 'text',
             required: true,
+            unique: true,
         },                      
         {
             name: 'description',
@@ -18,7 +25,7 @@ export const Branding: CollectionConfig = {
             required: true,
         },     
         {
-            name: 'content',
+            name: 'sections',
             type: 'array',
             required: true,
             fields: [
@@ -31,36 +38,47 @@ export const Branding: CollectionConfig = {
                     name: 'description',
                     type: 'textarea',
                     required: true,
-            } ]   },                                                                                                                            
+                },
+                {
+                    name: 'features',
+                    type: 'array',
+                    fields: [
+                        {
+                            name: 'feature',
+                            type: 'text',
+                            required: true,
+                        }
+                    ]
+                }
+            ]
+        },
         {
             name: 'image',
             type: 'upload',
             relationTo: 'media',
-            required: true,
-        },  
-        {
-            name: 'link',
-            type: 'text',
-            required: true,
-        },  
+            required: false,
+        },
         {
             name: 'status',
             type: 'select',
             options: ['draft', 'published'],
+            defaultValue: 'draft',
             required: true,
-        },  
+        },
         {
             name: 'createdAt',
             type: 'date',
-            required: true,
-        },  
+            admin: {
+                position: 'sidebar',
+            },
+        },
         {
             name: 'updatedAt',
             type: 'date',
-            required: true,
-        },  
-        
-        
-        
-    ]
+            admin: {
+                position: 'sidebar',
+            },
+        },
+    ],
+    timestamps: true,
 }

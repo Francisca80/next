@@ -44,17 +44,19 @@ const About: React.FC = () => {
               <p className="text-base sm:text-lg md:text-xl text-gray-700">
                 Bij Margin-Top geven we jouw visie de ruimte die het verdient. 
                 Hierbij gaat het niet alleen om het bouwen van websites, maar om het creëren van digitale omgevingen 
-                die de aandacht trekken en bezoekers ook blijven boeien.
+                die de aandacht trekken en bezoekers ook blijven boeien. Vaak krijgen we de vraag om een website te bouwen, 
+                die vindbaar is op Google. Door de inzet van SEO technieken wordt de website optimaal gemaakt voor zoekmachines, 
+                maar ook voor de nieuwste manier van zoeken via AI-clients zoals ChatGPT.
               </p>
            <br></br>
             <p className="text-base sm:text-lg md:text-xl text-gray-700">
-              Ik geloof dat gedurfde ontwerpen het verschil maken. Daarom zetten wordt jouw merk in de schijnwerpers gezet met innovatieve oplossingen 
+              W geloven dat gedurfde ontwerpen het verschil maken. Daarom zetten wordt jouw merk in de schijnwerpers gezet met innovatieve oplossingen 
               die verder gaan dan standaard webdesign.
             </p>
             <br></br>
             <p className="text-base sm:text-lg md:text-xl text-gray-700">
               Of het nu gaat om een volledige website, een unieke webshop, een app of een interactieve gebruikerservaring, 
-              Ik bied de ruimte om jouw creatieve visie tot leven te brengen. Als expert in design en development 
+             Margin-Top biedt de ruimte om jouw creatieve visie tot leven te brengen. Als expert in design en development 
               zorgen voor een naadloze combinatie van vorm en functionaliteit. Onze creativiteit kent geen grenzen – 
               samen realiseren we jouw unieke online aanwezigheid.
             </p>
@@ -105,12 +107,12 @@ const About: React.FC = () => {
                 <p>
                   Francisca is de oprichter van Margin-Top, een digitaal bureau dat gedreven wordt door een passie voor het ontwerpen van 
                   naadloze gebruikerservaringen en innovatieve digitale oplossingen. Met een achtergrond in UX-design, front-end ontwikkeling
-                  en 25 jaar IT-ervaring heeft Francisca Margin-top opgericht om merken en bedrijven te voorzien van vooruitstrevende, 
-                  gebruiksvriendelijke websites, apps en ander digital producten.
+                  en 25 jaar IT-ervaring heeft Francisca Margin-Top opgericht om merken en bedrijven te voorzien van vooruitstrevende, 
+                  gebruiksvriendelijke websites, apps en andere digitale producten.
                 </p>
                 <p>
                   Margin-Top is de plek waar passie voor design, innovatie en technologie samenkomen, samen brengen we jouw visie tot leven. 
-                  We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot grote bedrijven.
+                  We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot overheidsorganisaties en financiële instellingen.
                 </p>
               </div>
               <div className="bg-[#340066] rounded-lg mt-12 p-6">

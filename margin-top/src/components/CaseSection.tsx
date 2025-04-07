@@ -124,7 +124,7 @@ const CasesSection: React.FC = () => {
               <hr className="absolute bottom-0 left-0 w-full border-gray-600 border-t-2" />
             </div>
             <p className="text-left text-gray-700 text-lg max-w-3xl">
-            Bij Margin-top werken we aan digitale oplossingen die ondernemersverder helpen. 
+            Bij Margin-top werken we aan digitale oplossingen die ondernemers verder helpen. 
             Van branding tot vernieuwende websites. Een selectie van ons recente werk.
             </p>
           </div>

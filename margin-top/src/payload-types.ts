@@ -143,11 +143,14 @@ export interface Portfolio {
 }
 
 export interface About {
-  id: string;
-  title: string;
-  content: any;
-  image: Media | string | null;
-  link?: string;
+      id: string;
+      title: string;
+      content: any;
+      image: Media | string | null;
+      link?: string;
+      title2: string;
+      content2: any;
+      image2: Media | string | null;
 }
 
 export interface UserAuthOperations {

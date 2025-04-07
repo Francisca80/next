@@ -64,6 +64,12 @@ export default async function CaseDetail(props: CaseDetailProps) {
     notFound();
   }
 
+  // Debug logging
+  console.log('About content:', caseItem.about);
+  console.log('Project description:', caseItem.descriptionProject);
+  console.log('Process description:', caseItem.procesDescription);
+  console.log('Result text:', caseItem.resultText);
+
   const getImageUrl = (image: Media | string | null): string => {
     if (!image) return '/home.jpg';
     return typeof image === 'string' ? image : image.url || '/home.jpg';
@@ -101,7 +107,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           {/* Services */}
           <div>
-            <h2 className="text-2xl font-bold mb-8">Gebruikte diensten</h2>
+            <h3 className="text-3xl mb-6">Services</h3>
             <div className="flex flex-wrap gap-3">
               {caseItem.services?.map((serviceObj, idx) => (
                 <span key={idx} className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
@@ -113,7 +119,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
 
           {/* About and Website */}
           <div>
-            <h2 className="text-2xl font-bold mb-8">Over het project</h2>
+          <h3 className="text-3xl mb-6">Over het project</h3>
             <div className="text-gray-600 text-lg leading-relaxed mb-8">
               <LexicalContent content={caseItem.about} />
             </div>
@@ -132,7 +138,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
 
         {/* Project Section */}
         <div className="mb-24">
-          <h2 className="text-3xl font-bold mb-8">{caseItem.headingProject}</h2>
+          <h3 className="text-3xl mb-6">{caseItem.headingProject}</h3>
           <div className="text-gray-600 text-lg leading-relaxed">
             <LexicalContent content={caseItem.descriptionProject} />
           </div>
@@ -141,7 +147,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
         {/* Process Section */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           <div>
-            <h2 className="text-2xl font-bold mb-8">Het proces</h2>
+            <h3 className="text-3xl mb-6">Het proces</h3>
             <div className="text-gray-600 text-lg leading-relaxed mb-8">
               <LexicalContent content={caseItem.procesDescription} />
             </div>
@@ -171,7 +177,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
         {/* Results Section */}
         <div className="bg-gray-50 py-24 rounded-2xl my-24">
           <div className="px-8 sm:px-16">
-            <h2 className="text-3xl font-bold mb-12">{caseItem.resultHeading}</h2>
+                <h3 className="text-3xl mb-12">{caseItem.resultHeading}</h3>
             <div className="text-gray-600 text-lg leading-relaxed max-w-3xl">
               <LexicalContent content={caseItem.resultText} />
             </div>
