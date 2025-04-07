@@ -21,21 +21,22 @@ interface LexicalNode {
   alt?: string;
 }
 
-type Params = {
-  params: {
+type Props = {
+  params: Promise<{
     slug: string
-  }
+  }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
 // Generate metadata for SEO
-export async function generateMetadata(props: Params): Promise<Metadata> {
-  const params = await props.params;
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
   const payload = await getPayload({ config });
   const post = await payload.find({
     collection: 'journal',
     where: {
       slug: {
-        equals: params.slug,
+        equals: resolvedParams.slug,
       },
     },
   }).then(res => res.docs[0] as Journal);
@@ -70,7 +71,6 @@ function formatDate(date: string) {
   try {
     return format(new Date(date), 'MMMM d, yyyy');
   } catch (error) {
-    console.error('Error formatting date:', error);
     return date;
   }
 }
@@ -207,14 +207,14 @@ function getImageAlt(image: Media | string | null, fallback: string): string {
   return typeof image === 'string' ? fallback : image.alt || fallback;
 }
 
-export default async function JournalPost(props: Params) {
-  const params = await props.params;
+export default async function JournalPost({ params }: Props) {
+  const resolvedParams = await params;
   const payload = await getPayload({ config });
   const post = await payload.find({
     collection: 'journal',
     where: {
       slug: {
-        equals: params.slug,
+        equals: resolvedParams.slug,
       },
     },
     depth: 2,
@@ -237,7 +237,6 @@ export default async function JournalPost(props: Params) {
           const parsedContent = JSON.parse(post.content);
           return renderNode(parsedContent);
         } catch (e) {
-          console.error('Error parsing content:', e);
           return <div className="prose prose-lg max-w-none">{post.content}</div>;
         }
       }
@@ -245,7 +244,6 @@ export default async function JournalPost(props: Params) {
       // If content is already an object, render it directly
       return renderNode(post.content);
     } catch (error) {
-      console.error('Error rendering content:', error);
       return <div className="prose prose-lg max-w-none">Error rendering content</div>;
     }
   };

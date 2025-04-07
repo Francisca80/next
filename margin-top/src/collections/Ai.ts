@@ -1,13 +1,9 @@
 import type { CollectionConfig } from 'payload'
-import ServiceCTA from '@/components/ServiceCTA'
 
 export const Ai: CollectionConfig = {
     slug: 'ai',
     admin: {
         useAsTitle: 'title',
-    },
-    access: {
-        read: () => true,
     },
     fields: [
         {
@@ -35,6 +31,12 @@ export const Ai: CollectionConfig = {
             name: 'innovationDescription',
             type: 'textarea',
             required: true,
+        },
+        {
+            name: 'innovationImage',
+            type: 'upload',
+            relationTo: 'media',
+            required: false,
         },
         {
             name: 'innovationFeatures',

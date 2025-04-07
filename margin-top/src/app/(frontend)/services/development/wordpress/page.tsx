@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { FaCogs, FaPalette, FaRocket } from "react-icons/fa";
 
@@ -9,7 +10,7 @@ export default function DevelopmentPage() {
                 {/* Introduction Section */}
                 <section className="mb-24">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">WordPress Development</h2>
-                    <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
+                    <hr className="border-gray-600 mb-4 border-t-2" />
                     <p className="text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
                         WordPress is uitgegroeid tot meer dan alleen een blogplatform - het is een volwaardig content management systeem dat de ruggengraat vormt van meer dan 40% van alle websites wereldwijd. Bij Margin-Top zetten we WordPress in als een krachtig instrument voor het bouwen van schaalbare, veilige en gebruiksvriendelijke websites.
 
@@ -19,8 +20,8 @@ export default function DevelopmentPage() {
 
                 {/* WordPress Options Grid */}
                 <section className="mb-24">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">WordPress aanbod</h2>
-                    <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
+                    <h3 className="text-2xl sm:text-3xl md:text-4xl mb-4">WordPress aanbod</h3>
+                    <hr className="border-gray-600 mb-4 border-t-2" />
                     <p className="text-xl text-gray-700 mb-12">
                         Van basis websites tot complexe maatwerkoplossingen - ontdek wat WordPress voor uw organisatie kan betekenen.
                     </p>
@@ -61,7 +62,7 @@ export default function DevelopmentPage() {
                                     </p>
                                     <div className="text-right">
                                         <p className="text-sm text-gray-600">Vast tarief</p>
-                                        <p className="text-2xl font-bold text-[#4F8BD2]">€1.295,-</p>
+                                        <p className="text-2xl font-bold text-[#4F8BD2]">€1.495,-</p>
                                     </div>
                                 </div>
                                 <div className="text-sm text-gray-600 mt-2">
@@ -187,11 +188,11 @@ export default function DevelopmentPage() {
                         <div className="p-6 border border-gray-200 rounded-lg">
                             <h3 className="text-xl font-bold mb-4 text-[#4F8BD2]">Hosting</h3>
                             <p className="text-gray-700 mb-4">Managed WordPress hosting</p>
-                            <p className="text-2xl font-bold text-[#4F8BD2]">Vanaf €30,- /maand</p>
+                            <p className="text-2xl font-bold text-[#4F8BD2]">Vanaf €50,- /maand</p>
                         </div>
 
                         <div className="p-6 border border-gray-200 rounded-lg">
-                            <h3 className="text-xl font-bold mb-4 text-[#4F8BD2]">Hosting</h3>
+                            <h3 className="text-xl font-bold mb-4 text-[#4F8BD2]">Onderhoud</h3>
                             <p className="text-gray-700 mb-4">Updates & security</p>
                             <p className="text-2xl font-bold text-[#4F8BD2]">Vanaf €75,- /maand</p>
                         </div>
@@ -255,7 +256,7 @@ export default function DevelopmentPage() {
                                 Wat lever ik zelf aan?
                             </h3>
                             <p className="text-gray-700">
-                                Foto&apos;s, tekst, links en andere content die u wilt plaatsen op uw website. Kortom de eigen branding. Is deze er niet kunnen we die ook voor u maken.
+                                Foto&apos;s, tekst, links en andere content die u wilt plaatsen op uw website. Kortom de eigen branding. Is deze er niet kunnen we deze ook maken, klik <Link href="/services/branding" className="text-[#4F8BD2] text-underline">hier</Link> voor meer informatie.
                             </p>
                         </div>
 
@@ -265,6 +266,7 @@ export default function DevelopmentPage() {
                             </h3>
                             <p className="text-gray-700">
                                 Ik werk met Elementor. Elementor is een gebruiksvriendelijke pagebuilder die duidelijk en snel werkt.
+                                Maatwerk is ook mogelijk. Hiervoor bouwen we een maatwerk template voor u.
                             </p>
                         </div>
 

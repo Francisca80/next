@@ -1,43 +1,36 @@
 import React from "react";
 import { FaCloud, FaCode, FaCogs, FaDatabase, FaMobile, FaPalette, FaRocket, FaServer } from "react-icons/fa";
 import ServiceCTA from '@/components/ServiceCTA';
-
+import Image from 'next/image';
+import Link from 'next/link';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
-import { Development as DevelopmentType, Media } from '@/payload-types';
+import { Development as DevelopmentType, Media, Portfolio } from '@/payload-types';
 import ServiceFaqSection from '@/components/ServiceFaqSection';
+import MoreCases from '@/components/MoreCases';
 
-interface Phase {
-  phaseNumber: string;
+interface Section {
   title: string;
-  icon: string;
-  steps: Array<{
-    number: string;
-    title: string;
-    description: string;
+  description: string;
+  features?: Array<{
+    feature: string;
   }>;
+  link?: {
+    text: string;
+    url: string;
+  };
 }
 
-interface DevelopmentContent {
-  id: string;
-  title: string;
-  slug: string;
-  introduction: string;
-  processTitle: string;
-  processDescription: string;
-  processImage: string | Media;
-  approachTitle: string;
-  approachDescription: string;
-  phases: Phase[];
-  faqTitle: string;
-  faqDescription: string;
-  faqs: {
+interface DevelopmentContent extends DevelopmentType {
+  sections?: Section[];
+  description?: string;
+  image?: Media | string;
+  faqTitle?: string;
+  faqDescription?: string;
+  faqs?: Array<{
     question: string;
     answer: string;
-  }[];
-  status: 'draft' | 'published';
-  createdAt: string;
-  updatedAt: string;
+  }>;
 }
 
 const getIcon = (iconName: string) => {
@@ -72,97 +65,84 @@ export default async function DevelopmentPage() {
 
   const developmentContent = response.docs[0] as DevelopmentContent;
 
+  // Fetch portfolio cases for the MoreCases component
+  const portfolioResponse = await (payload.find as any)({
+    collection: 'portfolio',
+    where: {
+      status: {
+        equals: 'published',
+      },
+    },
+  });
+
+  const portfolioCases = portfolioResponse.docs as Portfolio[];
+
   const getImageUrl = (image: Media | string | null): string => {
     if (!image) return '/wordpress/wordpressdev.jpg';
     return typeof image === 'string' ? image : image.url || '/wordpress/wordpressdev.jpg';
   };
 
   return (
-    <div className="min-h-screen bg-white">
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-24 mt-24 max-w-5xl">
-        {/* Introduction Section */}
-        <section className="mb-24">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
+    <div className="bg-white">
+      <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
+        <div className="inline-block mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             {developmentContent?.title || 'Development'}
-          </h2>
-          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24" />
-          <p className="text-lg sm:text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
-            {developmentContent?.introduction || 'Development is het hart van digitale innovatie...'}
-          </p>
-        </section>
+          </h1>
+          <hr className="border-gray-600 mb-4 border-t-2" />
+        </div>
+        <p className="text-xl text-gray-600 max-w-3xl mb-24">
+          {developmentContent?.description || 'Development is het hart van digitale innovatie...'}
+        </p>
 
-        {/* Process Section */}
-        <section className="mb-24">
-          <div className="flex flex-col md:flex-row items-start gap-12">
-            <div className="md:w-2/3">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-                {developmentContent?.processTitle || 'Hoe wordt Development toegepast?'}
-              </h2>
-              <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24" />
-              <p className="text-lg sm:text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
-                {developmentContent?.processDescription || 'Development is een complex proces...'}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          {developmentContent?.sections?.map((section: Section, index: number) => (
+            <div key={index}>
+              <h2 className="text-2xl font-bold mb-6">{section.title}</h2>
+              <p className="text-gray-600 mb-8">
+                {section.description}
               </p>
-            </div>
-            <div className="md:w-1/3 sticky top-8">
-              <div className="relative aspect-[4/3] w-full rounded-lg overflow-hidden shadow-lg">
-                {/* <Image
-                  src={getImageUrl(developmentContent?.processImage)}
-                  alt="Development Process"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                  priority
-                /> */}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Approach Section */}
-        <section className="mb-24">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
-            {developmentContent?.approachTitle || 'Onze aanpak voor Development'}
-          </h2>
-          <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24" />
-          <p className="text-lg sm:text-xl text-gray-700 mb-12">
-            {developmentContent?.approachDescription || 'Het development-proces van Margin-Top...'}
-          </p>
-
-          <div className="space-y-12">
-            {developmentContent?.phases?.map((phase, index) => (
-              <div key={index} className="group border-b border-gray-200 pb-8">
-                <div className="flex items-center mb-6">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] text-white mr-4">
-                    {getIcon(phase.icon)}
-                  </div>
-                  <div>
-                    <span className="text-[#4F8BD2] text-xs font-semibold tracking-wider uppercase">
-                      {phase.phaseNumber}
-                    </span>
-                    <h3 className="text-xl font-bold">{phase.title}</h3>
-                  </div>
-                </div>
-
-                <ul className="space-y-4 text-gray-700">
-                  {phase.steps.map((step, stepIndex) => (
-                    <li key={stepIndex} className="flex items-start">
-                      <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">
-                        {step.number}
-                      </span>
-                      <span className="pt-1">
-                        <strong>{step.title}:</strong> {step.description}
-                      </span>
+              {section.features && section.features.length > 0 && (
+                <ul className="mt-6 space-y-4">
+                  {section.features.map((feature, index) => (
+                    <li key={index} className="flex items-start">
+                      <svg className="h-6 w-6 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="ml-3 text-gray-700">{feature.feature}</span>
                     </li>
                   ))}
                 </ul>
-              </div>
-            ))}
+              )}
+              {section.link && section.link.url && (
+                <div className="mt-8">
+                  <Link 
+                    href={section.link.url.startsWith('/') ? section.link.url : `/${section.link.url}`}
+                    className="header-button"
+                  >
+                    {section.link.text}
+                  </Link>
+                </div>
+              )}
+            </div>
+          ))}
+
+          <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+            <Image
+              src={getImageUrl(developmentContent?.image || null)}
+              alt={developmentContent?.title || "Development service"}
+              fill
+              className="object-cover"
+            />
           </div>
-        </section>
         </div>
-        <section className="mb-24"> 
-      <ServiceCTA
+      </section>
+      <section>
+        <MoreCases cases={portfolioCases} currentCaseId="" />
+      </section>
+
+      <section>
+        <ServiceCTA 
           serviceType="development"
           title="Klaar om je project te starten?"
           subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"
@@ -170,14 +150,13 @@ export default async function DevelopmentPage() {
         />
       </section>
 
-      <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">   {/* FAQ Section */}
+      <section className="w-11/12 max-w-5xl mx-auto py-24">
         <ServiceFaqSection 
-          title={developmentContent?.faqTitle}
-          description={developmentContent?.faqDescription}
+          title={developmentContent?.faqTitle || "Veelgestelde vragen"}
+          description={developmentContent?.faqDescription || "Antwoorden op de meest gestelde vragen over development"}
           faqs={developmentContent?.faqs || []}
-            />
+        />
       </section>
-  
     </div>
   );
 } 

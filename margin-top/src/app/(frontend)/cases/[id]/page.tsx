@@ -207,10 +207,10 @@ export default async function CaseDetail(props: CaseDetailProps) {
             </div>
           </div>
         </div>
+      </section >
+      <section className='py-16'>
+        <MoreCases cases={allCasesResponse.docs as Portfolio[]} currentCaseId={caseItem.slug} />
       </section>
-
-      {/* More Cases Section */}
-      <MoreCases cases={allCasesResponse.docs as Portfolio[]} currentCaseId={caseItem.slug} />
     </div>
   );
 }

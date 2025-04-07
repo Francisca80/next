@@ -1,6 +1,4 @@
 import type { CollectionConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { BlocksFeature, LinkFeature, HeadingFeature } from '@payloadcms/richtext-lexical'
 
 export const Ux: CollectionConfig = {
     slug: 'ux',

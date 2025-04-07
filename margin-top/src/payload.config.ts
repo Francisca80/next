@@ -47,7 +47,7 @@ export default buildConfig({
     Cookies,
     HowItWorks,
     Portfolio,
-        Ai
+    Ai
   ],
   i18n: {
     fallbackLanguage: 'en',

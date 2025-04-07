@@ -86,6 +86,8 @@ export interface Ai {
     title: string;
     description: string;
   }>;
+  costsExplanation: string;
+  title2: string;
   faqTitle: string;
   faqDescription: string;
   faqs: Array<{

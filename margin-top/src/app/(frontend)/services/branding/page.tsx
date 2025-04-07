@@ -2,8 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
-import { Branding as BrandingType, Media } from '@/payload-types';
+import { Branding as BrandingType, Media, Portfolio } from '@/payload-types';
 import ServiceCTA from '@/components/ServiceCTA';
+import MoreCases from '@/components/MoreCases';
 
 interface Section {
   title: string;
@@ -31,6 +32,18 @@ export default async function BrandingPage() {
   });
 
   const brandingContent = response.docs[0] as BrandingContent;
+
+  // Fetch portfolio cases for the MoreCases component
+  const portfolioResponse = await (payload.find as any)({
+    collection: 'portfolio',
+    where: {
+      status: {
+        equals: 'published',
+      },
+    },
+  });
+
+  const portfolioCases = portfolioResponse.docs as Portfolio[];
 
   const getImageUrl = (image: Media | string | null): string => {
     if (!image) return '/banner.png';
@@ -76,8 +89,11 @@ export default async function BrandingPage() {
             />
           </div>
         </div>
+        
       </section>
-
+      <section className='py-16'>
+        <MoreCases cases={portfolioCases} currentCaseId="" />
+      </section>  
       <section>
         <ServiceCTA 
           serviceType="branding"

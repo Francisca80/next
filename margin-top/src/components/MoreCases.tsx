@@ -28,9 +28,14 @@ export default function MoreCases({ cases, currentCaseId }: MoreCasesProps) {
     .slice(0, 3);
 
   return (
-    <div className="bg-gray-50 py-16">
+    <div className="bg-white py-24">
       <div className="w-11/12 max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold mb-12">Meer cases</h2>
+        <div className="inline-block">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Meer cases</h2>
+          <hr className="border-gray-600 mb-4 w-full" />
+        </div>
+        <p className="text-gray-600 text-xl mb-12">Klik op een case om meer te lezen over deze projecten.</p>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {otherCases.map((caseItem) => (
             <Link 

@@ -1,28 +1,15 @@
 import type { CollectionConfig } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { BlocksFeature, LinkFeature, HeadingFeature } from '@payloadcms/richtext-lexical'
 
 export const Development: CollectionConfig = {
   slug: 'development',
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'order', 'status', 'updatedAt'],
   },
   fields: [
-    {
-      name: 'order',
-      type: 'number',
-      required: true,
-      defaultValue: 0,
-      admin: {
-        description: 'Lagere nummers verschijnen eerst',
-      },
-    },
     {
       name: 'title',
       type: 'text',
       required: true,
-      label: 'Titel',
     },
     {
       name: 'slug',
@@ -31,105 +18,60 @@ export const Development: CollectionConfig = {
       unique: true,
     },
     {
-      name: 'introduction',
+      name: 'description',
       type: 'textarea',
       required: true,
     },
     {
-      name: 'processTitle',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'processDescription',
-      type: 'textarea',
-      required: true,
-    },
-    {
-      name: 'processImage',
-      type: 'upload',
-      relationTo: 'media',
-      required: false,
-    },
-    {
-      name: 'approachTitle',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'approachDescription',
-      type: 'textarea',
-      required: true,
-    },
-    {
-      name: 'phases',
+      name: 'sections',
       type: 'array',
       required: true,
       fields: [
-        {
-          name: 'phaseNumber',
-          type: 'text',
-          required: true,
-        },
         {
           name: 'title',
           type: 'text',
           required: true,
         },
         {
-          name: 'icon',
-          type: 'text',
-          required: false
+          name: 'description',
+          type: 'textarea',
+          required: true,
         },
         {
-          name: 'steps',
+          name: 'features',
           type: 'array',
+          required: false,
           fields: [
             {
-              name: 'number',
+              name: 'feature',
               type: 'text',
-              required: true,
+              required: false,
+            }
+          ]
+        },
+        {
+          name: 'link',
+          type: 'group',
+          fields: [
+            {
+              name: 'text',
+              type: 'text',
+              required: false,
             },
             {
-              name: 'title',
+              name: 'url',
               type: 'text',
-              required: true,
-            },
-            {
-              name: 'description',
-              type: 'textarea',
-              required: true,
+              required: false,
             }
           ]
         }
       ]
     },
     {
-      name: 'faqTitle',
-      type: 'text',
-      required: true,
-    },
-    {
-      name: 'faqDescription',
-      type: 'textarea',
-      required: true,
-    },
-    {
-      name: 'faqs',
-      type: 'array',
-      required: true,
-      fields: [
-        {
-          name: 'question',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'answer',
-          type: 'textarea',
-          required: true,
-        },
-      ],
+      name: 'image',
+      type: 'upload',
+      relationTo: 'media',
+      required: false,
     },
     {
       name: 'status',
@@ -150,12 +92,6 @@ export const Development: CollectionConfig = {
       type: 'date',
       admin: {
         position: 'sidebar',
-        readOnly: true,
-      },
-      hooks: {
-        beforeChange: [
-          () => new Date().toISOString(),
-        ],
       },
     },
   ],

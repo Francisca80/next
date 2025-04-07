@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { FaRocket,FaCode, FaServer, FaPalette, FaChartLine, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 import * as gtag from '@/lib/gtag';
 
 interface ServiceCTAProps {
@@ -163,7 +164,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
 
   return (
     <motion.div 
-      className="bg-gray-100 text-black py-24 px-4  overflow-hidden relative"
+      className="bg-gray-100 text-black py-12 sm:py-16 md:py-24 px-4 overflow-hidden relative"
       initial="hidden"
       animate={controls}
       variants={containerVariants}
@@ -171,7 +172,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute -top-20 -right-20 w-64 h-64 bg-[#4F8BD2] rounded-full opacity-20"
+          className="absolute -top-20 -right-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-20"
           animate={{ 
             scale: [1, 1.5, 1],
             rotate: [0, 180, 0]
@@ -183,7 +184,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
           }}
         />
         <motion.div 
-          className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#4F8BD2] rounded-full opacity-20"
+          className="absolute -bottom-20 -left-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-20"
           animate={{ 
             scale: [1.5, 1, 1.5],
             rotate: [180, 0, 180]
@@ -199,42 +200,53 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between">
           <motion.div 
-            className="md:w-1/2 mb-8 md:mb-0 md:ml-16"
+            className="w-full md:w-1/2 mb-8 md:mb-0 md:ml-8 lg:ml-16"
             variants={itemVariants}
           >
             <motion.h2 
-              className="sm:text-3xl md:text-4xl mb-4 relative inline-block"
+              className="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 relative inline-block"
               variants={itemVariants}
             >
               {title}
            
             </motion.h2>
             <motion.p 
-              className="text-lg mb-6 text-gray-700"
+              className="text-base sm:text-lg mb-4 sm:mb-6 text-gray-700"
               variants={itemVariants}
             >
               {subtitle}
             </motion.p>
             
             <motion.div 
-              className="flex items-center mb-6"
+              className="flex items-center mb-4 sm:mb-6"
               variants={itemVariants}
             >
-              <motion.div 
-                className="bg-[#4F8BD2] p-3 rounded-full mr-4"
-                whileHover={{ rotate: 15, scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                {getServiceIcon()}
-              </motion.div>
+              {serviceType === 'margin-top' ? (
+                <div className="relative w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-full overflow-hidden mr-3 sm:mr-4">
+                  <Image
+                    src="/margin-top-logo.png"
+                    alt="Margin Top Team"
+                    fill
+                    className="object-contain p-1 sm:p-2"
+                  />
+                </div>
+              ) : (
+                <motion.div 
+                  className="bg-[#4F8BD2] p-2 sm:p-3 rounded-full mr-3 sm:mr-4"
+                  whileHover={{ rotate: 15, scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {getServiceIcon()}
+                </motion.div>
+              )}
               <div>
-                <h3 className="text-xl font-semibold capitalize">{serviceType} </h3>
-                <p className="text-gray-600">Professionele oplossingen op maat</p>
+                <h3 className="text-lg sm:text-xl font-semibold capitalize">{serviceType} </h3>
+                <p className="text-sm sm:text-base text-gray-600">Professionele oplossingen op maat</p>
               </div>
             </motion.div>
 
             <motion.ul 
-              className="space-y-2 mb-8"
+              className="space-y-2 mb-6 sm:mb-8"
               variants={itemVariants}
             >
               {getServiceFeatures().map((feature, index) => (
@@ -246,7 +258,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                   transition={{ type: "spring", stiffness: 300 }}
                 >
                   <span className="w-2 h-2 bg-[#4F8BD2] rounded-full mr-3"></span>
-                  <span className="text-gray-700">{feature}</span>
+                  <span className="text-sm sm:text-base text-gray-700">{feature}</span>
                 </motion.li>
               ))}
             </motion.ul>
@@ -256,7 +268,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
             >
               <Link href={ctaLink}>
                 <motion.button
-                  className="header-button inline-flex items-center"
+                  className="header-button inline-flex items-center text-sm sm:text-base"
                   variants={buttonVariants}
                   initial="rest"
                   whileHover="hover"
@@ -278,73 +290,134 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
           </motion.div>
 
           <motion.div 
-            className="md:w-1/2 flex justify-center"
+            className="w-full md:w-1/2 flex justify-center mt-8 md:mt-0"
             variants={itemVariants}
           >
-            <motion.div 
-              className="relative w-64 h-64"
-              animate={{ 
-                rotate: [0, 15, 0, -15, 0],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{ 
-                duration: 10,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
+            {serviceType === 'margin-top' ? (
               <motion.div 
-                className="absolute inset-0 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/50 rounded-full opacity-30"
+                className="relative w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64"
                 animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.5, 0.3]
+                  rotate: [0, 15, 0, -15, 0],
+                  scale: [1, 1.2, 1]
                 }}
                 transition={{ 
-                  duration: 8,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div 
-                className="absolute inset-4 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/30 rounded-full opacity-40"
-                animate={{ 
-                  scale: [1, 1.1, 1],
-                  opacity: [0.4, 0.6, 0.4]
-                }}
-                transition={{ 
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              />
-              <motion.div 
-                className="absolute inset-8 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/20 rounded-full opacity-50 flex items-center justify-center"
-                animate={{ 
-                  scale: [1, 1.05, 1],
-                  opacity: [0.5, 0.7, 0.5]
-                }}
-                transition={{ 
-                  duration: 4,
+                  duration: 10,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
               >
                 <motion.div 
-                  className="text-6xl text-white opacity-90"
+                  className="absolute inset-0 bg-gradient-to-br from-[#2A5A8F] to-[#2A5A8F]/50 rounded-full opacity-20"
                   animate={{ 
-                    rotate: [0, 10, 0, -10, 0],
-                    scale: [1, 1.1, 1]
+                    scale: [1, 1.2, 1],
+                    opacity: [0.2, 0.3, 0.2]
                   }}
                   transition={{ 
-                    duration: 5,
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div 
+                  className="absolute inset-4 bg-gradient-to-br from-[#2A5A8F] to-[#2A5A8F]/30 rounded-full opacity-30"
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                    opacity: [0.3, 0.4, 0.3]
+                  }}
+                  transition={{ 
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div 
+                  className="absolute inset-8 bg-gradient-to-br from-[#2A5A8F] to-[#2A5A8F]/20 rounded-full opacity-40 flex items-center justify-center"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.4, 0.5, 0.4]
+                  }}
+                  transition={{ 
+                    duration: 4,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
                 >
-                  {getServiceIcon()}
+                  <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
+                    <Image
+                      src="/margin-top-logo.png"
+                      alt="Margin Top Team"
+                      fill
+                      className="object-contain p-4 sm:p-6"
+                    />
+                  </div>
                 </motion.div>
               </motion.div>
-            </motion.div>
+            ) : (
+              <motion.div 
+                className="relative w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64"
+                animate={{ 
+                  rotate: [0, 15, 0, -15, 0],
+                  scale: [1, 1.2, 1]
+                }}
+                transition={{ 
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <motion.div 
+                  className="absolute inset-0 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/50 rounded-full opacity-30"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.5, 0.3]
+                  }}
+                  transition={{ 
+                    duration: 8,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div 
+                  className="absolute inset-4 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/30 rounded-full opacity-40"
+                  animate={{ 
+                    scale: [1, 1.1, 1],
+                    opacity: [0.4, 0.6, 0.4]
+                  }}
+                  transition={{ 
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div 
+                  className="absolute inset-8 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/20 rounded-full opacity-50 flex items-center justify-center"
+                  animate={{ 
+                    scale: [1, 1.05, 1],
+                    opacity: [0.5, 0.7, 0.5]
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <motion.div 
+                    className="text-4xl sm:text-5xl md:text-6xl text-white opacity-90"
+                    animate={{ 
+                      rotate: [0, 10, 0, -10, 0],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ 
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    {getServiceIcon()}
+                  </motion.div>
+                </motion.div>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </div>
