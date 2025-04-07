@@ -54,15 +54,7 @@ export const Journal: CollectionConfig = {
                 description: 'The main content of the post',
             },
         },
-        {
-            name: 'author',
-            type: 'relationship',
-            relationTo: 'users',
-            required: true,
-            admin: {
-                description: 'The author of the journal post',
-            },
-        },
+       
         {
             name: 'publishedDate',
             type: 'date',

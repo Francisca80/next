@@ -7,6 +7,7 @@ import config from '@/payload.config'
 import type { Journal, Media } from '@/payload-types'
 import { Metadata } from 'next'
 import React from 'react'
+import LexicalContent from '@/components/LexicalContent'
 
 // Lexical Node Types
 interface LexicalNode {
@@ -17,12 +18,13 @@ interface LexicalNode {
   tag?: string;
   listType?: 'number' | 'bullet';
   url?: string;
+  alt?: string;
 }
 
 type Params = {
-  params: Promise<{
+  params: {
     slug: string
-  }>
+  }
 }
 
 // Generate metadata for SEO
@@ -43,17 +45,19 @@ export async function generateMetadata(props: Params): Promise<Metadata> {
     description: 'The requested journal post could not be found.',
   }
 
+  const imageUrl = post.featuredImage && typeof post.featuredImage === 'object' ? post.featuredImage.url || '' : '';
+
   return {
     title: `${post.title} | Margin Top Journal`,
     description: post.excerpt,
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      images: post.featuredImage && typeof post.featuredImage === 'object' ? [
+      images: imageUrl ? [
         {
-          url: `${process.env.NEXT_PUBLIC_SERVER_URL}${post.featuredImage.url}`,
-          width: post.featuredImage.width || 1200,
-          height: post.featuredImage.height || 630,
+          url: imageUrl,
+          width: 1200,
+          height: 630,
           alt: post.title,
         }
       ] : [],
@@ -106,6 +110,20 @@ function renderNode(node: LexicalNode): React.ReactNode {
       if (format & 8) content = <del>{content}</del>;
       if (format & 16) content = <code>{content}</code>;
       return content;
+
+    case 'image':
+      if (!node.url) return null;
+      return (
+        <div className="my-8 relative aspect-[16/9]">
+          <Image
+            src={node.url}
+            alt={node.alt || ''}
+            fill
+            className="object-cover rounded-lg"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        </div>
+      );
 
     case 'heading':
       switch (node.tag) {
@@ -170,8 +188,23 @@ function renderNode(node: LexicalNode): React.ReactNode {
 
 // Helper function to get image URL
 function getImageUrl(image: Media | string | null): string {
-  if (typeof image === 'string') return image;
-  return image?.url ? `${process.env.NEXT_PUBLIC_SERVER_URL}${image.url}` : '';
+  if (!image) return '';
+  return typeof image === 'string' ? image : image.url || '';
+}
+
+// Helper function to get image dimensions
+function getImageDimensions(image: Media | string | null): { width: number; height: number } {
+  if (typeof image === 'string') return { width: 1200, height: 630 };
+  return {
+    width: image?.width || 1200,
+    height: image?.height || 630,
+  };
+}
+
+// Helper function to get image alt text
+function getImageAlt(image: Media | string | null, fallback: string): string {
+  if (!image) return fallback;
+  return typeof image === 'string' ? fallback : image.alt || fallback;
 }
 
 export default async function JournalPost(props: Params) {
@@ -192,62 +225,79 @@ export default async function JournalPost(props: Params) {
   }
 
   const imageUrl = getImageUrl(post.featuredImage);
+  
+  // Safely handle content rendering
+  const renderContent = () => {
+    try {
+      if (!post.content) return null;
+      
+      // If content is a string, try to parse it as JSON
+      if (typeof post.content === 'string') {
+        try {
+          const parsedContent = JSON.parse(post.content);
+          return renderNode(parsedContent);
+        } catch (e) {
+          console.error('Error parsing content:', e);
+          return <div className="prose prose-lg max-w-none">{post.content}</div>;
+        }
+      }
+      
+      // If content is already an object, render it directly
+      return renderNode(post.content);
+    } catch (error) {
+      console.error('Error rendering content:', error);
+      return <div className="prose prose-lg max-w-none">Error rendering content</div>;
+    }
+  };
 
   return (
-    <article className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="relative h-[60vh] bg-black">
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt={post.title}
-            fill
-            className="object-cover opacity-70"
-            priority
-          />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="max-w-4xl mx-auto px-4 text-center !text-white">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              {post.title}
-            </h1>
-            <div className="flex items-center justify-center space-x-4 text-sm md:text-base">
-              <span>{formatDate(post.publishedDate)}</span>
-              <span>•</span>
-              <span>{post.author}</span>
-            </div>
-          </div>
+    <div className="bg-white">
+      <section className="w-11/12 max-w-5xl mx-auto py-24">
+        {/* Title and Introduction */}
+        <div className="inline-block mb-16 mt-24">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
+            {post.title}
+          </h1>
+          <hr className="border-gray-600 mb-4 border-t-2" />
         </div>
-      </div>
+        <p className="text-xl text-gray-600 max-w-3xl mb-16 leading-relaxed">{post.excerpt}</p>
 
-      {/* Content Section */}
-      <div className="max-w-4xl mx-auto px-4 py-16">
-        {/* Excerpt */}
-        <div className="mb-12">
-          <p className="text-xl text-gray-600 leading-relaxed">
-            {post.excerpt}
-          </p>
+        {/* Hero Image */}
+        <div className="relative w-full aspect-[16/9] mb-24">
+          {imageUrl && (
+            <Image
+              src={imageUrl}
+              alt={getImageAlt(post.featuredImage, post.title)}
+              fill
+              className="object-cover rounded-2xl shadow-xl"
+              priority
+              sizes="100vw"
+              quality={90}
+            />
+          )}
         </div>
 
         {/* Main Content */}
-        <div className="prose prose-lg max-w-none">
-          {renderNode(post.content)}
+        <div className="prose prose-lg max-w-none prose-headings:font-normal prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-600 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
+          <LexicalContent content={post.content} />
         </div>
 
         {/* Categories */}
         {post.categories && post.categories.length > 0 && (
-          <div className="mt-8 pt-8 border-t border-gray-200">
-            <h3 className="text-lg font-semibold mb-4">Categories:</h3>
-            <div className="flex flex-wrap gap-2">
-              {post.categories.map((cat, index) => (
-                <span
-                  key={index}
-                  className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm"
-                >
-                  {typeof cat === 'string' ? cat : cat.category}
-                </span>
-              ))}
+          <div className="mt-12 pt-8 border-t border-gray-200">
+            <h3 className="text-3xl mb-6">Categories</h3>
+            <div className="flex flex-wrap gap-3">
+              {post.categories.map((category, index) => {
+                const categoryName = typeof category === 'object' ? category.category : category;
+                return (
+                  <span
+                    key={index}
+                    className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200"
+                  >
+                    {categoryName}
+                  </span>
+                );
+              })}
             </div>
           </div>
         )}
@@ -256,12 +306,13 @@ export default async function JournalPost(props: Params) {
         <div className="mt-12">
           <Link
             href="/journal"
-            className="text-blue-600 hover:underline flex items-center gap-2"
+            className="inline-flex items-center gap-2 text-black font-medium hover:gap-3 transition-all duration-300 group"
           >
-            <span>←</span> Back to Journal
+            <span className="text-lg">←</span>
+            <span>Back to Journal</span>
           </Link>
         </div>
-      </div>
-    </article>
+      </section>
+    </div>
   );
 } 

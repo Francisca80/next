@@ -12,13 +12,7 @@ export const metadata = {
 
 const getImageUrl = (featuredImage: any) => {
   if (!featuredImage) return '';
-  if (typeof featuredImage === 'string') return featuredImage;
-  if (typeof featuredImage === 'object' && featuredImage?.url) {
-    // If NEXT_PUBLIC_SERVER_URL is not set, use relative URL
-    const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL || '';
-    return `${baseUrl}${featuredImage.url}`;
-  }
-  return '';
+  return typeof featuredImage === 'string' ? featuredImage : featuredImage.url || '';
 };
 
 async function JournalPage() {
@@ -53,7 +47,7 @@ async function JournalPage() {
         </h1>
         <hr className="border-gray-600 mb-4 border-t-2" />
       </div>
-      <p className="text-xl text-gray-600 max-w-3xl mb-24">
+      <p className="text-xl text-gray-600 max-w-3xl mb-16">
       Thoughts, stories and ideas about design, development and digital experiences.
       </p>
   
