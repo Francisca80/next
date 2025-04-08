@@ -51,6 +51,17 @@ interface LexicalNode {
   };
   // For Payload CMS upload node type
   id?: string;
+  // For Payload CMS rich text field
+  formatType?: string;
+  textFormat?: string;
+  // For Payload CMS heading format
+  headingType?: string;
+  // For Payload CMS list format
+  listFormat?: string;
+  // For Payload CMS heading format
+  heading?: string;
+  // For Payload CMS heading format
+  level?: string | number;
 }
 
 type LexicalContentProps = {
@@ -60,6 +71,9 @@ type LexicalContentProps = {
 // Helper function to render Lexical nodes recursively
 function renderNode(node: LexicalNode): React.ReactNode {
   if (!node) return null;
+
+  // Debug log for node type
+  console.log('Rendering node type:', node.type, node);
 
   switch (node.type) {
     case 'root':
@@ -73,7 +87,7 @@ function renderNode(node: LexicalNode): React.ReactNode {
 
     case 'paragraph':
       return (
-        <p className="mb-4">
+        <p className="mb-4 text-gray-700">
           {node.children?.map((child: LexicalNode, index: number) => (
             <React.Fragment key={index}>
               {renderNode(child)}
@@ -86,11 +100,11 @@ function renderNode(node: LexicalNode): React.ReactNode {
       if (!node.text) return null;
       let content: React.ReactNode = node.text;
       const format = node.format || 0;
-      if (format & 1) content = <strong>{content}</strong>;
-      if (format & 2) content = <em>{content}</em>;
-      if (format & 4) content = <u>{content}</u>;
-      if (format & 8) content = <del>{content}</del>;
-      if (format & 16) content = <code>{content}</code>;
+      if (format & 1) content = <strong className="font-bold">{content}</strong>;
+      if (format & 2) content = <em className="italic">{content}</em>;
+      if (format & 4) content = <u className="underline">{content}</u>;
+      if (format & 8) content = <del className="line-through">{content}</del>;
+      if (format & 16) content = <code className="bg-gray-100 px-1 py-0.5 rounded font-mono text-sm">{content}</code>;
       return content;
 
     case 'image':
@@ -174,21 +188,44 @@ function renderNode(node: LexicalNode): React.ReactNode {
       );
 
     case 'heading':
-      switch (node.tag) {
-        case '1': return <h1 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h1>;
-        case '2': return <h2 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h2>;
-        case '3': return <h3 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h3>;
-        case '4': return <h4 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h4>;
-        case '5': return <h5 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h5>;
-        case '6': return <h6 className="mb-4">{node.children?.map((child: LexicalNode, index: number) => <React.Fragment key={index}>{renderNode(child)}</React.Fragment>)}</h6>;
-        default: return null;
+      // Extract heading content
+      const headingContent = node.children?.map((child: LexicalNode, index: number) => (
+        <React.Fragment key={index}>
+          {renderNode(child)}
+        </React.Fragment>
+      ));
+      
+      // Determine heading level from various possible properties
+      let level = '2'; // Default to h2
+      
+      if (node.tag) {
+        level = node.tag;
+      } else if (node.headingType) {
+        level = node.headingType;
+      } else if (node.level) {
+        level = String(node.level);
+      } else if (node.heading) {
+        level = node.heading;
+      }
+      
+      // Render the appropriate heading based on level
+      switch (level) {
+        case '1': return <h1 className="text-3xl font-bold mb-6 mt-8 text-black">{headingContent}</h1>;
+        case '2': return <h2 className="text-2xl font-bold mb-4 mt-6 text-black">{headingContent}</h2>;
+        case '3': return <h3 className="text-xl font-bold mb-3 mt-5 text-gray-800">{headingContent}</h3>;
+        case '4': return <h4 className="text-lg font-bold mb-3 mt-4 text-gray-800">{headingContent}</h4>;
+        case '5': return <h5 className="text-base font-bold mb-2 mt-3 text-gray-800">{headingContent}</h5>;
+        case '6': return <h6 className="text-sm font-bold mb-2 mt-3 text-gray-800">{headingContent}</h6>;
+        default: return <h2 className="text-2xl font-bold mb-4 mt-6 text-black">{headingContent}</h2>;
       }
 
     case 'list':
-      const ListTag = node.listType === 'number' ? 'ol' : 'ul';
+      // Check if this is a Payload CMS list format
+      const listType = node.listType || (node.listFormat === 'bullet' ? 'bullet' : 'number');
+      const ListTag = listType === 'number' ? 'ol' : 'ul';
       return React.createElement(
         ListTag,
-        { className: "mb-4" },
+        { className: "mb-4 ml-6 list-disc" },
         node.children?.map((child: LexicalNode, index: number) => (
           <React.Fragment key={index}>
             {renderNode(child)}
@@ -198,7 +235,7 @@ function renderNode(node: LexicalNode): React.ReactNode {
 
     case 'listitem':
       return (
-        <li>
+        <li className="mb-2 list-item">
           {node.children?.map((child: LexicalNode, index: number) => (
             <React.Fragment key={index}>
               {renderNode(child)}
@@ -209,7 +246,7 @@ function renderNode(node: LexicalNode): React.ReactNode {
 
     case 'quote':
       return (
-        <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
+        <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4 text-gray-600">
           {node.children?.map((child: LexicalNode, index: number) => (
             <React.Fragment key={index}>
               {renderNode(child)}
@@ -230,6 +267,18 @@ function renderNode(node: LexicalNode): React.ReactNode {
       );
 
     default:
+      // Try to handle unknown node types by rendering their children
+      if (node.children && node.children.length > 0) {
+        return (
+          <div className="mb-4">
+            {node.children.map((child: LexicalNode, index: number) => (
+              <React.Fragment key={index}>
+                {renderNode(child)}
+              </React.Fragment>
+            ))}
+          </div>
+        );
+      }
       return null;
   }
 }
@@ -241,6 +290,7 @@ export default function LexicalContent({ content }: LexicalContentProps) {
   let parsedContent;
   try {
     parsedContent = typeof content === 'string' ? JSON.parse(content) : content;
+    console.log('Parsed content:', parsedContent);
   } catch (error) {
     console.error('Error parsing content:', error);
     return <div>Error rendering content</div>;
