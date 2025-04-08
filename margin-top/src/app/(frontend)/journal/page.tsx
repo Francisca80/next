@@ -84,7 +84,9 @@ async function JournalPage() {
                   </h2>
                 </Link>
                 <p className="text-gray-600 mb-4 flex-grow">
-                  {post.excerpt}
+                  {post.excerpt && post.excerpt.length > 150 
+                    ? `${post.excerpt.substring(0, 150)}...` 
+                    : post.excerpt}
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {post.categories?.map((cat: { category: string }, index: number) => (
