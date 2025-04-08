@@ -226,6 +226,19 @@ export default async function JournalPost({ params }: Props) {
 
   const imageUrl = getImageUrl(post.featuredImage);
   
+  // Process content to ensure it's in the correct format for LexicalContent
+  let processedContent = post.content;
+  
+  // If content is a string, try to parse it as JSON
+  if (typeof post.content === 'string') {
+    try {
+      processedContent = JSON.parse(post.content);
+    } catch (e) {
+      console.error('Error parsing content in journal page:', e);
+      // If parsing fails, keep the original string
+    }
+  }
+  
   // Safely handle content rendering
   const renderContent = () => {
     try {
@@ -237,6 +250,7 @@ export default async function JournalPost({ params }: Props) {
           const parsedContent = JSON.parse(post.content);
           return renderNode(parsedContent);
         } catch (e) {
+          console.error('Error parsing content in journal page:', e);
           return <div className="prose prose-lg max-w-none">{post.content}</div>;
         }
       }
@@ -244,6 +258,7 @@ export default async function JournalPost({ params }: Props) {
       // If content is already an object, render it directly
       return renderNode(post.content);
     } catch (error) {
+      console.error('Error rendering content in journal page:', error);
       return <div className="prose prose-lg max-w-none">Error rendering content</div>;
     }
   };
@@ -277,7 +292,9 @@ export default async function JournalPost({ params }: Props) {
 
         {/* Main Content */}
         <div className="prose prose-lg max-w-none prose-headings:font-normal prose-h2:text-2xl prose-h3:text-xl prose-p:text-gray-600 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline">
-          <LexicalContent content={post.content} />
+          {processedContent && (
+            <LexicalContent content={processedContent} />
+          )}
         </div>
 
         {/* Categories */}

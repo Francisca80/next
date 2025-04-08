@@ -108,7 +108,7 @@ export default function PrivacyPolicy() {
             <h4 className="font-semibold">Analytische Cookies</h4>
             <p className="text-gray-600">
               Deze cookies stellen ons in staat om bezoeken en verkeersbronnen te tellen, zodat we de prestaties van onze site kunnen meten en verbeteren. 
-              Ze helpen ons te begrijpen welke pagina's het meest en het minst populair zijn en hoe bezoekers zich op de site bewegen.
+              Ze helpen ons te begrijpen welke pagina&apos;s het meest en het minst populair zijn en hoe bezoekers zich op de site bewegen.
             </p>
           </div>
 
@@ -124,7 +124,7 @@ export default function PrivacyPolicy() {
             <h4 className="font-semibold">Personaliseringscookies</h4>
             <p className="text-gray-600">
               Deze cookies stellen de website in staat om verbeterde functionaliteit en personalisatie te bieden. 
-              Ze kunnen door ons of door externe aanbieders worden ingesteld wier services wij aan onze pagina's hebben toegevoegd.
+              Ze kunnen door ons of door externe aanbieders worden ingesteld wier services wij aan onze pagina&apos;s hebben toegevoegd.
             </p>
           </div>
         </div>

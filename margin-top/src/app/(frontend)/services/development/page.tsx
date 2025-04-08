@@ -1,5 +1,5 @@
 import React from "react";
-import { FaCloud, FaCode, FaCogs, FaDatabase, FaMobile, FaPalette, FaRocket, FaServer } from "react-icons/fa";
+import { FaCloud, FaCode,  FaDatabase, FaMobile, FaServer } from "react-icons/fa";
 import ServiceCTA from '@/components/ServiceCTA';
 import Image from 'next/image';
 import Link from 'next/link';
