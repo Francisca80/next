@@ -82,15 +82,15 @@ export default async function CaseDetail(props: CaseDetailProps) {
 
   return (
     <div className="bg-white">
-      <section className="w-11/12 max-w-5xl mx-auto py-24">
+      <section className="w-11/12 max-w-5xl mx-auto py-16">
         {/* Title and Introduction */}
-        <div className="inline-block mb-16 mt-32">
+        <div className="inline-block mb-12 mt-24">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             {caseItem.title}
           </h1>
           <hr className="border-gray-600 mb-4 border-t-2" />
         </div>
-        <p className="text-xl text-gray-600 max-w-3xl mb-16 leading-relaxed">{caseItem.introduction}</p>
+        <p className="text-xl text-gray-600 max-w-3xl mb-12 leading-relaxed">{caseItem.introduction}</p>
 
         {/* Hero Image */}
         <div className="relative w-full aspect-[16/9] mb-24">
@@ -98,13 +98,13 @@ export default async function CaseDetail(props: CaseDetailProps) {
             src={getImageUrl(caseItem.image)}
             alt={getImageAlt(caseItem.image, caseItem.title)}
             fill
-            className="object-cover rounded-2xl shadow-xl"
+            className="object-contain rounded-2xl shadow-xl"
             priority
           />
         </div>
 
         {/* About and Services Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
           {/* Services */}
           <div>
             <h3 className="text-3xl mb-6">Services</h3>
@@ -119,7 +119,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
 
           {/* About and Website */}
           <div>
-          <h3 className="text-3xl mb-6">Over het project</h3>
+          <h3 className="text-3xl mb-12">Over het project</h3>
             <div className="text-gray-600 text-lg leading-relaxed mb-8">
               <LexicalContent content={caseItem.about} />
             </div>
@@ -145,7 +145,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
         </div>
 
         {/* Process Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
           <div>
             <h3 className="text-3xl mb-6">Het proces</h3>
             <div className="text-gray-600 text-lg leading-relaxed mb-8">
@@ -175,32 +175,32 @@ export default async function CaseDetail(props: CaseDetailProps) {
         </div>
 
         {/* Results Section */}
-        <div className="bg-gray-50 py-24 rounded-2xl my-24">
+        <div className="bg-gray-50 py-12 rounded-2xl">
           <div className="px-8 sm:px-16">
                 <h3 className="text-3xl mb-12">{caseItem.resultHeading}</h3>
             <div className="text-gray-600 text-lg leading-relaxed max-w-3xl">
               <LexicalContent content={caseItem.resultText} />
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20 mb-8 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-12 mb-4 max-w-4xl mx-auto">
               {caseItem.resultImage && (
-                <div className="relative aspect-[9/16] max-w-sm mx-auto">
+                <div className="relative w-full max-w-sm mx-auto">
                   <Image
                     src={getImageUrl(caseItem.resultImage)}
                     alt={getImageAlt(caseItem.resultImage, "Resultaat 1")}
                     width={384}
                     height={682}
-                    className="object-contain rounded-2xl shadow-xl"
+                    className="object-contain rounded-2xl shadow-xl w-full h-auto"
                   />
                 </div>
               )}
               {caseItem.resultImage2 && (
-                <div className="relative aspect-[9/16] max-w-sm mx-auto">
+                <div className="relative w-full max-w-sm mx-auto">
                   <Image
                     src={getImageUrl(caseItem.resultImage2)}
                     alt={getImageAlt(caseItem.resultImage2, "Resultaat 2")}
                     width={384}
                     height={682}
-                    className="object-contain rounded-2xl shadow-xl"
+                    className="object-contain rounded-2xl shadow-xl w-full h-auto"
                   />
                 </div>
               )}
@@ -208,7 +208,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
           </div>
         </div>
       </section >
-      <section className='py-16'>
+      <section className='py-6'>
         <MoreCases cases={allCasesResponse.docs as Portfolio[]} currentCaseId={caseItem.slug} />
       </section>
     </div>

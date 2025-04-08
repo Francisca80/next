@@ -63,7 +63,7 @@ export default async function AIPage() {
         <div className="bg-white">
             <div className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
                 {/* Introduction Section */}
-                <section className="mb-24">
+                <section className="mb-16">
                     <div className="inline-block">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">{content.title}</h2>
                         <hr className="border-gray-600 mb-4 w-full" />
@@ -74,7 +74,7 @@ export default async function AIPage() {
                 </section>
 
                 {/* Innovation Section */}
-                <section className="mb-24">
+                <section className="mb-16">
                     <div className="inline-block">
                         <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">{content.innovationTitle}</h2>
                         <hr className="border-gray-600 mb-4 w-full" />

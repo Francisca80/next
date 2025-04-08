@@ -16,28 +16,29 @@ export const Media: CollectionConfig = {
     imageSizes: [
       {
         name: 'thumbnail',
-        width: 400,
+        width: 300,
         height: 300,
         position: 'centre',
       },
       {
         name: 'card',
-        width: 768,
-        height: 1024,
+        width: 400,
+        height: 300,
         position: 'centre',
-      },
-      {
-        name: 'medium',
-        width: 300,
       },
       {
         name: 'large',
         width: 1000,
+        height: 1000,
+        position: 'centre',
       },
     ],
     adminThumbnail: 'thumbnail',
-    staticDir: path.join(process.cwd(), 'media'),
-    mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml'],
+    staticDir: path.join(process.cwd(), 'public', 'media'),
+    mimeTypes: ['image/png', 'image/jpeg', 'image/gif', 'image/svg+xml', 'image/webp'],
+    formatOptions: {
+      format: 'webp',
+    },
   },
   fields: [
     {

@@ -1,223 +1,184 @@
 import React from 'react';
 import Image from 'next/image';
-import { FaSearch, FaSitemap, FaPencilRuler, FaCode, FaChartLine } from 'react-icons/fa';
+import { getPayload } from 'payload';
+import config from '@/payload.config';
+import { Ux as UxType, Media, Portfolio } from '@/payload-types';
 import ServiceCTA from '@/components/ServiceCTA';
+import MoreCases from '@/components/MoreCases';
 
-const UXPage: React.FC = () => {
-    return (
-        <div className="bg-white">
-         
+interface Section {
+  title: string;
+  description: string;
+  features?: Array<{
+    feature: string;
+  }>;
+}
 
-            {/* Main Content */}
-            <div className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
-                {/* Introduction Section */}
-                <section className="mb-24">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">UX Design</h2>
-                    <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
-                    <p className="text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
-                        UX design, oftewel User Experience design, draait om het ontwerpen van gebruiksvriendelijke en waardevolle ervaringen voor jouw klanten. Het gaat verder dan alleen hoe iets eruitziet: het richt zich op hoe iets werkt en aanvoelt. Of het nu gaat om een website, app of andere digitale oplossing, een goede UX zorgt ervoor dat jouw klanten makkelijk en met plezier hun doel bereiken.
+interface UxContent extends UxType {
+  sections?: Section[];
+}
 
-                        Bij Margin-Top combineren we jarenlange ervaring met creativiteit en technologie om digitale ervaringen te ontwerpen die niet alleen mooi zijn, maar ook effectief. Wij helpen jouw merk om online te groeien door te focussen op wat jouw klanten nodig hebben. Van strategisch advies en wireframes tot een naadloze live-ervaring: wij staan aan jouw zijde.
+export default async function UXPage() {
+  const payloadConfig = await config;
+  const payload = await getPayload({config: payloadConfig});
+  
+  const response = await (payload.find as any)({
+    collection: 'ux',
+    where: {
+      status: {
+        equals: 'published',
+      },
+    },
+  });
 
-                        Samen maken we jouw digitale product intuïtief, aantrekkelijk en succesvol.
-                    </p>
-                </section>
+  const uxContent = response.docs[0] as UxContent;
 
-                {/* Process Section */}
-                <section className="mb-24">
-                    <div className="flex flex-col md:flex-row items-start gap-12">
-                        <div className="md:w-2/3">
-                            <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Hoe wordt UX Design toegepast?</h2>
-                            <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
-                            <p className="text-xl text-gray-700 mb-8 whitespace-pre-line leading-relaxed">
-                                UX Design is een proces dat bestaat uit verschillende stappen. 
-                                Het begint met het begrijpen van de behoeften en doelen van de gebruiker. Dit is uiteindelijk degene die het product gaat gebruiken. 
-                                Daarna volgen onderzoek, ontwerpen, testen en implementatie. Alles met de focus op de gebruiker, om deze te informeren en motiveren om het product te gebruiken.
+  // Fetch portfolio cases for the MoreCases component
+  const portfolioResponse = await (payload.find as any)({
+    collection: 'portfolio',
+    where: {
+      status: {
+        equals: 'published',
+      },
+    },
+  });
 
-                                Design speelt hierbij een belangrijke rol. Een product wat er mooi uitziet, is niet genoeg. 
-                                Het moet ook functioneel zijn en de gebruiker moet het gemakkelijk kunnen gebruiken.
-                                Het vertrekpunt voor een ontwerp is een gebruikersonderzoek. Dit onderzoek vormt de basis om te zien wie je gebruikers (doelgroep) zijn 
-                                en hoe je deze kunt bereiken. Als we dit samenbrengen met de bedrijfsdoelen kunnen we de beste oplossing vinden. 
-                                Het daadwerkelijke visuele (UI)ontwerp en ontwikkelproces volgen hierop.
-                            </p>
-                        </div>
-                        <div className="md:w-1/3 sticky top-8">
-                            <div className="relative h-[500px] w-full rounded-lg overflow-hidden shadow-lg">
-                                <Image
-                                    src="/ux/uxprocescolor.jpg"
-                                    alt="UX Design Process"
-                                    fill
-                                    className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 33vw"
-                                    priority
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </section>
+  const portfolioCases = portfolioResponse.docs as Portfolio[];
 
-                {/* Approach Section */}
-                <section className="mb-24">
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">Onze aanpak voor UX Design</h2>
-                    <hr className="border-gray-600 mb-4 w-16 sm:w-20 md:w-24 ml-0" />
-                    <p className="text-xl text-gray-700 mb-12">
-                        Het UX-proces van Margin-Top is ontworpen om gebruiksvriendelijke, effectieve en aantrekkelijke digitale ervaringen te creëren die perfect aansluiten bij de behoeften van jouw klanten en jouw zakelijke doelen.
-                    </p>
+  const getImageUrl = (image: Media | string | null): string => {
+    if (!image) return '/banner.png';
+    return typeof image === 'string' ? image : image.url || '/banner.png';
+  };
 
-                    <div className="space-y-8">
-                        {/* Research & Strategy */}
-                        <div className="group border-b border-gray-200 pb-8">
-                            <div className="flex items-center mb-6">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
-                                    <FaSearch className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <span className="text-[#4F8BD2] text-xs font-semibold tracking-wider uppercase">Fase 01</span>
-                                    <h3 className="text-xl font-bold">Onderzoek & Strategie</h3>
-                                </div>
-                            </div>
+  return (
+    <div className="bg-white">
+      <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
+        <div className="inline-block mb-16">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
+            {uxContent?.title || 'UX Design'}
+          </h1>
+          <hr className="border-gray-600 mb-4 border-t-2" />
+        </div>
+        <p className="text-xl text-gray-600 max-w-3xl mb-24">
+          {uxContent?.description || 'UX design, oftewel User Experience design, draait om het ontwerpen van gebruiksvriendelijke en waardevolle ervaringen voor jouw klanten.'}
+        </p>
 
-                            <ul className="space-y-4 text-gray-700">
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">1</span>
-                                    <span className="pt-1"><strong>Stakeholdergesprekken:</strong> Om jouw visie, uitdagingen en wensen te begrijpen.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">2</span>
-                                    <span className="pt-1"><strong>Gebruikersonderzoek:</strong> Interviews, persona&apos;s en data-analyse.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">3</span>
-                                    <span className="pt-1"><strong>Concurrentieanalyse:</strong> Inzicht krijgen in kansen.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Concept & Structure */}
-                        <div className="group border-b border-gray-200 pb-8">
-                            <div className="flex items-center mb-6">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
-                                    <FaSitemap className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <span className="text-[#4F8BD2] text-xs font-semibold tracking-wider uppercase">Fase 02</span>
-                                    <h3 className="text-xl font-bold">Concept & Structuur</h3>
-                                </div>
-                            </div>
-
-                            <ul className="space-y-4 text-gray-700">
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">1</span>
-                                    <span className="pt-1"><strong>Wireframes:</strong> Visuele blauwdrukken van de interface.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">2</span>
-                                    <span className="pt-1"><strong>User flows:</strong> De routes die gebruikers nemen om hun doelen te bereiken.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">3</span>
-                                    <span className="pt-1"><strong>Informatiestructuur:</strong> Een overzichtelijke en intuïtieve organisatie van content.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Design & Prototyping */}
-                        <div className="group border-b border-gray-200 pb-8">
-                            <div className="flex items-center mb-6">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
-                                    <FaPencilRuler className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <span className="text-[#4F8BD2] text-xs font-semibold tracking-wider uppercase">Fase 03</span>
-                                    <h3 className="text-xl font-bold">Design & Prototyping</h3>
-                                </div>
-                            </div>
-
-                            <ul className="space-y-4 text-gray-700">
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">1</span>
-                                    <span className="pt-1"><strong>Visueel ontwerp:</strong> Kleurgebruik, typografie en branding om een unieke identiteit te creëren.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">2</span>
-                                    <span className="pt-1"><strong>Interactieve prototypes:</strong> Klikbare modellen om de ervaring te testen en verfijnen.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">3</span>
-                                    <span className="pt-1"><strong>Feedbackrondes:</strong> Samen met jou zorgen we ervoor dat het ontwerp aansluit bij jouw visie.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Development & Implementation */}
-                        <div className="group border-b border-gray-200 pb-8">
-                            <div className="flex items-center mb-6">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
-                                    <FaCode className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <span className="text-[#4F8BD2] text-xs font-semibold tracking-wider uppercase">Fase 04</span>
-                                    <h3 className="text-xl font-bold">Ontwikkeling & Implementatie</h3>
-                                </div>
-                            </div>
-
-                            <ul className="space-y-4 text-gray-700">
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">1</span>
-                                    <span className="pt-1"><strong>Front-end development:</strong> Pixel-perfecte implementatie van het ontwerp.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">2</span>
-                                    <span className="pt-1"><strong>Back-end development:</strong> Server-side logic en database-interactie.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">3</span>
-                                    <span className="pt-1"><strong>Integratie:</strong> De digitale oplossing integreren in het bestaande systeem.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        {/* Testing & Optimization */}
-                        <div className="group border-b border-gray-200 pb-8">
-                            <div className="flex items-center mb-6">
-                                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#4F8BD2] !text-white mr-4">
-                                    <FaChartLine className="w-6 h-6" />
-                                </div>
-                                <div>
-                                    <span className="text-[#4F8BD2] text-xs font-semibold tracking-wider uppercase">Fase 05</span>
-                                    <h3 className="text-xl font-bold">Testen & Optimaliseren</h3>
-                                </div>
-                            </div>
-
-                            <ul className="space-y-4 text-gray-700">
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">1</span>
-                                    <span className="pt-1"><strong>Usability testing:</strong> Het testen van de ervaringen met echte gebruikers.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">2</span>
-                                    <span className="pt-1"><strong>A/B testing:</strong> Het vergelijken van verschillende versies van een product.</span>
-                                </li>
-                                <li className="flex items-start">
-                                    <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-[#4F8BD2]/10 text-[#4F8BD2] mr-3">3</span>
-                                    <span className="pt-1"><strong>Analytics:</strong> Het analyseren van gebruikersgedrag en feedback.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
+        {/* Main content sections */}
+        <div className="space-y-24">
+          {/* First two sections in a grid */}
+          {uxContent?.sections && uxContent.sections.length >= 2 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {uxContent.sections.slice(0, 2).map((section: Section, index: number) => (
+                <div 
+                  key={index} 
+                  className="bg-gray-50 p-8 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:bg-gray-100"
+                >
+                  <h2 className="text-2xl font-bold mb-6">{section.title}</h2>
+                  <p className="text-gray-600 mb-8">
+                    {section.description}
+                  </p>
+                  {section.features && section.features.length > 0 && (
+                    <ul className="space-y-4 text-gray-600">
+                      {section.features.map((feature, featureIndex: number) => (
+                        <li 
+                          key={featureIndex} 
+                          className="flex items-start"
+                        >
+                          <span className="text-[#4F8BD2] mr-2">•</span>
+                          <span>{feature.feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
             </div>
-            <section> 
-      <ServiceCTA
+          )}
+          
+          {/* Third section with image */}
+          {uxContent?.sections && uxContent.sections.length >= 3 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <div 
+                className="bg-gray-50 p-8 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:bg-gray-100"
+              >
+                <h2 className="text-2xl font-bold mb-6">{uxContent.sections[2].title}</h2>
+                <p className="text-gray-600 mb-8">
+                  {uxContent.sections[2].description}
+                </p>
+                {uxContent.sections[2].features && uxContent.sections[2].features.length > 0 && (
+                  <ul className="space-y-4 text-gray-600">
+                    {uxContent.sections[2].features.map((feature, featureIndex: number) => (
+                      <li 
+                        key={featureIndex} 
+                        className="flex items-start"
+                      >
+                        <span className="text-[#4F8BD2] mr-2">•</span>
+                        <span>{feature.feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+              
+              {/* Image next to the third section */}
+              {uxContent?.image && (
+                <div 
+                  className="relative aspect-[4/3] rounded-xl overflow-hidden shadow-lg transition-all duration-300 hover:scale-[1.03]"
+                >
+                  <Image
+                    src={getImageUrl(uxContent.image)}
+                    alt={uxContent.title || "UX Design service"}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Remaining sections */}
+          {uxContent?.sections && uxContent.sections.length > 3 && (
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              {uxContent.sections.slice(3).map((section: Section, index: number) => (
+                <div 
+                  key={index + 3} 
+                  className="bg-gray-50 p-8 rounded-xl transition-all duration-300 hover:scale-[1.02] hover:shadow-lg hover:bg-gray-100"
+                >
+                  <h2 className="text-2xl font-bold mb-6">{section.title}</h2>
+                  <p className="text-gray-600 mb-8">
+                    {section.description}
+                  </p>
+                  {section.features && section.features.length > 0 && (
+                    <ul className="space-y-4 text-gray-600">
+                      {section.features.map((feature, featureIndex: number) => (
+                        <li 
+                          key={featureIndex} 
+                          className="flex items-start"
+                        >
+                          <span className="text-[#4F8BD2] mr-2">•</span>
+                          <span>{feature.feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        
+      </section>
+      <section className='py-16'>
+        <MoreCases cases={portfolioCases} currentCaseId="" />
+      </section>  
+      <section>
+        <ServiceCTA 
           serviceType="ux"
           title="Klaar om je project te starten?"
           subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"
           ctaText="Vraag een offerte aan"
         />
-        </section>
-        </div>
-    );
-};
-
-export default UXPage;
+      </section>
+    </div>
+  );
+}
