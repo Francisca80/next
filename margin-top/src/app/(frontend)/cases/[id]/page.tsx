@@ -64,12 +64,6 @@ export default async function CaseDetail(props: CaseDetailProps) {
     notFound();
   }
 
-  // Debug logging
-  console.log('About content:', caseItem.about);
-  console.log('Project description:', caseItem.descriptionProject);
-  console.log('Process description:', caseItem.procesDescription);
-  console.log('Result text:', caseItem.resultText);
-
   const getImageUrl = (image: Media | string | null): string => {
     if (!image) return '/home.jpg';
     return typeof image === 'string' ? image : image.url || '/home.jpg';

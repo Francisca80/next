@@ -22,7 +22,7 @@ const outfit = Outfit({
 export const metadata = {
   metadataBase: new URL(
     process.env.NODE_ENV === 'production'
-      ? 'https://margin-top.com' // replace with your real domain!
+      ? 'https://margin-top.com' 
       : 'http://localhost:3000'
   ),
   title: 'Margin-Top',
