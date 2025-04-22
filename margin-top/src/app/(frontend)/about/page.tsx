@@ -229,15 +229,13 @@ const About: React.FC = () => {
                 <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-6">
                   <p
                   >
-                    <span className="absolute -left-4 top-0 text-4xl text-[#4F8BD2] opacity-20">"</span>
                     Francisca is de oprichter van Margin-Top, een digitaal bureau dat gedreven wordt door een passie voor het ontwerpen van 
                     naadloze gebruikerservaringen en innovatieve digitale oplossingen.
                   </p>
-                  <p
-            >
+                  <p>
                     Margin-Top is de plek waar passie voor design, innovatie en technologie samenkomen, samen brengen we jouw visie tot leven. 
                     We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot overheidsorganisaties en financiële instellingen.
-                    <span className="absolute -right-4 bottom-0 text-4xl text-[#4F8BD2] opacity-20">"</span>
+                  
                   </p>
                 </div>
               </div>
