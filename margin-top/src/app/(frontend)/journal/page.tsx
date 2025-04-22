@@ -43,12 +43,15 @@ async function JournalPage() {
     <section className="w-11/12 max-w-5xl mx-auto py-24">
       <div className="inline-block mb-16 mt-24">
         <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
-        Journal
+        Journals
         </h1>
         <hr className="border-gray-600 mb-4 border-t-2" />
       </div>
       <p className="text-xl text-gray-600 max-w-3xl mb-16">
-      Thoughts, stories and ideas about design, development and digital experiences.
+      In onze Journal delen we verhalen, inzichten en inspiratie die ons drijven. 
+      Van de laatste trends in design en technologie tot diepgaande reflecties over branding, strategie 
+      en de wereld van innovatie. Hier vind je niet alleen updates over ons werk, maar ook de ideeën en visies die ons vormen.
+      Of je nu op zoek bent naar praktische tips, creatieve inspiratie of gewoon nieuwsgierig bent waar we naartoe gaan.
       </p>
   
 

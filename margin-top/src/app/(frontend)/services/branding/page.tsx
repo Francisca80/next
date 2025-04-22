@@ -80,12 +80,14 @@ export default async function BrandingPage() {
             </div>
           ))}
 
-          <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+          <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-gray-50">
             <Image
               src={getImageUrl(brandingContent?.image)}
               alt={brandingContent?.title || "Design service"}
               fill
-              className="object-cover"
+              className="object-contain"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
             />
           </div>
         </div>
