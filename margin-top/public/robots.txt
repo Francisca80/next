@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /contact
+
+Sitemap: https://margin-top.com/sitemap.xml

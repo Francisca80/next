@@ -82,21 +82,21 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
   const getServiceIcon = () => {
     switch (serviceType) {
       case 'hosting':
-        return <FaServer className="w-12 h-12 text-white" />;
+        return <FaServer className="w-12 h-12 text-[#4F8BD2]" />;
       case 'development':
-        return <FaCode className="w-12 h-12 text-white" />;
+        return <FaCode className="w-12 h-12 text-[#4F8BD2]" />;
       case 'ux':
-        return <FaChartLine className="w-12 h-12 text-white" />;
+        return <FaChartLine className="w-12 h-12 text-[#4F8BD2]" />;
       case 'branding':
-        return <FaPalette className="w-12 h-12 text-white" />;
+        return <FaPalette className="w-12 h-12 text-[#4F8BD2]" />;
       case 'ai':
-        return <FaRocket className="w-12 h-12 text-white" />;
+        return <FaRocket className="w-12 h-12 text-[#4F8BD2]" />;
       case 'services':
-        return <FaRocket className="w-12 h-12 text-white" />;
+        return <FaRocket className="w-12 h-12 text-[#4F8BD2]" />;
       case 'margin-top':
-        return <FaRocket className="w-12 h-12 text-white" />;
+        return <FaRocket className="w-12 h-12 text-[#4F8BD2]" />;
       default:
-        return <FaRocket className="w-12 h-12 text-white" />;
+        return <FaRocket className="w-12 h-12 text-[#4F8BD2]" />;
     }
   };
 
@@ -164,7 +164,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
 
   return (
     <motion.div 
-      className="bg-gray-100 text-black py-12 sm:py-16 md:py-24 px-4 overflow-hidden relative"
+      className="bg-white text-black py-12 sm:py-16 md:py-24 px-4 overflow-hidden relative"
       initial="hidden"
       animate={controls}
       variants={containerVariants}
@@ -172,7 +172,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
       {/* Background animated elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute -top-20 -right-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-20"
+          className="absolute -top-20 -right-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-10"
           animate={{ 
             scale: [1, 1.5, 1],
             rotate: [0, 180, 0]
@@ -184,7 +184,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
           }}
         />
         <motion.div 
-          className="absolute -bottom-20 -left-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-20"
+          className="absolute -bottom-20 -left-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-10"
           animate={{ 
             scale: [1.5, 1, 1.5],
             rotate: [180, 0, 180]
@@ -204,11 +204,10 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
             variants={itemVariants}
           >
             <motion.h2 
-              className="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 relative inline-block"
+              className="text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 relative inline-block text-[#4F8BD2]"
               variants={itemVariants}
             >
               {title}
-           
             </motion.h2>
             <motion.p 
               className="text-base sm:text-lg mb-4 sm:mb-6 text-gray-700"
@@ -222,7 +221,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
               variants={itemVariants}
             >
               {serviceType === 'margin-top' ? (
-                <div className="relative w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-full overflow-hidden mr-3 sm:mr-4">
+                <div className="relative w-12 sm:w-14 md:w-16 h-12 sm:h-14 md:h-16 rounded-full overflow-hidden mr-3 sm:mr-4 bg-white">
                   <Image
                     src="/margin-top-logo.png"
                     alt="Margin Top Team"
@@ -232,7 +231,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 </div>
               ) : (
                 <motion.div 
-                  className="bg-[#4F8BD2] p-2 sm:p-3 rounded-full mr-3 sm:mr-4"
+                  className="bg-white p-2 sm:p-3 rounded-full mr-3 sm:mr-4 border-2 border-[#4F8BD2]"
                   whileHover={{ rotate: 15, scale: 1.1 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
@@ -240,7 +239,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 </motion.div>
               )}
               <div>
-                <h3 className="text-lg sm:text-xl font-semibold capitalize">{serviceType} </h3>
+                <h3 className="text-lg sm:text-xl font-semibold capitalize text-[#4F8BD2]">{serviceType} </h3>
                 <p className="text-sm sm:text-base text-gray-600">Professionele oplossingen op maat</p>
               </div>
             </motion.div>
@@ -307,10 +306,10 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 }}
               >
                 <motion.div 
-                  className="absolute inset-0 bg-gradient-to-br from-[#2A5A8F] to-[#2A5A8F]/50 rounded-full opacity-20"
+                  className="absolute inset-0 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/50 rounded-full opacity-30"
                   animate={{ 
                     scale: [1, 1.2, 1],
-                    opacity: [0.2, 0.3, 0.2]
+                    opacity: [0.3, 0.5, 0.3]
                   }}
                   transition={{ 
                     duration: 8,
@@ -319,10 +318,10 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                   }}
                 />
                 <motion.div 
-                  className="absolute inset-4 bg-gradient-to-br from-[#2A5A8F] to-[#2A5A8F]/30 rounded-full opacity-30"
+                  className="absolute inset-4 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/30 rounded-full opacity-40"
                   animate={{ 
                     scale: [1, 1.1, 1],
-                    opacity: [0.3, 0.4, 0.3]
+                    opacity: [0.4, 0.6, 0.4]
                   }}
                   transition={{ 
                     duration: 6,
@@ -331,10 +330,10 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                   }}
                 />
                 <motion.div 
-                  className="absolute inset-8 bg-gradient-to-br from-[#2A5A8F] to-[#2A5A8F]/20 rounded-full opacity-40 flex items-center justify-center"
+                  className="absolute inset-8 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/20 rounded-full opacity-50 flex items-center justify-center"
                   animate={{ 
                     scale: [1, 1.05, 1],
-                    opacity: [0.4, 0.5, 0.4]
+                    opacity: [0.5, 0.7, 0.5]
                   }}
                   transition={{ 
                     duration: 4,
@@ -344,7 +343,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 >
                   <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
                     <Image
-                      src="/margin-top-logo.png"
+                      src="/media/mascotmm.png"
                       alt="Margin Top Team"
                       fill
                       className="object-contain p-4 sm:p-6"
