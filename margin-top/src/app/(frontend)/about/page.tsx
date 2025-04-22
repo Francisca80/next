@@ -220,35 +220,25 @@ const About: React.FC = () => {
             <div 
               className="w-full max-w-3xl text-center relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#6EC1E4]/10 to-[#4F8BD2]/10 rounded-2xl -z-10"></div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#6EC1E4] rounded-full -z-10 opacity-20"></div>
-              <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-[#4F8BD2] rounded-full -z-10 opacity-20"></div>
+     
               <div className="p-8">
                 <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 text-[#4F8BD2]">
                   Meet Margin-Top
                 </h2>
-                <hr className="border-[#4F8BD2] mb-8 border-t-2 mx-auto w-1/3" />
+                <hr className="border-black mb-8 border-t-2 mx-auto w-1/3" />
                 <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-6">
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={teamInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.8, delay: 1 }}
-                    className="relative"
+                  <p
                   >
                     <span className="absolute -left-4 top-0 text-4xl text-[#4F8BD2] opacity-20">"</span>
                     Francisca is de oprichter van Margin-Top, een digitaal bureau dat gedreven wordt door een passie voor het ontwerpen van 
                     naadloze gebruikerservaringen en innovatieve digitale oplossingen.
-                  </motion.p>
-                  <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={teamInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.8, delay: 1.2 }}
-                    className="relative"
-                  >
+                  </p>
+                  <p
+            >
                     Margin-Top is de plek waar passie voor design, innovatie en technologie samenkomen, samen brengen we jouw visie tot leven. 
                     We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot overheidsorganisaties en financiële instellingen.
                     <span className="absolute -right-4 bottom-0 text-4xl text-[#4F8BD2] opacity-20">"</span>
-                  </motion.p>
+                  </p>
                 </div>
               </div>
               <div 
