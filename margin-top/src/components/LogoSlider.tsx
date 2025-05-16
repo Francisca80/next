@@ -55,21 +55,21 @@ const LogoSlider = () => {
         breakpoint: 1024,
         settings: {
           slidesToShow: 4,
-          speed: 6000,
+          speed: 5000,
         }
       },
       {
         breakpoint: 768,
         settings: {
           slidesToShow: 3,
-          speed: 5000,
+          speed: 4000,
         }
       },
       {
         breakpoint: 480,
         settings: {
           slidesToShow: 2,
-          speed: 4000,
+          speed: 3000,
         }
       }
     ]

@@ -11,9 +11,9 @@ const AboutSection: React.FC = () => {
   const { displayText, isTyping } = useTypewriter(quote, 40, 500);
 
   return (
-    <section className="w-11/12 max-w-5xl mx-auto h-[100vh] flex flex-col relative pt-24 md:pt-32">
-      <div className="flex-1 flex items-center mb-8 md:mb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <section className="w-11/12 max-w-5xl mx-auto py-12 md:py-16 mb-4 md:mb-6">
+      <div className="flex flex-col gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Left side - Quote */}
           <div className="relative flex items-center">
             <blockquote className="text-2xl md:text-3xl font-light leading-relaxed text-gray-800">
@@ -23,14 +23,14 @@ const AboutSection: React.FC = () => {
           </div>
 
           {/* Right side - Text and Button */}
-          <div className="flex flex-col justify-center space-y-8">
+          <div className="flex flex-col justify-center space-y-6">
             <div>
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-lg text-gray-700 mb-4">
                 Bij Margin-Top geloven we dat design niet alleen mooi moet zijn, maar ook impactvol en innovatief.
                 Met onze slogan &quot;Creating space for BOLD Design&quot; maken we duidelijk waar we voor staan: wij creëren 
                 de ruimte – technisch, visueel en strategisch – voor gedurfd, vernieuwend design dat opvalt en werkt.
               </p>
-              <p className="text-lg text-gray-700 mb-6">
+              <p className="text-lg text-gray-700 mb-4">
               Of het nu gaat om het bouwen van slimme websites, het ontwikkelen van digitale producten of het inzetten 
               van nieuwe technologieën zoals AI  – wij zorgen voor de basis waarop jouw sterke ideeën tot leven komen. 
               Van standaardoplossingen tot maatwerk met lef en visie, gebruiksvriendelijk en innovatief.
@@ -53,12 +53,12 @@ const AboutSection: React.FC = () => {
             </Link>
           </div>
         </div>
-      </div>
 
-      {/* Logo Slider */}
-      <div className="w-full">
-        <div className="pb-6 md:pb-6">
-          <LogoSlider />
+        {/* Logo Slider */}
+        <div className="w-full mt-12 md:mt-16">
+          <div className="py-6 md:py-8">
+            <LogoSlider />
+          </div>
         </div>
       </div>
     </section>

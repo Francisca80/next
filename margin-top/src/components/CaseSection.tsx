@@ -113,13 +113,13 @@ const CasesSection: React.FC = () => {
   };
 
   return (
-    <div ref={containerRef} className="min-h-[200vh] relative">
-      <div className="h-[100vh] sticky top-0 flex flex-col justify-center bg-white mb-20">
-        <section ref={ref} className="w-11/12 max-w-5xl mx-auto">
-          <div className={`transform transition-all duration-1000 mb-12 ${
+    <div ref={containerRef} className="relative bg-white">
+      <div className="sticky top-0 flex flex-col justify-center">
+        <section ref={ref} className="w-11/12 max-w-5xl mx-auto py-6 md:py-8">
+          <div className={`transform transition-all duration-1000 mb-6 md:mb-8 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}>
-            <div className="inline-block relative mb-8">
+            <div className="inline-block relative mb-6">
               <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">Recent Werk</h1>
               <hr className="absolute bottom-0 left-0 w-full border-gray-600 border-t-2" />
             </div>
@@ -129,17 +129,15 @@ const CasesSection: React.FC = () => {
             </p>
           </div>
 
-          <div className="relative">
-            <div 
-              ref={scrollContainerRef}
-              className="flex space-x-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory"
-            >
+          <div className="relative mt-8 md:mt-12">
+            {/* Mobile Stack Layout */}
+            <div className="grid grid-cols-1 gap-6 md:hidden">
               {cases.map((caseItem, index) => (
                 <Link 
                   href={`/cases/${caseItem.slug}`} 
                   key={caseItem.slug}
                   onClick={(e) => handleCaseClick(e, caseItem.title)}
-                  className={`group relative flex-none w-[85vw] sm:w-[45vw] lg:w-[30vw] snap-start ${
+                  className={`group relative ${
                     inView 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-10'
@@ -155,7 +153,51 @@ const CasesSection: React.FC = () => {
                       fill
                       priority={index === 0}
                       loading={index === 0 ? 'eager' : 'lazy'}
-                      sizes="(max-width: 640px) 85vw, (max-width: 1024px) 45vw, 30vw"
+                      sizes="100vw"
+                      className="object-cover transform transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Persistent overlay for mobile */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+                      <div className="absolute bottom-0 left-0 right-0 p-6">
+                        <h3 className="text-2xl !text-white font-normal mb-3">{caseItem.title}</h3>
+                        <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 w-fit">
+                          <span className="text-white text-sm font-medium">View Project</span>
+                          <FaArrowRight className="w-4 h-4 text-white" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            {/* Desktop Horizontal Scroll */}
+            <div 
+              ref={scrollContainerRef}
+              className="hidden md:flex space-x-6 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-6"
+            >
+              {cases.map((caseItem, index) => (
+                <Link 
+                  href={`/cases/${caseItem.slug}`} 
+                  key={caseItem.slug}
+                  onClick={(e) => handleCaseClick(e, caseItem.title)}
+                  className={`group relative flex-none w-[45vw] lg:w-[30vw] snap-start ${
+                    inView 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-10'
+                  }`}
+                  style={{ 
+                    transitionDelay: `${index * 200}ms`
+                  }}
+                >
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-lg">
+                    <Image 
+                      src={getImageUrl(caseItem.image)} 
+                      alt={getImageAlt(caseItem.image, caseItem.title)}
+                      fill
+                      priority={index === 0}
+                      loading={index === 0 ? 'eager' : 'lazy'}
+                      sizes="(max-width: 1024px) 45vw, 30vw"
                       className="object-cover transform transition-transform duration-700 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

@@ -5,8 +5,7 @@ const nextConfig = {
   // Your Next.js config here
   experimental: {
     reactCompiler: false,
-  },
-  output: 'standalone',
+  }
 }
 
 // Make sure you wrap your `nextConfig`
