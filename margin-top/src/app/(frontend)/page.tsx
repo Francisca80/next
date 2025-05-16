@@ -6,6 +6,7 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import AboutSection from "@/components/AboutSection";
 import ServiceCTA from "@/components/ServiceCTA";
+
 interface PageData {
   heroImage: {
     url: string;
@@ -25,7 +26,7 @@ interface PageData {
   };
 }
 
-export default async function Home() {
+async function getHomeData() {
   const payloadConfig = await config;
   const payload = await getPayload({config: payloadConfig});
   
@@ -61,10 +62,20 @@ export default async function Home() {
 
   const services = servicesResponse?.docs || [];
 
+  return {
+    homepage,
+    heroImages,
+    services
+  };
+}
+
+export default async function Home() {
+  const { homepage, heroImages, services } = await getHomeData();
+
   return (
     <div className="relative">
-      {/* Sticky Hero */}
-      <div className="sticky top-0 z-0 h-screen">
+      {/* Hero Section */}
+      <div className="md:sticky md:top-0 relative z-0 h-screen">
         <Hero 
           image={homepage.heroImage}
           title={homepage.heroTitle} 
@@ -75,7 +86,7 @@ export default async function Home() {
       </div>
       
       {/* Content that scrolls over the hero */}
-      <div className="relative z-10 bg-white">
+      <div className="relative md:z-10 z-0 bg-white">
         <AboutSection />
         <CaseSection />
         <ServicesSection initialServices={services} />

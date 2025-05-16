@@ -265,18 +265,18 @@ export default async function JournalPost({ params }: Props) {
 
   return (
     <div className="bg-white">
-      <section className="w-11/12 max-w-5xl mx-auto py-24">
+      <section className="w-11/12 max-w-5xl mx-auto py-12 md:py-16 mt-4 md:mt-8">
         {/* Title and Introduction */}
-        <div className="inline-block mb-16 mt-24">
+        <div className="inline-block mb-8 md:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             {post.title}
           </h1>
           <hr className="border-gray-600 mb-4 border-t-2" />
         </div>
-        <p className="text-xl text-gray-600 max-w-3xl mb-16 leading-relaxed">{post.excerpt}</p>
+        <p className="text-xl text-gray-600 max-w-3xl mb-12 md:mb-16 leading-relaxed">{post.excerpt}</p>
 
         {/* Hero Image */}
-        <div className="relative w-full aspect-[16/9] mb-24">
+        <div className="relative w-full aspect-[16/9] mb-12 md:mb-16">
           {imageUrl && (
             <Image
               src={imageUrl}

@@ -52,8 +52,8 @@ export default async function UXPage() {
 
   return (
     <div className="bg-white">
-      <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
-        <div className="inline-block mb-16">
+      <section className="w-11/12 max-w-5xl mx-auto py-12 md:py-16 mt-4 md:mt-8">
+        <div className="inline-block mb-8 md:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             {uxContent?.title || 'UX Design'}
           </h1>

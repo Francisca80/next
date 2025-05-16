@@ -72,8 +72,7 @@ type LexicalContentProps = {
 function renderNode(node: LexicalNode): React.ReactNode {
   if (!node) return null;
 
-  // Debug log for node type
-  console.log('Rendering node type:', node.type, node);
+
 
   switch (node.type) {
     case 'root':
@@ -290,7 +289,6 @@ export default function LexicalContent({ content }: LexicalContentProps) {
   let parsedContent;
   try {
     parsedContent = typeof content === 'string' ? JSON.parse(content) : content;
-    console.log('Parsed content:', parsedContent);
   } catch (error) {
     console.error('Error parsing content:', error);
     return <div>Error rendering content</div>;

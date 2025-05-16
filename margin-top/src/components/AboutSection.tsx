@@ -11,8 +11,8 @@ const AboutSection: React.FC = () => {
   const { displayText, isTyping } = useTypewriter(quote, 40, 500);
 
   return (
-    <section className="w-11/12 max-w-5xl mx-auto min-h-screen flex flex-col relative">
-      <div className="flex-1 flex items-center">
+    <section className="w-11/12 max-w-5xl mx-auto h-[100vh] flex flex-col relative pt-24 md:pt-32">
+      <div className="flex-1 flex items-center mb-8 md:mb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Left side - Quote */}
           <div className="relative flex items-center">
@@ -57,11 +57,9 @@ const AboutSection: React.FC = () => {
 
       {/* Logo Slider */}
       <div className="w-full">
-        <div className="h-px bg-gray-200 mb-12" />
-        <div className="pb-12">
+        <div className="pb-6 md:pb-6">
           <LogoSlider />
         </div>
-        <div className="h-px bg-gray-200" />
       </div>
     </section>
   );

@@ -73,7 +73,7 @@ export default async function Cases() {
   return (
     <div className="bg-white">
       <section className="w-11/12 max-w-5xl mx-auto py-12 sm:py-24">
-        <div className="inline-block relative mb-8 mt-24">
+        <div className="inline-block relative mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             Cases 
           </h1>

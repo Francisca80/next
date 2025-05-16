@@ -6,7 +6,7 @@ export default function DevelopmentPage() {
     return (
         <div className="bg-white">
             {/* Main Content */}
-            <div className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
+            <div className="w-11/12 max-w-5xl mx-auto py-24">
                 {/* Introduction Section */}
                 <section className="mb-24">
                     <h2 className="text-2xl sm:text-3xl md:text-4xl mb-4">WordPress Development</h2>

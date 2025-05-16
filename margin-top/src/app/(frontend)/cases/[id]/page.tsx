@@ -78,7 +78,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
     <div className="bg-white">
       <section className="w-11/12 max-w-5xl mx-auto py-16">
         {/* Title and Introduction */}
-        <div className="inline-block mb-12 mt-24">
+        <div className="inline-block mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             {caseItem.title}
           </h1>

@@ -22,10 +22,21 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
   serviceType = "hosting"
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const controls = useAnimation();
 
   useEffect(() => {
-    // Trigger animation when component mounts
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useEffect(() => {
     controls.start("visible");
   }, [controls]);
 
@@ -174,25 +185,25 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
         <motion.div 
           className="absolute -top-20 -right-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-10"
           animate={{ 
-            scale: [1, 1.5, 1],
-            rotate: [0, 180, 0]
+            scale: isMobile ? [1, 1.1, 1] : [1, 1.2, 1],
+            rotate: isMobile ? [0, 45, 0] : [0, 90, 0]
           }}
           transition={{ 
-            duration: 15,
+            duration: isMobile ? 25 : 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
         />
         <motion.div 
           className="absolute -bottom-20 -left-20 w-32 sm:w-48 md:w-64 h-32 sm:h-48 md:h-64 bg-[#4F8BD2] rounded-full opacity-10"
           animate={{ 
-            scale: [1.5, 1, 1.5],
-            rotate: [180, 0, 180]
+            scale: isMobile ? [1.1, 1, 1.1] : [1.2, 1, 1.2],
+            rotate: isMobile ? [45, 0, 45] : [90, 0, 90]
           }}
           transition={{ 
-            duration: 15,
+            duration: isMobile ? 25 : 20,
             repeat: Infinity,
-            ease: "linear"
+            ease: "easeInOut"
           }}
         />
       </div>
@@ -296,11 +307,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
               <motion.div 
                 className="relative w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64"
                 animate={{ 
-                  rotate: [0, 15, 0, -15, 0],
-                  scale: [1, 1.2, 1]
+                  rotate: isMobile ? [0, 5, 0, -5, 0] : [0, 10, 0, -10, 0],
+                  scale: isMobile ? [1, 1.05, 1] : [1, 1.1, 1]
                 }}
                 transition={{ 
-                  duration: 10,
+                  duration: isMobile ? 20 : 15,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -308,11 +319,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/50 rounded-full opacity-30"
                   animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3]
+                    scale: isMobile ? [1, 1.05, 1] : [1, 1.1, 1],
+                    opacity: isMobile ? [0.3, 0.35, 0.3] : [0.3, 0.4, 0.3]
                   }}
                   transition={{ 
-                    duration: 8,
+                    duration: isMobile ? 15 : 12,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -320,11 +331,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 <motion.div 
                   className="absolute inset-4 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/30 rounded-full opacity-40"
                   animate={{ 
-                    scale: [1, 1.1, 1],
-                    opacity: [0.4, 0.6, 0.4]
+                    scale: isMobile ? [1, 1.02, 1] : [1, 1.05, 1],
+                    opacity: isMobile ? [0.4, 0.45, 0.4] : [0.4, 0.5, 0.4]
                   }}
                   transition={{ 
-                    duration: 6,
+                    duration: isMobile ? 12 : 10,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -332,11 +343,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 <motion.div 
                   className="absolute inset-8 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/20 rounded-full opacity-50 flex items-center justify-center"
                   animate={{ 
-                    scale: [1, 1.05, 1],
-                    opacity: [0.5, 0.7, 0.5]
+                    scale: isMobile ? [1, 1.01, 1] : [1, 1.02, 1],
+                    opacity: isMobile ? [0.5, 0.55, 0.5] : [0.5, 0.6, 0.5]
                   }}
                   transition={{ 
-                    duration: 4,
+                    duration: isMobile ? 10 : 8,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -355,11 +366,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
               <motion.div 
                 className="relative w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64"
                 animate={{ 
-                  rotate: [0, 15, 0, -15, 0],
-                  scale: [1, 1.2, 1]
+                  rotate: isMobile ? [0, 5, 0, -5, 0] : [0, 10, 0, -10, 0],
+                  scale: isMobile ? [1, 1.05, 1] : [1, 1.1, 1]
                 }}
                 transition={{ 
-                  duration: 10,
+                  duration: isMobile ? 20 : 15,
                   repeat: Infinity,
                   ease: "easeInOut"
                 }}
@@ -367,11 +378,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 <motion.div 
                   className="absolute inset-0 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/50 rounded-full opacity-30"
                   animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.5, 0.3]
+                    scale: isMobile ? [1, 1.05, 1] : [1, 1.1, 1],
+                    opacity: isMobile ? [0.3, 0.35, 0.3] : [0.3, 0.4, 0.3]
                   }}
                   transition={{ 
-                    duration: 8,
+                    duration: isMobile ? 15 : 12,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -379,11 +390,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 <motion.div 
                   className="absolute inset-4 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/30 rounded-full opacity-40"
                   animate={{ 
-                    scale: [1, 1.1, 1],
-                    opacity: [0.4, 0.6, 0.4]
+                    scale: isMobile ? [1, 1.02, 1] : [1, 1.05, 1],
+                    opacity: isMobile ? [0.4, 0.45, 0.4] : [0.4, 0.5, 0.4]
                   }}
                   transition={{ 
-                    duration: 6,
+                    duration: isMobile ? 12 : 10,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -391,11 +402,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                 <motion.div 
                   className="absolute inset-8 bg-gradient-to-br from-[#4F8BD2] to-[#4F8BD2]/20 rounded-full opacity-50 flex items-center justify-center"
                   animate={{ 
-                    scale: [1, 1.05, 1],
-                    opacity: [0.5, 0.7, 0.5]
+                    scale: isMobile ? [1, 1.01, 1] : [1, 1.02, 1],
+                    opacity: isMobile ? [0.5, 0.55, 0.5] : [0.5, 0.6, 0.5]
                   }}
                   transition={{ 
-                    duration: 4,
+                    duration: isMobile ? 10 : 8,
                     repeat: Infinity,
                     ease: "easeInOut"
                   }}
@@ -403,11 +414,11 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                   <motion.div 
                     className="text-4xl sm:text-5xl md:text-6xl text-white opacity-90"
                     animate={{ 
-                      rotate: [0, 10, 0, -10, 0],
-                      scale: [1, 1.1, 1]
+                      rotate: isMobile ? [0, 5, 0, -5, 0] : [0, 10, 0, -10, 0],
+                      scale: isMobile ? [1, 1.05, 1] : [1, 1.1, 1]
                     }}
                     transition={{ 
-                      duration: 5,
+                      duration: isMobile ? 8 : 5,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}

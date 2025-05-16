@@ -15,8 +15,11 @@ export default function LenisProvider({ children }: LenisProviderProps) {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.6,
+      touchMultiplier: 1.2,
+      infinite: false,
+  
+      touchInertiaMultiplier: 1.2
     });
 
     function raf(time: number) {

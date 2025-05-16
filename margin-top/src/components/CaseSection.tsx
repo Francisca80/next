@@ -114,7 +114,7 @@ const CasesSection: React.FC = () => {
 
   return (
     <div ref={containerRef} className="min-h-[200vh] relative">
-      <div className="h-screen sticky top-0 flex flex-col justify-center bg-white">
+      <div className="h-[100vh] sticky top-0 flex flex-col justify-center bg-white mb-20">
         <section ref={ref} className="w-11/12 max-w-5xl mx-auto">
           <div className={`transform transition-all duration-1000 mb-12 ${
             inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'

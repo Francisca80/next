@@ -22,8 +22,8 @@ export default async function Services() {
 
   return (
     <div className="bg-white">
-      <section className="w-11/12 max-w-5xl mx-auto py-24">
-        <div className="inline-block relative mb-8 mt-24">
+      <section className="w-11/12 max-w-5xl mx-auto py-24 transform-gpu">
+        <div className="inline-block relative mb-8">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             Services 
           </h1>
@@ -35,7 +35,7 @@ export default async function Services() {
         </p>
 
         {/* Services List Section */}
-        <div className="space-y-16">
+        <div className="space-y-16 transform-gpu">
           {services.map((service) => {
             const mediaImage = service.image as Media | undefined;
             
@@ -43,16 +43,16 @@ export default async function Services() {
               <Link 
                 href={`/services/${service.slug}`} 
                 key={service.id} 
-                className="block group"
+                className="block group transform-gpu will-change-transform"
               >
                 <div className="flex flex-col md:flex-row items-start gap-12">
                   {mediaImage?.url && (
-                    <div className="relative w-full md:w-1/2 aspect-[4/3]">
+                    <div className="relative w-full md:w-1/2 aspect-[4/3] transform-gpu will-change-transform">
                       <Image 
                         src={mediaImage.url}
                         alt={service.title} 
                         fill
-                        className="object-cover rounded-lg transition-transform duration-500 group-hover:scale-105" 
+                        className="object-cover rounded-lg transition-transform duration-700 ease-out group-hover:scale-105" 
                         loading="lazy"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
@@ -65,7 +65,7 @@ export default async function Services() {
                     <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                       {service.description}
                     </p>
-                    <span className="text-[#4F8BD2] font-medium group-hover:translate-x-2 transition-transform duration-300 inline-flex items-center gap-2">
+                    <span className="text-[#4F8BD2] font-medium group-hover:translate-x-2 transition-transform duration-500 ease-out inline-flex items-center gap-2">
                       Lees meer <FaArrowRight className="inline" />
                     </span>
                   </div>
@@ -76,9 +76,8 @@ export default async function Services() {
         </div>
       </section>
 
-   
       {/* Global CTA Section */}
-      <section>
+      <section className="transform-gpu">
         <ServiceCTA 
           title="Klaar om je project te starten?"
           subtitle="Vraag vandaag nog een vrijblijvende offerte aan en ontdek hoe wij je kunnen helpen met het realiseren van je digitale ambities"

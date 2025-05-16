@@ -40,14 +40,14 @@ async function JournalPage() {
 
   return (
     <div className="bg-white">
-    <section className="w-11/12 max-w-5xl mx-auto py-24">
-      <div className="inline-block mb-16 mt-24">
+    <section className="w-11/12 max-w-5xl mx-auto py-12 md:py-16 mt-4 md:mt-8">
+      <div className="inline-block mb-8 md:mb-12">
         <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
         Journals
         </h1>
-        <hr className="border-gray-600 mb-4 border-t-2" />
+        <hr className="border-gray-600 mb-2 border-t-2" />
       </div>
-      <p className="text-xl text-gray-600 max-w-3xl mb-16">
+      <p className="text-xl text-gray-600 max-w-3xl mb-8">
       In onze Journal delen we verhalen, inzichten en inspiratie die ons drijven. 
       Van de laatste trends in design en technologie tot diepgaande reflecties over branding, strategie 
       en de wereld van innovatie. Hier vind je niet alleen updates over ons werk, maar ook de ideeën en visies die ons vormen.

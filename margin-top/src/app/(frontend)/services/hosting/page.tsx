@@ -56,14 +56,14 @@ export default async function HostingPage() {
 
   return (
     <div className="bg-white">
-      <section className="w-11/12 max-w-5xl mx-auto py-24 mt-24">
-        <div className="inline-block mb-16">
+      <section className="w-11/12 max-w-5xl mx-auto py-12 md:py-16 mt-4 md:mt-8">
+        <div className="inline-block mb-8 md:mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl mb-4">
             {content?.title || 'Hosting'}
           </h1>
           <hr className="border-gray-600 mb-4 border-t-2" />
         </div>
-        <p className="text-xl text-gray-600 max-w-3xl mb-24">
+        <p className="text-xl text-gray-600 max-w-3xl mb-12 md:mb-16">
           {content?.description || 'Betrouwbare en snelle hosting oplossingen voor jouw website.'}
         </p>
 

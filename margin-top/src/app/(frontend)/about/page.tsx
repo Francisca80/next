@@ -42,8 +42,8 @@ const About: React.FC = () => {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="min-h-[70vh] flex items-center py-24">
-        <div className="w-11/12 max-w-5xl mx-auto mt-24">
+      <section className="min-h-[70vh] flex items-center py-12 md:py-16">
+        <div className="w-11/12 max-w-5xl mx-auto mt-8 md:mt-16">
           <motion.div 
             ref={heroRef}
             className={`flex flex-col md:flex-row items-center gap-12`}
@@ -92,7 +92,7 @@ const About: React.FC = () => {
       </section>
 
       {/* Text Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-12 md:py-16 bg-gray-50">
         <div className="w-11/12 max-w-5xl mx-auto">
           <motion.div
             ref={textRef}
@@ -151,16 +151,73 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section className="py-24">
+      {/* Meet Margin-Top Section */}
+      <section className="py-12 md:py-16">
         <div className="w-11/12 max-w-5xl mx-auto">
           <motion.div 
             ref={teamRef}
-            className="flex flex-col items-center gap-12"
+            className="flex flex-col items-center gap-8 md:gap-10"
             initial={{ opacity: 0, y: 50 }}
             animate={teamInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8 }}
           >
+            <div 
+              className="w-full max-w-3xl text-center relative"
+            >
+              <div className="p-4 md:p-6">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 text-[#4F8BD2]">
+                  Meet Margin-Top
+                </h2>
+                <hr className="border-black mb-8 border-t-2 mx-auto w-1/3" />
+                <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-6">
+                  <p>
+                    Francisca is de oprichter van Margin-Top, een digitaal bureau dat gedreven wordt door een passie voor het ontwerpen van 
+                    naadloze gebruikerservaringen en innovatieve digitale oplossingen.
+                  </p>
+                  <p>
+                    Margin-Top is de plek waar passie voor design, innovatie en technologie samenkomen, samen brengen we jouw visie tot leven. 
+                    We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot overheidsorganisaties en financiële instellingen.
+                  </p>
+                </div>
+              </div>
+              <div 
+                className="bg-[#4F8BD2] rounded-lg mt-8 md:mt-10 p-6 md:p-8 relative overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] opacity-20"></div>
+                <div className="flex flex-col items-center">
+                  <div className="mb-6">
+                    <Image
+                      src="/logo.png"
+                      alt="Margin-Top Logo"
+                      width={120}
+                      height={40}
+                      className="h-12 w-auto brightness-0 invert"
+                    />
+                  </div>
+                  <h3 className="text-xl md:text-2xl !text-white mb-6 relative font-medium">Neem contact op</h3>
+                  <div className="flex flex-col sm:flex-row justify-center gap-4 relative w-full max-w-md">
+                    <Link 
+                      href="https://www.linkedin.com/in/francisca-van-maurik/" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center bg-white px-8 py-4 rounded-lg text-[#4F8BD2] hover:bg-gray-50 transition-colors w-full sm:w-auto"
+                    >
+                      <FaLinkedin className="w-5 h-5" />
+                      <span className="ml-2 font-medium">LinkedIn</span>
+                    </Link>
+                    <Link 
+                      href="mailto:francisca@margin-top.com" 
+                      className="flex items-center justify-center bg-white px-8 py-4 rounded-lg text-[#4F8BD2] hover:bg-gray-50 transition-colors w-full sm:w-auto"
+                    >
+                      <MdEmail className="w-5 h-5" />
+                      <span className="ml-2 font-medium">Email</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Team Section - Moved after Meet Margin-Top */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
               <motion.div 
                 className="relative aspect-[4/5]"
@@ -216,64 +273,6 @@ const About: React.FC = () => {
                   <p className="text-center mt-4 font-handwriting text-xl text-gray-800">With Team</p>
                 </div>
               </motion.div>
-            </div>
-            <div 
-              className="w-full max-w-3xl text-center relative"
-            >
-     
-              <div className="p-8">
-                <h2 className="text-2xl sm:text-3xl md:text-4xl mb-6 text-[#4F8BD2]">
-                  Meet Margin-Top
-                </h2>
-                <hr className="border-black mb-8 border-t-2 mx-auto w-1/3" />
-                <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-6">
-                  <p
-                  >
-                    Francisca is de oprichter van Margin-Top, een digitaal bureau dat gedreven wordt door een passie voor het ontwerpen van 
-                    naadloze gebruikerservaringen en innovatieve digitale oplossingen.
-                  </p>
-                  <p>
-                    Margin-Top is de plek waar passie voor design, innovatie en technologie samenkomen, samen brengen we jouw visie tot leven. 
-                    We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot overheidsorganisaties en financiële instellingen.
-                  
-                  </p>
-                </div>
-              </div>
-              <div 
-                className="bg-[#4F8BD2] rounded-lg mt-12 p-6 relative overflow-hidden"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-[#6EC1E4] to-[#4F8BD2] opacity-20"></div>
-                <div className="flex flex-col items-center">
-                  <div className="mb-4">
-                    <Image
-                      src="/logo.png"
-                      alt="Margin-Top Logo"
-                      width={120}
-                      height={40}
-                      className="h-10 w-auto brightness-0 invert"
-                    />
-                  </div>
-                  <p className="text-lg !text-white mb-4 relative">Neem contact op:</p>
-                  <div className="flex justify-center space-x-4 relative">
-                    <Link 
-                      href="https://www.linkedin.com/in/francisca-van-maurik/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center bg-white px-6 py-3 rounded-lg text-[#4F8BD2] hover:bg-gray-50 transition-colors"
-                    >
-                      <FaLinkedin className="w-5 h-5" />
-                      <span className="ml-2">LinkedIn</span>
-                    </Link>
-                    <Link 
-                      href="mailto:francisca@margin-top.com" 
-                      className="flex items-center bg-white px-6 py-3 rounded-lg text-[#4F8BD2] hover:bg-gray-50 transition-colors"
-                    >
-                      <MdEmail className="w-5 h-5" />
-                      <span className="ml-2">Email</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
             </div>
           </motion.div>
         </div>
