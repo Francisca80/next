@@ -6,6 +6,7 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import AboutSection from "@/components/AboutSection";
 import ServiceCTA from "@/components/ServiceCTA";
+import ReviewSection from "@/components/ReviewSection";
 
 interface PageData {
   heroImage: {
@@ -90,6 +91,7 @@ export default async function Home() {
         <AboutSection />
         <CaseSection />
         <ServicesSection initialServices={services} />
+        <ReviewSection />
         <ServiceCTA
           serviceType="margin-top"
           title="Klaar om je project te starten?"
