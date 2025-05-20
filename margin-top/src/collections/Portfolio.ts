@@ -12,7 +12,6 @@ export const Portfolio: CollectionConfig = {
     useAsTitle: 'title',
     defaultColumns: ['title','order', 'status', 'publishedDate'],
     group: 'Content',
-
   },
   fields: [
     {

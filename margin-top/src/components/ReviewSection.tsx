@@ -89,6 +89,7 @@ const ReviewSection: React.FC = () => {
                   src={review.image}
                   alt={review.name}
                   fill
+                  sizes="(max-width: 768px) 48px, 48px"
                   className="object-cover"
                 />
               </div>

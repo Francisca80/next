@@ -237,6 +237,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                     src="/margin-top-logo.png"
                     alt="Margin Top Team"
                     fill
+                    sizes="(max-width: 640px) 48px, (max-width: 768px) 56px, 64px"
                     className="object-contain p-1 sm:p-2"
                   />
                 </div>
@@ -357,6 +358,7 @@ const ServiceCTA: React.FC<ServiceCTAProps> = ({
                       src="/media/mascotmm.png"
                       alt="Margin Top Team"
                       fill
+                      sizes="(max-width: 640px) 48px, (max-width: 768px) 56px, 64px"
                       className="object-contain p-4 sm:p-6"
                     />
                   </div>

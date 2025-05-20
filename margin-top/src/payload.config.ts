@@ -19,7 +19,6 @@ import { Development } from './collections/Development'
 import { Ux } from './collections/Ux'
 import { Hosting } from './collections/Hosting'
 import { Cookies } from './collections/Cookies'
-import { HowItWorks } from './collections/HowItWorks'
 import { Portfolio } from './collections/Portfolio'
 import { Ai } from './collections/Ai'
 const filename = fileURLToPath(import.meta.url)
@@ -45,7 +44,6 @@ export default buildConfig({
     Ux,
     Hosting,
     Cookies,
-    HowItWorks,
     Portfolio,
     Ai
   ],

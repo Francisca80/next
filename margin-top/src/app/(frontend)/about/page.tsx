@@ -61,9 +61,9 @@ const About: React.FC = () => {
                 animate={heroInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <p className="text-base sm:text-lg md:text-xl text-gray-700">
-                  Bij Margin-Top geven we jouw visie de ruimte die het verdient. 
-                  Hierbij gaat het niet alleen om het bouwen van websites, maar om het creëren van digitale omgevingen 
+              <p className="text-base sm:text-lg md:text-xl text-gray-700">
+                Bij Margin-Top geven we jouw visie de ruimte die het verdient. 
+                Hierbij gaat het niet alleen om het bouwen van websites, maar om het creëren van digitale omgevingen 
                   die de aandacht trekken en bezoekers ook blijven boeien.
                 </p>
               </motion.div>
@@ -169,16 +169,16 @@ const About: React.FC = () => {
                   Meet Margin-Top
                 </h2>
                 <hr className="border-black mb-8 border-t-2 mx-auto w-1/3" />
-                <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-6">
-                  <p>
-                    Francisca is de oprichter van Margin-Top, een digitaal bureau dat gedreven wordt door een passie voor het ontwerpen van 
+              <div className="text-base sm:text-lg md:text-xl text-gray-700 space-y-6">
+                <p>
+                  Francisca is de oprichter van Margin-Top, een digitaal bureau dat gedreven wordt door een passie voor het ontwerpen van 
                     naadloze gebruikerservaringen en innovatieve digitale oplossingen.
-                  </p>
-                  <p>
-                    Margin-Top is de plek waar passie voor design, innovatie en technologie samenkomen, samen brengen we jouw visie tot leven. 
-                    We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot overheidsorganisaties en financiële instellingen.
-                  </p>
-                </div>
+                </p>
+                <p>
+                  Margin-Top is de plek waar passie voor design, innovatie en technologie samenkomen, samen brengen we jouw visie tot leven. 
+                  We hebben ervaring in diverse branches, van e-commerce tot B2B, van start-ups tot overheidsorganisaties en financiële instellingen.
+                </p>
+              </div>
               </div>
               <div 
                 className="bg-[#4F8BD2] rounded-lg mt-8 md:mt-10 p-6 md:p-8 relative overflow-hidden"
@@ -196,22 +196,22 @@ const About: React.FC = () => {
                   </div>
                   <h3 className="text-xl md:text-2xl !text-white mb-6 relative font-medium">Neem contact op</h3>
                   <div className="flex flex-col sm:flex-row justify-center gap-4 relative w-full max-w-md">
-                    <Link 
-                      href="https://www.linkedin.com/in/francisca-van-maurik/" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
+                  <Link 
+                    href="https://www.linkedin.com/in/francisca-van-maurik/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
                       className="flex items-center justify-center bg-white px-8 py-4 rounded-lg text-[#4F8BD2] hover:bg-gray-50 transition-colors w-full sm:w-auto"
-                    >
-                      <FaLinkedin className="w-5 h-5" />
+                  >
+                    <FaLinkedin className="w-5 h-5" />
                       <span className="ml-2 font-medium">LinkedIn</span>
-                    </Link>
-                    <Link 
-                      href="mailto:francisca@margin-top.com" 
+                  </Link>
+                  <Link 
+                    href="mailto:francisca@margin-top.com" 
                       className="flex items-center justify-center bg-white px-8 py-4 rounded-lg text-[#4F8BD2] hover:bg-gray-50 transition-colors w-full sm:w-auto"
-                    >
-                      <MdEmail className="w-5 h-5" />
+                  >
+                    <MdEmail className="w-5 h-5" />
                       <span className="ml-2 font-medium">Email</span>
-                    </Link>
+                  </Link>
                   </div>
                 </div>
               </div>
@@ -273,7 +273,7 @@ const About: React.FC = () => {
                   <p className="text-center mt-4 font-handwriting text-xl text-gray-800">With Team</p>
                 </div>
               </motion.div>
-            </div>
+          </div>
           </motion.div>
         </div>
       </section>

@@ -51,13 +51,13 @@ const AboutSection: React.FC = () => {
               </span>
               <FaArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
-          </div>
         </div>
+      </div>
 
-        {/* Logo Slider */}
+      {/* Logo Slider */}
         <div className="w-full mt-12 md:mt-16">
           <div className="py-6 md:py-8">
-            <LogoSlider />
+          <LogoSlider />
           </div>
         </div>
       </div>

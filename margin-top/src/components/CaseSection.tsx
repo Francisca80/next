@@ -152,8 +152,7 @@ const CasesSection: React.FC = () => {
                       alt={getImageAlt(caseItem.image, caseItem.title)}
                       fill
                       priority={index === 0}
-                      loading={index === 0 ? 'eager' : 'lazy'}
-                      sizes="100vw"
+                      sizes="(max-width: 640px) 91.666667vw, (max-width: 1024px) 45vw, 30vw"
                       className="object-cover transform transition-transform duration-700 group-hover:scale-105"
                     />
                     {/* Persistent overlay for mobile */}
@@ -196,7 +195,6 @@ const CasesSection: React.FC = () => {
                       alt={getImageAlt(caseItem.image, caseItem.title)}
                       fill
                       priority={index === 0}
-                      loading={index === 0 ? 'eager' : 'lazy'}
                       sizes="(max-width: 1024px) 45vw, 30vw"
                       className="object-cover transform transition-transform duration-700 group-hover:scale-105"
                     />

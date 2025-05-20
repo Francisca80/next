@@ -1,9 +1,9 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowRight } from 'react-icons/fa';
-import { getPayload } from 'payload';
-import config from '@/payload.config';
 import { Portfolio, Media } from '@/payload-types';
 
 interface CaseGridItem {
@@ -52,23 +52,42 @@ const getGridItemConfig = (index: number): CaseGridItem => {
   }
 };
 
-export default async function Cases() {
-  const payloadConfig = await config;
-  const payload = await getPayload({config: payloadConfig});
-  
-  const response = await (payload.find as any)({
-    collection: 'portfolio',
-    where: {
-      status: {
-        equals: 'published'
-      }
-    },
-    sort: 'order',
-    depth: 2,
-    limit: 50
-  });
+export default function Cases() {
+  const [cases, setCases] = useState<Portfolio[]>([]);
 
-  const cases = response.docs as Portfolio[];
+  useEffect(() => {
+    const fetchCases = async () => {
+      try {
+        const response = await fetch('/api/cases', {
+          cache: 'no-store',
+          next: { revalidate: 0 }
+        });
+        const data = await response.json();
+        if (data.docs) {
+          setCases(data.docs);
+        }
+      } catch (error) {
+        console.error('Error fetching cases:', error);
+      }
+    };
+
+    fetchCases();
+
+    // Refresh data every 30 seconds
+    const interval = setInterval(fetchCases, 30000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const getImageUrl = (image: Media | string | null): string => {
+    if (!image) return '/placeholder-case.jpg';
+    return typeof image === 'string' ? image : image.url || '/placeholder-case.jpg';
+  };
+
+  const getImageAlt = (image: Media | string | null, fallback: string): string => {
+    if (!image) return fallback;
+    return typeof image === 'string' ? fallback : image.alt || fallback;
+  };
 
   return (
     <div className="bg-white">
@@ -86,14 +105,6 @@ export default async function Cases() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-[250px] sm:auto-rows-[200px] gap-4">
           {cases.map((caseItem: Portfolio, index: number) => {
             const gridConfig = getGridItemConfig(index);
-            let imageUrl = '/placeholder-case.jpg';
-
-            if (caseItem.image && typeof caseItem.image === 'object') {
-              const mediaImage = caseItem.image as Media;
-              if (mediaImage.url) {
-                imageUrl = mediaImage.url;
-              }
-            }
             
             const itemClasses = `
               group 
@@ -118,8 +129,8 @@ export default async function Cases() {
                 <div className="h-full rounded-lg overflow-hidden">
                   <div className="relative w-full h-full">
                     <Image 
-                      src={imageUrl}
-                      alt={caseItem.title || 'Case study'} 
+                      src={getImageUrl(caseItem.image)}
+                      alt={getImageAlt(caseItem.image, caseItem.title || 'Case study')} 
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105" 
                       loading="lazy"

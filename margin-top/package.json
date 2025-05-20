@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node server.js",
+    "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js",
+    "start": "next start",
     "lint": "next lint",
+    "pm2:start": "npm run build && pm2 start ecosystem.config.js --env production",
+    "pm2:stop": "pm2 stop ecosystem.config.js",
+    "pm2:restart": "npm run build && pm2 restart ecosystem.config.js --env production",
+    "pm2:delete": "pm2 delete ecosystem.config.js",
+    "pm2:logs": "pm2 logs margin-top",
+    "pm2:monit": "pm2 monit",
     "generate-types": "payload generate:types"
   },
   "dependencies": {
@@ -43,6 +49,7 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.2.3",
+    "pm2": "^6.0.6",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.14",
     "ts-node": "^10.9.2",
