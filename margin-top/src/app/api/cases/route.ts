@@ -18,7 +18,7 @@ export async function GET() {
           equals: 'published'
         }
       },
-      sort: '-updatedAt', // Sort by most recently updated
+      sort: 'id', // Sort by ID
       limit: 10,
       depth: 2 // To get nested media objects
     });

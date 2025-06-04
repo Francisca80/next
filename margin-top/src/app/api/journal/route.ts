@@ -13,7 +13,7 @@ export async function GET() {
 
     // Fetch journal posts from Payload CMS
     const response = await payload.find({
-      collection: 'posts',
+      collection: 'journal',
       where: {
         status: {
           equals: 'published'
