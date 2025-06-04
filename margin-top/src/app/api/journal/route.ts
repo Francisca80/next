@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getPayload } from 'payload';
 import config from '@/payload.config';
+import type { Journal } from '@/payload-types';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -10,9 +11,9 @@ export async function GET() {
     const payloadConfig = await config;
     const payload = await getPayload({ config: payloadConfig });
 
-    // Fetch cases data from Payload CMS
-    const response = await (payload.find as any)({
-      collection: 'portfolio',
+    // Fetch journal posts from Payload CMS
+    const response = await payload.find({
+      collection: 'posts',
       where: {
         status: {
           equals: 'published'
@@ -23,28 +24,22 @@ export async function GET() {
       depth: 2 // To get nested media objects
     });
 
-    // Add slug to each case
-    const cases = response.docs.map((doc: any) => ({
+    // Add slug to each post if not present
+    const posts = response.docs.map((doc: Journal) => ({
       ...doc,
       slug: doc.slug || doc.title.toLowerCase().replace(/\s+/g, '-')
     }));
-    response.docs = cases;
+    response.docs = posts;
 
     return NextResponse.json(response);
   } catch (error) {
-    console.error('Error fetching cases:', error);
-    // Return empty response instead of error when Payload is not available
-    return NextResponse.json({
-      docs: [],
-      totalDocs: 0,
-      limit: 10,
-      totalPages: 0,
-      page: 1,
-      pagingCounter: 1,
-      hasPrevPage: false,
-      hasNextPage: false,
-      prevPage: null,
-      nextPage: null
-    });
+    console.error('Error fetching journal data:', error);
+    return NextResponse.json(
+      { 
+        error: 'Failed to fetch journal data',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
+      { status: 500 }
+    );
   }
 } 

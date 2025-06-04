@@ -2,63 +2,54 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getPayload } from 'payload';
-import config from '@/payload.config';
 import { FaArrowRight } from 'react-icons/fa';
 import MoreCases from '@/components/MoreCases';
 import { Portfolio, Media } from '@/payload-types';
 import LexicalContent from '@/components/LexicalContent';
+import { headers } from 'next/headers';
 
 interface CaseDetailProps {
   params: Promise<{
     id: string;
   }>;
-} 
-
-export async function generateStaticParams() {
-  const payloadConfig = await config;
-  const payload = await getPayload({ config: payloadConfig });
-  const response = await payload.find({ 
-    collection: 'portfolio',
-    where: { status: { equals: "published" } },
-  });
-
-  return response.docs.map((caseItem: Portfolio) => ({ id: caseItem.slug }));
 }
 
-export default async function CaseDetail(props: CaseDetailProps) {
-  const params = await props.params;
-  const { id: slug } = params;
+interface Service {
+  service: string;
+  id: string;
+}
 
-  const payloadConfig = await config;
-  const payload = await getPayload({ config: payloadConfig });
+export default async function CaseDetail({ params }: CaseDetailProps) {
+  const resolvedParams = await params;
+  const { id: slug } = resolvedParams;
+
+  // Get the host from headers
+  const headersList = await headers();
+  const host = headersList.get('host');
+  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
 
   // Get all published cases for the MoreCases component
-  const allCasesResponse = await payload.find({
-    collection: 'portfolio',
-    where: {
-      status: {
-        equals: 'published'
-      }
-    },
-    depth: 2
+  const allCasesResponse = await fetch(`${protocol}://${host}/api/cases`, {
+    next: { revalidate: 0 }
   });
 
-  // Get the current case
-  const response = await payload.find({
-    collection: 'portfolio',
-    where: {
-      status: {
-        equals: 'published'
-      },
-      slug: {
-        equals: slug
-      }
-    },
-    depth: 2
-  });
+  if (!allCasesResponse.ok) {
+    console.error('Failed to fetch cases:', await allCasesResponse.text());
+    notFound();
+  }
 
-  const caseItem = response.docs[0] as Portfolio;
+  const allCasesData = await allCasesResponse.json();
+  
+  // Handle case when Payload is not available or no cases exist
+  if (!allCasesData.docs || allCasesData.docs.length === 0) {
+    console.error('No cases available');
+    notFound();
+  }
+
+  const allCases = allCasesData.docs;
+
+  // Find the current case
+  const caseItem = allCases.find((item: Portfolio) => item.slug === slug);
 
   if (!caseItem) {
     notFound();
@@ -103,7 +94,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
           <div>
             <h3 className="text-3xl mb-6">Services</h3>
             <div className="flex flex-wrap gap-3">
-              {caseItem.services?.map((serviceObj, idx) => (
+              {caseItem.services?.map((serviceObj: Service, idx: number) => (
                 <span key={idx} className="bg-black text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-gray-800 transition-colors duration-200">
                   {serviceObj.service}
                 </span>
@@ -113,7 +104,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
 
           {/* About and Website */}
           <div>
-          <h3 className="text-3xl mb-12">Over het project</h3>
+            <h3 className="text-3xl mb-12">Over het project</h3>
             <div className="text-gray-600 text-lg leading-relaxed mb-8">
               <LexicalContent content={caseItem.about} />
             </div>
@@ -171,7 +162,7 @@ export default async function CaseDetail(props: CaseDetailProps) {
         {/* Results Section */}
         <div className="bg-gray-50 py-12 rounded-2xl">
           <div className="px-8 sm:px-16">
-                <h3 className="text-3xl mb-12">{caseItem.resultHeading}</h3>
+            <h3 className="text-3xl mb-12">{caseItem.resultHeading}</h3>
             <div className="text-gray-600 text-lg leading-relaxed max-w-3xl">
               <LexicalContent content={caseItem.resultText} />
             </div>
@@ -201,9 +192,9 @@ export default async function CaseDetail(props: CaseDetailProps) {
             </div>
           </div>
         </div>
-      </section >
+      </section>
       <section className='py-6'>
-        <MoreCases cases={allCasesResponse.docs as Portfolio[]} currentCaseId={caseItem.slug} />
+        <MoreCases cases={allCases} currentCaseId={caseItem.slug} />
       </section>
     </div>
   );

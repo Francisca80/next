@@ -1,4 +1,43 @@
 User-agent: *
-Disallow: /contact
+Allow: /
+Allow: /cases
+Allow: /cases/*
+Allow: /privacy
+Allow: /terms
 
+# Disallow sensitive paths
+Disallow: /contact
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /public/
+Disallow: /uploads/
+Disallow: /images/
+Disallow: /assets/
+Disallow: /*?*
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
+Disallow: /*.md$
+Disallow: /*.env$
+Disallow: /*.config$
+Disallow: /*.log$
+Disallow: /*.sql$
+Disallow: /*.db$
+Disallow: /*.bak$
+Disallow: /*.backup$
+Disallow: /*.zip$
+Disallow: /*.rar$
+Disallow: /*.7z$
+Disallow: /*.tar$
+Disallow: /*.gz$
+
+# Prevent crawling of sensitive links
+Disallow: /*tel:
+Disallow: /*mailto:
+Disallow: /*javascript:
+Disallow: /*data:
+
+# Sitemap location
 Sitemap: https://margin-top.com/sitemap.xml

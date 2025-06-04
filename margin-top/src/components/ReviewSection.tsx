@@ -26,6 +26,16 @@ const reviews: Review[] = [
     quote: 'Super efficient, knowledge and structure super nice to work with Francisca',
     rating: 5
   },
+  {
+    id: '2',
+    name: 'Samantha Maaswinkel',
+    role: 'Owner',
+    source: 'Google reviews',
+    company: 'Jodaro Gym',
+    image: '/cases/jodaro/jodarogymlogo.png',
+    quote: 'Wij zijn super blij met onze website. We hadden eerst een website die niet goed werkte en erg oud was. Francisca heeft voor ons een hele nieuwe website gebouwd, deze is helemaal van deze tijd en super leuke gadgets. Ze luistert goed naar je wensen en samen bekijk je de mogelijkheden. Wil jij ook een super mooie en goed werkende website? Dan ben je hier aan het perfecte adres!',
+    rating: 5
+  },
 
 ];
 
