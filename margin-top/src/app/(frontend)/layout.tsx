@@ -42,6 +42,7 @@ export default async function RootLayout({
     <html lang="en" suppressHydrationWarning className={outfit.className}>
       <head>
       <meta name="google-site-verification" content="Whfiv8sqhOfvsI_KYo_3PD-kn9xKas9hs_QUjUpebVw" />
+      <meta name="p:domain_verify" content="1144c73cdd493c80e6b220c617015349"/>
         <GoogleAnalytics />
       </head>
       <body suppressHydrationWarning>
