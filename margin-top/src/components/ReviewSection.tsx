@@ -107,13 +107,7 @@ const ReviewSection: React.FC = () => {
                 <h3 className="font-semibold text-lg">{review.name}</h3>
                 <p className="text-gray-600 text-sm">{review.role} bij {review.company}</p>
                 <p className="text-gray-600 text-sm">{ review.source}</p>
-              </div>
-            </div>
-            <div className="relative">
-              <FaQuoteLeft className="text-[#4F8BD2] opacity-20 text-4xl absolute -top-2 -left-2" />
-              <p className="text-gray-700 relative z-10 pl-4">{review.quote}</p>
-            </div>
-            <div className="flex mt-4">
+                <div className="flex mt-4">
               {[...Array(review.rating)].map((_, i) => (
                 <svg
                   key={i}
@@ -125,6 +119,14 @@ const ReviewSection: React.FC = () => {
                 </svg>
               ))}
             </div>
+              </div>
+             
+            </div>
+            <div className="relative">
+              <FaQuoteLeft className="text-[#4F8BD2] opacity-20 text-4xl absolute -top-2 -left-2" />
+              <p className="text-gray-700 relative z-10 pl-4">{review.quote}</p>
+            </div>
+       
           </motion.div>
         ))}
       </motion.div>

@@ -1,157 +1,205 @@
 'use client';
 
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface HorizontalCarouselProps {
   children: React.ReactNode;
-  className?: string;
   itemWidth?: string;
-  gap?: string;
+  className?: string;
 }
 
 const HorizontalCarousel: React.FC<HorizontalCarouselProps> = ({
   children,
-  className = '',
   itemWidth = '45vw',
-  gap = '1.5rem'
+  className = '',
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [isMouseDown, setIsMouseDown] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     if (containerRef.current) {
-      const items = containerRef.current.children;
+      const items = containerRef.current.querySelectorAll('.carousel-item');
       setTotalItems(items.length);
     }
   }, [children]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current) return;
-      const scrollPosition = containerRef.current.scrollLeft;
-      const itemWidth = containerRef.current.clientWidth;
-      const newIndex = Math.round(scrollPosition / itemWidth);
-      setActiveIndex(newIndex);
-    };
-
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('scroll', handleScroll);
-      return () => container.removeEventListener('scroll', handleScroll);
+  const updateActiveIndex = useCallback((index: number) => {
+    if (containerRef.current) {
+      const container = containerRef.current;
+      const items = container.querySelectorAll('.carousel-item');
+      const item = items[index];
+      
+      if (item) {
+        const itemRect = item.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        const scrollLeft = (item as HTMLElement).offsetLeft - (containerRect.width - itemRect.width) / 2;
+        
+        gsap.to(container, {
+          scrollLeft: scrollLeft,
+          duration: 0.8,
+          ease: 'power2.inOut'
+        });
+        
+        setActiveIndex(index);
+      }
     }
   }, []);
 
-  const handleDragStart = (clientX: number) => {
-    if (!containerRef.current) return;
-    setIsDragging(true);
-    const rect = containerRef.current.getBoundingClientRect();
-    setStartX(clientX - rect.left);
-    setScrollLeft(containerRef.current.scrollLeft);
+  const handlePrev = () => {
+    if (activeIndex > 0) {
+      updateActiveIndex(activeIndex - 1);
+    }
   };
 
-  const handleDragMove = (clientX: number) => {
-    if (!isDragging || !containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = clientX - rect.left;
-    const walk = (x - startX) * 2;
-    containerRef.current.scrollLeft = scrollLeft - walk;
+  const handleNext = () => {
+    if (activeIndex < totalItems - 1) {
+      updateActiveIndex(activeIndex + 1);
+    }
   };
 
-  const handleDragEnd = () => {
-    setIsDragging(false);
-    setIsMouseDown(false);
-  };
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsMouseDown(true);
-    handleDragStart(e.clientX);
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isMouseDown) return;
-    e.preventDefault();
-    handleDragMove(e.clientX);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    handleDragStart(e.touches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    handleDragMove(e.touches[0].clientX);
-  };
-
-  const scrollToIndex = (index: number) => {
-    if (!containerRef.current) return;
-    const itemWidth = containerRef.current.clientWidth;
-    containerRef.current.scrollTo({
-      left: index * itemWidth,
-      behavior: 'smooth'
-    });
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      handlePrev();
+    } else if (e.key === 'ArrowRight') {
+      handleNext();
+    }
   };
 
   return (
-    <div className="relative">
-      <div
-        ref={containerRef}
-        className={`flex overflow-x-auto hide-scrollbar snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none touch-pan-x ${className}`}
-        style={{ gap }}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleDragEnd}
-        onMouseLeave={handleDragEnd}
-        onMouseMove={handleMouseMove}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleDragEnd}
+    <>
+      <style jsx global>{`
+        .carousel-nav-button {
+          -webkit-tap-highlight-color: transparent !important;
+          -webkit-focus-ring-color: transparent !important;
+          outline: none !important;
+          box-shadow: none !important;
+          background: none !important;
+          background-color: transparent !important;
+        }
+        .carousel-nav-button:focus {
+          -webkit-tap-highlight-color: transparent !important;
+          -webkit-focus-ring-color: transparent !important;
+          outline: none !important;
+          box-shadow: none !important;
+          background: none !important;
+          background-color: transparent !important;
+        }
+        .carousel-nav-button:focus-visible {
+          -webkit-tap-highlight-color: transparent !important;
+          -webkit-focus-ring-color: transparent !important;
+          outline: none !important;
+          box-shadow: none !important;
+          background: none !important;
+          background-color: transparent !important;
+        }
+        .carousel-nav-button:active {
+          -webkit-tap-highlight-color: transparent !important;
+          -webkit-focus-ring-color: transparent !important;
+          outline: none !important;
+          box-shadow: none !important;
+          background: none !important;
+          background-color: transparent !important;
+        }
+        .carousel-nav-button::-moz-focus-inner {
+          border: 0 !important;
+          background: none !important;
+          background-color: transparent !important;
+        }
+        .carousel-nav-button:focus::-moz-focus-inner {
+          border: 0 !important;
+          background: none !important;
+          background-color: transparent !important;
+        }
+      `}</style>
+      <div 
+        className={`relative ${className}`}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onKeyDown={handleKeyDown}
+        tabIndex={0}
       >
-        {React.Children.map(children, (child) => (
-          <div className="flex-none snap-start" style={{ width: itemWidth }}>
-            {child}
-          </div>
-        ))}
-      </div>
+        {/* Navigation Arrows */}
+        <button
+          type="button"
+          onClick={handlePrev}
+          className={`carousel-nav-button absolute left-4 top-1/2 -translate-y-1/2 z-10 transition-all duration-300 ${
+            activeIndex === 0 ? 'opacity-30 cursor-not-allowed' : 'hover:scale-110'
+          } ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+          disabled={activeIndex === 0}
+          aria-label="Previous item"
+        >
+          <FaChevronLeft className="w-8 h-8 text-white drop-shadow-lg" />
+        </button>
 
-      {/* Indicator Dots */}
-      <div className="flex justify-center gap-4 mt-8">
-        {Array.from({ length: totalItems }).map((_, index) => (
-          <div
-            key={index}
-            onClick={() => scrollToIndex(index)}
-            style={{
-              height: '2px',
-              width: index === activeIndex ? '48px' : '24px',
-              backgroundColor: index === activeIndex ? 'rgb(0, 0, 0)' : 'rgba(0, 0, 0, 0.2)',
-              transition: 'all 500ms ease-in-out',
-              cursor: 'pointer'
-            }}
-            onMouseEnter={(e) => {
-              if (index !== activeIndex) {
-                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (index !== activeIndex) {
-                e.currentTarget.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
-              }
-            }}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                scrollToIndex(index);
-              }
-            }}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+        <button
+          type="button"
+          onClick={handleNext}
+          className={`carousel-nav-button absolute right-4 top-1/2 -translate-y-1/2 z-10 transition-all duration-300 ${
+            activeIndex === totalItems - 1 ? 'opacity-30 cursor-not-allowed' : 'hover:scale-110'
+          } ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+          disabled={activeIndex === totalItems - 1}
+          aria-label="Next item"
+        >
+          <FaChevronRight className="w-8 h-8 text-white drop-shadow-lg" />
+        </button>
+
+        {/* Carousel Container */}
+        <div 
+          ref={containerRef}
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory"
+          style={{ 
+            scrollbarWidth: 'none', 
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch'
+          }}
+        >
+          <div className="flex space-x-6 px-4">
+            {React.Children.map(children, (child, index) => (
+              <div 
+                className="carousel-item snap-start"
+                style={{ 
+                  width: itemWidth, 
+                  flexShrink: 0,
+                  scrollSnapAlign: 'center'
+                }}
+              >
+                {child}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Indicator Lines */}
+        <div className="flex justify-center space-x-3 mt-8">
+          {Array.from({ length: totalItems }).map((_, index) => (
+            <div
+              key={index}
+              onClick={() => updateActiveIndex(index)}
+              className={`h-1 transition-all duration-300 cursor-pointer ${
+                index === activeIndex 
+                  ? 'w-24 bg-black' 
+                  : 'w-12 bg-gray-300 hover:bg-gray-400'
+              }`}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  updateActiveIndex(index);
+                }
+              }}
+              aria-label={`Go to item ${index + 1}`}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
